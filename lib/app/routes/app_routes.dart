@@ -6,6 +6,8 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const BOTTOM_NAVIGATION = _Paths.BOTTOM_NAVIGATION;
   static const LABORATORY = _Paths.LABORATORY;
+  static const COLLOCTIONDETAILS = _Paths.COLLOCTIONDETAILS;
+
 }
 
 abstract class _Paths {
@@ -13,4 +15,5 @@ abstract class _Paths {
   static const HOME = '/home';
   static const BOTTOM_NAVIGATION = '/bottom-navigation';
   static const LABORATORY = '/laboratory';
+  static const COLLOCTIONDETAILS = '/coloection-deatails';
 }

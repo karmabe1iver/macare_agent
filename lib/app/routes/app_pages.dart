@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:macare_agent/app/modules/collection_details/bindings/collection_details_binding.dart';
+import 'package:macare_agent/app/modules/collection_details/views/collection_details_view.dart';
 
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
@@ -22,6 +24,10 @@ class AppPages {
       name: _Paths.LABORATORY,
       page: () => const LaboratoryView(),
       binding: LaboratoryBinding(),
+    ),GetPage(
+      name: _Paths.COLLOCTIONDETAILS,
+      page: () => const CollectionDetailsView(),
+      binding: CollectionDetailsBinding(),
     ),
   ];
 }
