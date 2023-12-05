@@ -20,28 +20,29 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
             child: Row(
               children: [
                 IconButton(onPressed: () {  }, icon: Icon(CupertinoIcons.left_chevron,color: Colors.white,size: 20 ,),),
-                Text('COLLECTION DETAILS',style: TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold),)
+                Text('COLLECTION DETAILS',style: TextStyle(color: Colors.white,fontSize: 15,fontWeight: FontWeight.w500),)
               ],
             ),
 
           ),
           Container(
-            child: Column(
-              children: [
-                Text('COLLECTION ADDRESS'),
-                Text('7012913930'),
-                Text('Kolathara'),
-                Text('test@g.com'),
-                Text('7012913930'),
-                Text('BOOKED BY'),
-                Text('Amar shankar'),
-                Text('Calicut,Kollathara'),
-                Text('Marakan kadav paramb'),
-                Text('Pin:637006'),
-                Text('7012913930'),
-              ],
+              child: Column(
+                children: [SizedBox(height: 18,width: Get.width,),
+                  Text('COLLECTION ADDRESS',style: MyTheme.outfit(fontWeight: FontWeight.w500)),
+                  Text('7012913930'),
+                  Text('Kolathara'),
+                  Text('test@g.com'),
+                  Text('7012913930'),
+                  Text('BOOKED BY'),
+                  Text('Amar shankar'),
+                  Text('Calicut,Kollathara'),
+                  Text('Marakan kadav paramb'),
+                  Text('Pin:637006'),
+                  Text('7012913930'),
+                ],
+              ),
             ),
-          )
+
         ],
       )
     );
