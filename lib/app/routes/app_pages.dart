@@ -24,7 +24,8 @@ class AppPages {
       name: _Paths.LABORATORY,
       page: () => const LaboratoryView(),
       binding: LaboratoryBinding(),
-    ),GetPage(
+    ),
+    GetPage(
       name: _Paths.COLLOCTIONDETAILS,
       page: () => const CollectionDetailsView(),
       binding: CollectionDetailsBinding(),
