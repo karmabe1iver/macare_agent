@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
-
-import '../../collection_details/views/collection_details_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({Key? key}) : super(key: key);
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +17,13 @@ class HomeView extends GetView<HomeController> {
             )
         ),
             ///Bottom Navigation
-      bottomNavigationBar: BottomNavigationBar(
+      bottomNavigationBar: Obx(
+        ()=> BottomNavigationBar(
+          currentIndex: controller.currentIndex.value,
+    onTap: (index){
+            controller.currentIndex.value=index;
+            controller.currentScreen.value=controller.screens[index];
+    },
     items: const [
     BottomNavigationBarItem(icon: Icon(Icons.label,size: 40),label: "LABORATORY"),
     BottomNavigationBarItem(icon: Icon(Icons.fire_truck_outlined,size: 40,),label: "DELIVERY"),
@@ -30,6 +34,7 @@ class HomeView extends GetView<HomeController> {
     unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
 
     ),
+      ),
     );
   }
 }

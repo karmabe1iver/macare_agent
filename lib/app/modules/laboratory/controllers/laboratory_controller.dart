@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
-class BottomNavigationController extends GetxController {
-  //TODO: Implement BottomNavigationController
+class LaboratoryController extends GetxController {
+  //TODO: Implement LaboratoryController
 
   final count = 0.obs;
   @override
