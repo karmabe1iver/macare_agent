@@ -9,9 +9,12 @@ class HomeController extends GetxController {
 
   final List<Widget> screens = [
     LaboratoryView(),
+    LaboratoryView(),
+    LaboratoryView(),
+    LaboratoryView(),
   ];
   final PageStorageBucket bucket = PageStorageBucket();
-  Rx<Widget> currentScreen= const SizedBox().obs;
+  Rx<Widget> currentScreen= const LaboratoryView().obs;
   RxInt currentIndex = 0.obs;
   @override
   void onInit() {

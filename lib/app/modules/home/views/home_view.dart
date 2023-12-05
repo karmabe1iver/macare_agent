@@ -17,11 +17,12 @@ class HomeView extends GetView<HomeController> {
             )
         ),
             ///Bottom Navigation
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: controller.currentIndex.value,
+      bottomNavigationBar: Obx(
+        ()=> BottomNavigationBar(
+          currentIndex: controller.currentIndex.value,
     onTap: (index){
-          controller.currentIndex.value=index;
-          controller.currentScreen.value=controller.screens[index];
+            controller.currentIndex.value=index;
+            controller.currentScreen.value=controller.screens[index];
     },
     items: const [
     BottomNavigationBarItem(icon: Icon(Icons.label,size: 40),label: "LABORATORY"),
@@ -33,6 +34,7 @@ class HomeView extends GetView<HomeController> {
     unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
 
     ),
+      ),
     );
   }
 }
