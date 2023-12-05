@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 
-import '../modules/bottom_navigation/bindings/bottom_navigation_binding.dart';
-import '../modules/bottom_navigation/views/bottom_navigation_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/laboratory/bindings/laboratory_binding.dart';
+import '../modules/laboratory/views/laboratory_view.dart';
 
 part 'app_routes.dart';
 
@@ -19,9 +19,9 @@ class AppPages {
       binding: HomeBinding(),
     ),
     GetPage(
-      name: _Paths.BOTTOM_NAVIGATION,
-      page: () => const BottomNavigationView(),
-      binding: BottomNavigationBinding(),
+      name: _Paths.LABORATORY,
+      page: () => const LaboratoryView(),
+      binding: LaboratoryBinding(),
     ),
   ];
 }
