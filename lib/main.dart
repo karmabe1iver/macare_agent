@@ -12,6 +12,7 @@ void main() {
       title: "MACare Agent",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
+
     ),
   );
 }
