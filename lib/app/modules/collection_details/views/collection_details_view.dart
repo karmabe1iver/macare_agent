@@ -16,7 +16,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
           Container(
             height: Get.height/7.5,
             width: Get.width,
-            color: MyTheme.appbarColor,
+            color: MyTheme.appBarColor,
             child: Row(
               children: [
                 IconButton(onPressed: () {  }, icon: Icon(CupertinoIcons.left_chevron,color: Colors.white,size: 20 ,),),
