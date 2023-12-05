@@ -21,7 +21,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
             Container(
               height: Get.height / 7,
               width: Get.width,
-              color: MyTheme.appbarColor,
+              color: MyTheme.appBarColor,
               child: Row(
                 children: [
                   Padding(
@@ -107,7 +107,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                               style: MyTheme.outfit(
                                   fontWeight: FontWeight.w500,
                                   textSize: Get.height * .016,
-                                  color: MyTheme.phonenumbertextColor),
+                                  color: MyTheme.phoneNumberTextColor),
                             ),
                             SizedBox(
                               height: 8,
@@ -149,7 +149,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                               style: MyTheme.outfit(
                                   fontWeight: FontWeight.w500,
                                   textSize: Get.height * .015,
-                                  color: MyTheme.phonenumbertextColor),
+                                  color: MyTheme.phoneNumberTextColor),
                             ),
                             SizedBox(
                               height: 10,
@@ -225,7 +225,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                         style: MyTheme.outfit(
                             fontWeight: FontWeight.w500,
                             textSize: Get.height * .018,
-                            color: MyTheme.phonenumbertextColor),
+                            color: MyTheme.phoneNumberTextColor),
                       ),
                       SizedBox(
                         height: 5,
@@ -311,14 +311,14 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                         style: MyTheme.outfit(
                             fontWeight: FontWeight.w400,
                             textSize: Get.height * .018,
-                            color: MyTheme.phonenumbertextColor),
+                            color: MyTheme.phoneNumberTextColor),
                       ),
                       Text(
                         '12.03AM',
                         style: MyTheme.outfit(
                             fontWeight: FontWeight.w400,
                             textSize: Get.height * .018,
-                            color: MyTheme.phonenumbertextColor),
+                            color: MyTheme.phoneNumberTextColor),
                       ),
                       SizedBox(
                         height: 5,

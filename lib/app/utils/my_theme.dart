@@ -5,12 +5,14 @@ abstract class MyTheme {
   static const Color bottomNavigationBarColor = Colors.white;
   static const Color bottomNavigationBarSelectedColor = Colors.black;
   static const Color bottomNavigationBarUnSelectedColor = Colors.grey;
-  static const Color appbarColor = Color(0xFF155A77);
+  static const Color appBarColor = Color(0xFF155A77);
   static const Color textColor = Color(0xFF878686);
-  static const Color phonenumbertextColor = Color(0xFF155A77);
+  static const Color phoneNumberTextColor = Color(0xFF155A77);
   static const Color dividerColor = Color(0xFFE8E8F0);
   static const Color buttonColor = Color(0xFF31AC12);
-
+  static const Color appBackgroundColor = Colors.white;
+  static const Color smallFontColor = Color(0xFF989696);
+  static const Color numbersColor = Color(0xFF155A77);
   //---------------[Textstyle]-----------------
   static TextStyle outfit(
       {FontStyle? fontStyle,
