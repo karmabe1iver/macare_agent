@@ -27,7 +27,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 9.0, left: 10,top: 28),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {Get.back();},
                       icon: const Icon(
                         CupertinoIcons.left_chevron,
                         color: Colors.white,

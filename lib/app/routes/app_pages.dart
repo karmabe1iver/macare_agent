@@ -1,7 +1,11 @@
 import 'package:get/get.dart';
-import 'package:macare_agent/app/modules/collection_details/bindings/collection_details_binding.dart';
-import 'package:macare_agent/app/modules/collection_details/views/collection_details_view.dart';
 
+import '../modules/collection_details/bindings/collection_details_binding.dart';
+import '../modules/collection_details/views/collection_details_view.dart';
+import '../modules/delivery/bindings/delivery_binding.dart';
+import '../modules/delivery/views/delivery_view.dart';
+import '../modules/history/bindings/history_binding.dart';
+import '../modules/history/views/history_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/laboratory/bindings/laboratory_binding.dart';
@@ -29,6 +33,16 @@ class AppPages {
       name: _Paths.COLLOCTIONDETAILS,
       page: () => const CollectionDetailsView(),
       binding: CollectionDetailsBinding(),
+    ),
+    GetPage(
+      name: _Paths.HISTORY,
+      page: () => const HistoryView(),
+      binding: HistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELIVERY,
+      page: () =>  DeliveryView(),
+      binding: DeliveryBinding(),
     ),
   ];
 }

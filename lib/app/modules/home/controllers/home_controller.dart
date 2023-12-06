@@ -3,17 +3,20 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
 
+import '../../delivery/views/delivery_view.dart';
+import '../../history/views/history_view.dart';
+
 class HomeController extends GetxController {
 
   //TODO: Implement HomeController
 
-  final List<Widget> screens = [
+  RxList<Widget> screens = [
     LaboratoryView(),
-    LaboratoryView(),
-    LaboratoryView(),
-    LaboratoryView(),
-  ];
-  final PageStorageBucket bucket = PageStorageBucket();
+    DeliveryView(),
+    HistoryView(),
+    HistoryView(),
+  ].obs;
+  Rx<PageStorageBucket> bucket = PageStorageBucket().obs;
   Rx<Widget> currentScreen= const LaboratoryView().obs;
   RxInt currentIndex = 0.obs;
   @override
