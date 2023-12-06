@@ -4,6 +4,7 @@ class LaboratoryController extends GetxController {
   //TODO: Implement LaboratoryController
 
   final count = 0.obs;
+  RxList<RxBool> visibility = [true.obs,true.obs,true.obs,true.obs,true.obs,].obs;
   @override
   void onInit() {
     super.onInit();

@@ -7,15 +7,16 @@ class HomeController extends GetxController {
 
   //TODO: Implement HomeController
 
-  final List<Widget> screens = [
+  RxList<Widget> screens = [
     LaboratoryView(),
     LaboratoryView(),
     LaboratoryView(),
     LaboratoryView(),
-  ];
+  ].obs;
   final PageStorageBucket bucket = PageStorageBucket();
   Rx<Widget> currentScreen= const LaboratoryView().obs;
   RxInt currentIndex = 0.obs;
+  bool isButtonPressed = false;
   @override
   void onInit() {
     super.onInit();
