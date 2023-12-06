@@ -61,9 +61,9 @@ class LaboratoryView extends GetView<LaboratoryController> {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
                   return Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: GestureDetector(
-                      onTap: (){
+                    padding: const EdgeInsets.all(0),
+                    child:MaterialButton(
+                      onPressed: (){
                         if(controller.visibility[index].value == false){
                           Get.toNamed(Routes.COLLOCTIONDETAILS);
                         }
@@ -75,7 +75,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                           Row(
                             children: [
                               Expanded(
-                                flex: 3,
+                                flex: 4,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
@@ -88,7 +88,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                 AssetHelper.laboratoryLogo,
                                                 fit: BoxFit.fill)),
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         height: 20,
                                       ),
                                       Text(
@@ -106,7 +106,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                 ),
                               ),
                               Expanded(
-                                flex: 5,
+                                flex: 4,
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
@@ -178,8 +178,8 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                 ),
                                               ),
                                               const Expanded(
-                                                flex: 1,
-                                                  child: SizedBox()),
+                                                flex: 0,
+                                                  child: SizedBox(width: 5,)),
                                               Expanded(
                                                 flex: 5,
                                                 child: GestureDetector(
@@ -218,7 +218,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                             ],
                           ),
                           Container(
-                            height: Get.height*.015,
+                            height: 7,
                             color: MyTheme.dividerColor,
                           )
                         ],
