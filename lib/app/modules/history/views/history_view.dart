@@ -25,6 +25,7 @@ class HistoryView extends GetView<HistoryController> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: [
+                    SizedBox(height: Get.height*.04,),
                     Text(
                       "MAcare",
                       style: MyTheme.outfit(

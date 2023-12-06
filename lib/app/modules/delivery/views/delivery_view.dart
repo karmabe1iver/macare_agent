@@ -25,6 +25,7 @@ class DeliveryView extends GetView<DeliveryController> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: [
+                    SizedBox(height: Get.height*.04,),
                     Text(
                       "MAcare",
                       style: MyTheme.outfit(
