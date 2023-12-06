@@ -9,9 +9,9 @@ import '../controllers/laboratory_controller.dart';
 
 class LaboratoryView extends GetView<LaboratoryController> {
   const LaboratoryView({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => LaboratoryController());
     return Scaffold(
       backgroundColor: MyTheme.appBackgroundColor,
       body: Column(
@@ -26,6 +26,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: [
+                    SizedBox(height: Get.height*.04,),
                     Text(
                       "MAcare",
                       style: MyTheme.outfit(
@@ -63,7 +64,10 @@ class LaboratoryView extends GetView<LaboratoryController> {
                     padding: const EdgeInsets.all(8),
                     child: GestureDetector(
                       onTap: (){
-                        Get.toNamed(Routes.COLLOCTIONDETAILS);
+                        if(controller.visibility[index].value == false){
+                          Get.toNamed(Routes.COLLOCTIONDETAILS);
+                        }
+                       // Get.toNamed(Routes.COLLOCTIONDETAILS);
                       },
                       child: Column(
                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -142,63 +146,71 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                   mainAxisAlignment: MainAxisAlignment.end,
                                   children: [
                                     SizedBox(height: Get.height*.15,),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      crossAxisAlignment: CrossAxisAlignment.end,
-                                      children: [
-                                        Expanded(
-                                          flex:5,
-                                          child: GestureDetector(
-                                           // color: Color(0xFFECF3F3),
-                                            onTap: () {},
-                                            child: Container(
-                                              color: const Color(0xFFECF3F3),
-                                              //height: Get.height*.02,
-                                              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                              child: Center(
-                                                child: Text(
-                                                  "Reject",
-                                                  maxLines: 1,
-                                                  style: MyTheme.outfit(
-                                                    textSize: Get.height*.015,
-                                                      color: Colors.red),
+                                    Obx(
+                                      ()=> Visibility(visible: controller.visibility[index].value,
+                                        child: Container(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            crossAxisAlignment: CrossAxisAlignment.end,
+                                            children: [
+                                              Expanded(
+                                                flex:5,
+                                                child: GestureDetector(
+                                                 // color: Color(0xFFECF3F3),
+                                                  onTap: () {
+                                                     controller.visibility[index].value=false;
+                                                  },
+                                                  child: Container(
+                                                    color: const Color(0xFFECF3F3),
+                                                    //height: Get.height*.02,
+                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "Reject",
+                                                        maxLines: 1,
+                                                        style: MyTheme.outfit(
+                                                          textSize: Get.height*.015,
+                                                            color: Colors.red),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                          ),
-                                        ),
-                                        const Expanded(
-                                          flex: 2,
-                                            child: SizedBox()),
-                                        Expanded(
-                                          flex: 5,
-                                          child: GestureDetector(
-                                            // color: Color(0xFFECF3F3),
-                                            onTap: () {
-                                              print("jfjyf");
-                                            },
-                                            child: Container(
-                                              color: const Color(0xFFECF3F3),
-                                              //height: Get.height*.02,
-                                              padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                              child: Center(
-                                                child: Text(
-                                                  "Accept",
-                                                  maxLines: 1,
-                                                  style: MyTheme.outfit(
-                                                      textSize: Get.height*.015,
-                                                      color: Colors.green),
+                                              const Expanded(
+                                                flex: 1,
+                                                  child: SizedBox()),
+                                              Expanded(
+                                                flex: 5,
+                                                child: GestureDetector(
+                                                  // color: Color(0xFFECF3F3),
+                                                  onTap: () {
+                                                    controller.visibility[index].value=false;
+                                                  },
+                                                  child: Container(
+                                                    color: const Color(0xFFECF3F3),
+                                                    //height: Get.height*.02,
+                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                    child: Center(
+                                                      child: Text(
+                                                        "Accept",
+                                                        maxLines: 1,
+                                                        style: MyTheme.outfit(
+                                                            textSize: Get.height*.015,
+                                                            color: Colors.green),
+                                                      ),
+                                                    ),
+                                                  ),
                                                 ),
                                               ),
-                                            ),
+                                              const Expanded(
+                                                  flex: 2,
+                                                  child: SizedBox()
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        const Expanded(
-                                            flex: 2,
-                                            child: SizedBox()
-                                        ),
-                                      ],
+                                      ),
                                     )
                                   ],
                                 ),
