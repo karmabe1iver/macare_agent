@@ -56,7 +56,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
           Expanded(
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
-              child: ListView.builder(
+              child: ListView.builder(padding: EdgeInsets.zero,
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
