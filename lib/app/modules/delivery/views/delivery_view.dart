@@ -62,7 +62,7 @@ class DeliveryView extends GetView<DeliveryController> {
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
                   return MaterialButton(onPressed: (){
-                    if( controller.statusvisibility[index].value=true){
+                    if( controller.statusvisibility[index].value){
                       Get.toNamed(Routes.COLLOCTIONDETAILS);
                     }
                   },
