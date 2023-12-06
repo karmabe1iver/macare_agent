@@ -229,12 +229,6 @@ class LaboratoryView extends GetView<LaboratoryController> {
               ),
             ),
           )
-
-          // Container(
-          //   child: Column(children: [
-          //
-          //   ],),
-          // )
         ],
       ),
     );

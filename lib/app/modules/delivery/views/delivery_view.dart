@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/asset_helper.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/delivery_controller.dart';
@@ -52,6 +53,7 @@ class DeliveryView extends GetView<DeliveryController> {
               ),
             ),
           ),
+
           Expanded(
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
@@ -59,15 +61,17 @@ class DeliveryView extends GetView<DeliveryController> {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 15.0,),
+                  return MaterialButton(onPressed: (){
+                    if( controller.statusvisibility[index].value=true){
+                      Get.toNamed(Routes.COLLOCTIONDETAILS);
+                    }
+                  },
                     child: Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         Row(
                           children: [
                             Expanded(
-                              flex: 3,
+                              flex: 4,
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
@@ -94,7 +98,7 @@ class DeliveryView extends GetView<DeliveryController> {
                               ),
                             ),
                             Expanded(
-                              flex: 5,
+                              flex: 4,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
@@ -108,7 +112,10 @@ class DeliveryView extends GetView<DeliveryController> {
                                   ),
 
                                   _addressDetails(
-                                    "Calicut,Kollathara",
+                                    "Calicut,",
+                                  ),
+                                  _addressDetails(
+                                    "Kollathara,",
                                   ),
                                   _addressDetails(
                                     "Marakkan kadavu paramb",
@@ -130,74 +137,71 @@ class DeliveryView extends GetView<DeliveryController> {
                               ),
                             ),
                             Expanded(
-                              flex: 4,
+                              flex: 5,
                               child: Column(
                                 mainAxisAlignment: MainAxisAlignment.end,
                                 children: [
                                   SizedBox(height: Get.height*.08,),
-                                  Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Obx(
-                                       ()=> Visibility(visible: controller.visibility[index].value,
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                            MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Expanded(
-                                                flex:5,
-                                                child: GestureDetector(
-                                                  // color: Color(0xFFECF3F3),
-                                                  onTap: () {
-                                                    controller.visibility[index].value=false;
-                                                  },
-                                                  child: Container(
-                                                    color: const Color(0xFFECF3F3),
-                                                    //height: Get.height*.02,
-                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "Reject",
-                                                        maxLines: 1,
-                                                        style: MyTheme.outfit(
-                                                            textSize: Get.height*.015,
-                                                            color: Colors.red),
-                                                      ),
+                                  Obx(
+                                     ()=> Visibility(visible: controller.visibility[index].value,
+                                      child: Container(
+                                        child: Row(
+                                          mainAxisAlignment:
+                                          MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment: CrossAxisAlignment.end,
+                                          children: [
+                                            Expanded(
+                                              flex:4,
+                                              child: GestureDetector(
+
+                                                onTap: () {
+                                                  controller.visibility[index].value=false;
+                                                },
+                                                child: Container(
+                                                  color: const Color(0xFFECF3F3),
+                                                  //height: Get.height*.02,
+                                                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Reject",
+                                                      maxLines: 1,
+                                                      style: MyTheme.outfit(
+                                                          textSize: Get.height*.015,
+                                                          color: Colors.red),
                                                     ),
                                                   ),
                                                 ),
                                               ),
-                                              const Expanded(
-                                                  flex: 2,
-                                                  child: SizedBox()),
-                                              Expanded(
-                                                flex: 5,
-                                                child: GestureDetector(
-                                                  // color: Color(0xFFECF3F3),
-                                                  onTap: () {
-                                                    controller.visibility[index].value=false;
-                                                    controller.statusvisibility[index].value=true;
+                                            ),
+                                            const Expanded(
+                                                flex: 0,
+                                                child: SizedBox(width: 5,)),
+                                            Expanded(
+                                              flex: 4,
+                                              child: GestureDetector(
+                                                // color: Color(0xFFECF3F3),
+                                                onTap: () {
+                                                  controller.visibility[index].value=false;
+                                                  controller.statusvisibility[index].value=true;
 
-                                                  },
-                                                  child: Container(
-                                                    color: const Color(0xFFECF3F3),
-                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "Accept",
-                                                        maxLines: 1,
-                                                        style: MyTheme.outfit(
-                                                            textSize: Get.height*.015,
-                                                            color: Colors.green),
-                                                      ),
+                                                },
+                                                child: Container(
+                                                  color: const Color(0xFFECF3F3),
+                                                  padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                  child: Center(
+                                                    child: Text(
+                                                      "Accept",
+                                                      maxLines: 1,
+                                                      style: MyTheme.outfit(
+                                                          textSize: Get.height*.015,
+                                                          color: Colors.green),
                                                     ),
                                                   ),
                                                 ),
                                               ),
+                                            ),
 
-                                            ],
-                                          ),
+                                          ],
                                         ),
                                       ),
                                     ),
@@ -205,16 +209,15 @@ class DeliveryView extends GetView<DeliveryController> {
                                 ],
                               ),
                             ),
-                            const Expanded(
-                                flex: 1,
-                                child: SizedBox()
-                            ),
+
 
                           ],
                         ),
-                        Container(
+                        SizedBox(width: Get.width,
                           height: 7,
-                          color: MyTheme.dividerColor,
+                          child: Container(
+                            color: MyTheme.dividerColor,
+                          ),
                         )
                       ],
                     ),
