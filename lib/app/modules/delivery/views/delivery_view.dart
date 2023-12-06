@@ -169,7 +169,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                 ),
                                               ),
                                               const Expanded(
-                                                  flex: 2,
+                                                  flex: 1,
                                                   child: SizedBox()),
                                               Expanded(
                                                 flex: 5,
@@ -195,7 +195,10 @@ class DeliveryView extends GetView<DeliveryController> {
                                                   ),
                                                 ),
                                               ),
-
+                                              const Expanded(
+                                                  flex: 2,
+                                                  child: SizedBox()
+                                              ),
                                             ],
                                           ),
                                         ),
