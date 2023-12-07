@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/add_test_controller.dart';
 
@@ -203,7 +204,25 @@ class AddTestView extends GetView<AddTestController> {
                                   MyTheme.bottomNavigationBarUnSelectedColor),
                         ),
                         SizedBox(height: Get.height*.02,),
-
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Container(
+                            height: 49,
+                            width: Get.width / 2.4,
+                            child: TextButton(
+                                onPressed: () {
+                                },
+                                child: Text(
+                                  'CHECKOUT',
+                                  style: TextStyle(
+                                      color: Colors.white, fontSize: Get.height * .018),
+                                ),
+                                style: ButtonStyle(
+                                  backgroundColor:
+                                  MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                                )),
+                          ),
+                        ),
                       ],
                     ),
                   )
