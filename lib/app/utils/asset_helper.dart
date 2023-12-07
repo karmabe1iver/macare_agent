@@ -6,4 +6,7 @@ abstract class AssetHelper {
   //==========================[images]=======================
   static String laboratoryLogo = images('laboratoryLogo.png');
   static String houseLogo = images('allocatedLogos.png');
+  static String deliveryLogo = images('deliverylogo.png');
+  static String historyLogo = images('historylogo.png');
+  static String logoutLogo = images('logoutlogo.png');
 }
