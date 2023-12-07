@@ -110,7 +110,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                   flex: 4,
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [SizedBox(height: 5,),
+                                    children: [SizedBox(height: 20,),
                                       Text(
                                         "Amarshankar",
                                         style: MyTheme.outfit(

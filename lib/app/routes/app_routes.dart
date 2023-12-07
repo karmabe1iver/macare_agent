@@ -9,6 +9,7 @@ abstract class Routes {
   static const COLLOCTIONDETAILS = _Paths.COLLOCTIONDETAILS;
   static const HISTORY = _Paths.HISTORY;
   static const DELIVERY = _Paths.DELIVERY;
+  static const LOGINPAGE = _Paths.LOGINPAGE;
 }
 
 abstract class _Paths {
@@ -19,4 +20,5 @@ abstract class _Paths {
   static const COLLOCTIONDETAILS = '/coloection-deatails';
   static const HISTORY = '/history';
   static const DELIVERY = '/delivery';
+  static const LOGINPAGE = '/loginpage';
 }

@@ -5,6 +5,7 @@ import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
 
 import '../../delivery/views/delivery_view.dart';
 import '../../history/views/history_view.dart';
+import '../../loginpage/views/loginpage_view.dart';
 
 class HomeController extends GetxController {
 
@@ -14,7 +15,7 @@ class HomeController extends GetxController {
     LaboratoryView(),
     DeliveryView(),
     HistoryView(),
-    HistoryView(),
+    LoginpageView(),
   ].obs;
   Rx<PageStorageBucket> bucket = PageStorageBucket().obs;
   Rx<Widget> currentScreen= const LaboratoryView().obs;

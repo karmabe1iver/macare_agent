@@ -10,13 +10,15 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/laboratory/bindings/laboratory_binding.dart';
 import '../modules/laboratory/views/laboratory_view.dart';
+import '../modules/loginpage/bindings/loginpage_binding.dart';
+import '../modules/loginpage/views/loginpage_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.LOGINPAGE;
 
   static final routes = [
     GetPage(
@@ -41,8 +43,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DELIVERY,
-      page: () =>  DeliveryView(),
+      page: () => DeliveryView(),
       binding: DeliveryBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOGINPAGE,
+      page: () => LoginpageView(),
+      binding: LoginpageBinding(),
     ),
   ];
 }
