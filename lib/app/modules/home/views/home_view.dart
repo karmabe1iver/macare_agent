@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:macare_agent/app/utils/asset_helper.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 import '../controllers/home_controller.dart';
 
@@ -18,33 +19,21 @@ class HomeView extends GetView<HomeController> {
 
       ///Bottom Navigation
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
+        () => BottomNavigationBar(type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex.value,
           onTap: (index) {
             controller.currentIndex.value = index;
             // controller.currentScreen.value = controller.screens[index];
           },
-          items: const [
+          items:  [
              BottomNavigationBarItem(
-                icon: Icon(Icons.label, size: 40), label: "LABORATORY"),
+                icon: Image.asset(AssetHelper.laboratoryLogo,height: 40,width: 40,), label: "LABORATORY"),
              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.fire_truck_outlined,
-                  size: 40,
-                ),
-                label: "DELIVERY"),
+                icon: Image.asset(AssetHelper.deliveryLogo,height: 40,width: 40,), label: "DELIVERY"),
              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.book,
-                  size: 40,
-                ),
-                label: "HISTORY"),
+                icon: Image.asset(AssetHelper.historyLogo,height: 40,width: 40,), label: "HISTORY"),
              BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.logout,
-                  size: 40,
-                ),
-                label: "LOGOUT"),
+                icon: Image.asset(AssetHelper.logoutLogo,height: 40,width: 40,), label: "LOGOUT"),
           ],
           selectedItemColor: MyTheme.bottomNavigationBarSelectedColor,
           unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
@@ -52,4 +41,5 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
+  
 }
