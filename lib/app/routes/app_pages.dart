@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:macare_agent/app/modules/loginpage/bindings/loginpage_binding.dart';
+import 'package:macare_agent/app/modules/loginpage/views/loginpage_view.dart';
 
 import '../modules/add_test/bindings/add_test_binding.dart';
 import '../modules/add_test/views/add_test_view.dart';
@@ -18,7 +20,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.HOME;
+  static const INITIAL = Routes.LOGINPAGE;
 
   static final routes = [
     GetPage(
@@ -45,11 +47,15 @@ class AppPages {
       name: _Paths.DELIVERY,
       page: () => DeliveryView(),
       binding: DeliveryBinding(),
+    ),GetPage(
+      name: _Paths.LOGINPAGE,
+      page: () => LoginpageView(),
+      binding: LoginpageBinding(),
     ),
     GetPage(
-      name: _Paths.ADD_TEST,
-      page: () => const AddTestView(),
-      binding: AddTestBinding(),
+       name: _Paths.ADD_TEST,
+       page: () => const AddTestView(),
+       binding: AddTestBinding(),
     ),
   ];
 }

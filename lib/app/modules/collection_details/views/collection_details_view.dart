@@ -375,7 +375,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
-                    Get.toNamed(Routes.ADD_TEST);
+                     Get.toNamed(Routes.ADD_TEST);
                   },
                   child: Text(
                     'REACHED',

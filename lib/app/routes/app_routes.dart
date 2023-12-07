@@ -10,6 +10,7 @@ abstract class Routes {
   static const HISTORY = _Paths.HISTORY;
   static const DELIVERY = _Paths.DELIVERY;
   static const LOGINPAGE = _Paths.LOGINPAGE;
+  static const ADD_TEST = _Paths.ADD_TEST;
 }
 
 abstract class _Paths {
@@ -21,4 +22,5 @@ abstract class _Paths {
   static const HISTORY = '/history';
   static const DELIVERY = '/delivery';
   static const LOGINPAGE = '/loginpage';
+  static const ADD_TEST = '/add_test';
 }
