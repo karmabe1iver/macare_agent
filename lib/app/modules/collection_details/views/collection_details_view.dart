@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../routes/app_pages.dart';
 import '../controllers/collection_details_controller.dart';
 
 class CollectionDetailsView extends GetView<CollectionDetailsController> {
@@ -373,7 +374,9 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
               height: 49,
               width: Get.width / 2.4,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.toNamed(Routes.ADD_TEST);
+                  },
                   child: Text(
                     'REACHED',
                     style: TextStyle(

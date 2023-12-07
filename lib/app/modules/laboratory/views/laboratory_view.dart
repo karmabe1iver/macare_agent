@@ -5,6 +5,7 @@ import 'package:macare_agent/app/routes/app_pages.dart';
 import 'package:macare_agent/app/utils/asset_helper.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 
+import '../../../data/model/visibility_model.dart';
 import '../controllers/laboratory_controller.dart';
 
 class LaboratoryView extends GetView<LaboratoryController> {
@@ -60,170 +61,181 @@ class LaboratoryView extends GetView<LaboratoryController> {
                 shrinkWrap: true,
                 itemCount: 5,
                 itemBuilder: (BuildContext context, index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(0),
-                    child:MaterialButton(
-                      onPressed: (){
-                        if(controller.visibility[index].value == false){
-                          Get.toNamed(Routes.COLLOCTIONDETAILS);
-                        }
-                       // Get.toNamed(Routes.COLLOCTIONDETAILS);
-                      },
-                      child: Column(
-                       // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                flex: 4,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                  return Column(
+                    children: [
+                      MaterialButton(
+                        onPressed: (){
+                          print(model[index].visibile.value);
+                          print(model[index].status.value);
+
+                          if (!model[index].visibile.value &&
+                              model[index].status.value != "pending") {
+                            Get.toNamed(Routes.COLLOCTIONDETAILS);
+                          }
+                        },
+                        child: Column(
+                         // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Row(
+                              children: [
+                                Expanded(
+                                  flex: 4,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Column(
+                                      children: [
+                                        SizedBox(
+                                          height: 40,
+                                          width: 80,
+                                          child: Center(
+                                              child: Image.asset(
+                                                  AssetHelper.laboratoryLogo,
+                                                  fit: BoxFit.fill)),
+                                        ),
+                                        const SizedBox(
+                                          height: 20,
+                                        ),
+                                        Text(
+                                          "03.33 PM",
+                                          style: MyTheme.outfit(
+                                              color: MyTheme.numbersColor),
+                                        ),
+                                        Text(
+                                          "2023-11-07",
+                                          style: MyTheme.outfit(
+                                              color: MyTheme.numbersColor),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 4,
                                   child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
+                                      const SizedBox(height: 10,),
+                                      Text(
+                                        "Amarshankar",
+                                        style: MyTheme.outfit(
+                                            fontWeight: FontWeight.w500),
+                                      ),
                                       SizedBox(
-                                        height: 40,
-                                        width: 80,
-                                        child: Center(
-                                            child: Image.asset(
-                                                AssetHelper.laboratoryLogo,
-                                                fit: BoxFit.fill)),
+                                        height: Get.height*.02,
                                       ),
-                                      const SizedBox(
-                                        height: 20,
+                                      _addressDetails(
+                                        "Calicut,Kollathara",
                                       ),
-                                      Text(
-                                        "03.33 PM",
-                                        style: MyTheme.outfit(
-                                            color: MyTheme.numbersColor),
+                                      _addressDetails(
+                                        "Pin:637006",
                                       ),
-                                      Text(
-                                        "2023-11-07",
-                                        style: MyTheme.outfit(
-                                            color: MyTheme.numbersColor),
+                                      _addressDetails(
+                                        "health issues test",
                                       ),
+                                      _addressDetails(
+                                        "Kaloor,Kochin",
+                                      ),
+                                      _addressDetails(
+                                        "Samples",
+                                      ),
+                                      _addressDetails(
+                                        "Status:sample collected",
+                                      ),
+                                      SizedBox(height: Get.height*.03,)
                                     ],
                                   ),
                                 ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      "Amarshankar",
-                                      style: MyTheme.outfit(
-                                          fontWeight: FontWeight.w500),
-                                    ),
-                                    SizedBox(
-                                      height: Get.height*.02,
-                                    ),
-                                    _addressDetails(
-                                      "Calicut,Kollathara",
-                                    ),
-                                    _addressDetails(
-                                      "Pin:637006",
-                                    ),
-                                    _addressDetails(
-                                      "health issues test",
-                                    ),
-                                    _addressDetails(
-                                      "Kaloor,Kochin",
-                                    ),
-                                    _addressDetails(
-                                      "Samples",
-                                    ),
-                                    _addressDetails(
-                                      "Status:sample collected",
-                                    ),
-                                    SizedBox(height: Get.height*.03,)
-                                  ],
-                                ),
-                              ),
-                              Expanded(
-                                flex: 4,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    SizedBox(height: Get.height*.15,),
-                                    Obx(
-                                      ()=> Visibility(visible: controller.visibility[index].value,
-                                        child: Container(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceEvenly,
-                                            crossAxisAlignment: CrossAxisAlignment.end,
-                                            children: [
-                                              Expanded(
-                                                flex:5,
-                                                child: GestureDetector(
-                                                 // color: Color(0xFFECF3F3),
-                                                  onTap: () {
-                                                     controller.visibility[index].value=false;
-                                                  },
-                                                  child: Container(
-                                                    color: const Color(0xFFECF3F3),
-                                                    //height: Get.height*.02,
-                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "Reject",
-                                                        maxLines: 1,
-                                                        style: MyTheme.outfit(
-                                                          textSize: Get.height*.015,
-                                                            color: Colors.red),
+                                Expanded(
+                                  flex: 4,
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      SizedBox(height: Get.height*.15,),
+                                      Obx(
+                                        ()=> Visibility(visible: model[index].visibile.value,
+                                          child: Container(
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.end,
+                                              children: [
+                                                Expanded(
+                                                  flex:5,
+                                                  child: GestureDetector(
+                                                   // color: Color(0xFFECF3F3),
+                                                    onTap: () {
+                                                      model[index].visibile.value =
+                                                      false;
+                                                    },
+                                                    child: Container(
+                                                      color: const Color(0xFFECF3F3),
+                                                      //height: Get.height*.02,
+                                                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "Reject",
+                                                          maxLines: 1,
+                                                          style: MyTheme.outfit(
+                                                            textSize: 12,
+                                                            //Get.height*.015,
+                                                              color: Colors.red),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              const Expanded(
-                                                flex: 0,
-                                                  child: SizedBox(width: 5,)),
-                                              Expanded(
-                                                flex: 5,
-                                                child: GestureDetector(
-                                                  // color: Color(0xFFECF3F3),
-                                                  onTap: () {
-                                                    controller.visibility[index].value=false;
-                                                  },
-                                                  child: Container(
-                                                    color: const Color(0xFFECF3F3),
-                                                    //height: Get.height*.02,
-                                                    padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                    child: Center(
-                                                      child: Text(
-                                                        "Accept",
-                                                        maxLines: 1,
-                                                        style: MyTheme.outfit(
-                                                            textSize: Get.height*.015,
-                                                            color: Colors.green),
+                                                const Expanded(
+                                                  flex: 0,
+                                                    child: SizedBox(width: 5,)),
+                                                Expanded(
+                                                  flex: 5,
+                                                  child: GestureDetector(
+                                                    // color: Color(0xFFECF3F3),
+                                                    onTap: () {
+                                                      model[index].visibile.value =
+                                                      false;
+                                                      model[index].status.value =
+                                                      "accept";
+                                                    },
+                                                    child: Container(
+                                                      color: const Color(0xFFECF3F3),
+                                                      //height: Get.height*.02,
+                                                      padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
+                                                      child: Center(
+                                                        child: Text(
+                                                          "Accept",
+                                                          maxLines: 1,
+                                                          style: MyTheme.outfit(
+                                                              textSize: 12,
+                                                              // textSize: Get.height*.015,
+                                                              color: Colors.green),
+                                                        ),
                                                       ),
                                                     ),
                                                   ),
                                                 ),
-                                              ),
-                                              const Expanded(
-                                                  flex: 2,
-                                                  child: SizedBox()
-                                              ),
-                                            ],
+                                                const Expanded(
+                                                    flex: 2,
+                                                    child: SizedBox()
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                          Container(
-                            height: 7,
-                            color: MyTheme.dividerColor,
-                          )
-                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
+                      Container(
+                        height: 7,
+                        color: MyTheme.dividerColor,
+                      ),
+                    ],
                   );
                 },
               ),

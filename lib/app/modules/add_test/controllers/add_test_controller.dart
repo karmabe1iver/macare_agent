@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
-class LaboratoryController extends GetxController {
-  //TODO: Implement LaboratoryController
+class AddTestController extends GetxController {
+  //TODO: Implement AddTestController
 
   final count = 0.obs;
+RxBool isChecked = false.obs;
   @override
   void onInit() {
     super.onInit();
