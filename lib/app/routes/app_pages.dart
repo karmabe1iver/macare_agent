@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/add_test/bindings/add_test_binding.dart';
+import '../modules/add_test/views/add_test_view.dart';
 import '../modules/collection_details/bindings/collection_details_binding.dart';
 import '../modules/collection_details/views/collection_details_view.dart';
 import '../modules/delivery/bindings/delivery_binding.dart';
@@ -41,8 +43,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DELIVERY,
-      page: () =>  DeliveryView(),
+      page: () => DeliveryView(),
       binding: DeliveryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_TEST,
+      page: () => const AddTestView(),
+      binding: AddTestBinding(),
     ),
   ];
 }
