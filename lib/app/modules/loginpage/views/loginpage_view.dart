@@ -91,7 +91,7 @@ class LoginpageView extends GetView<LoginpageController> {
               SizedBox(
                 height: 20,
               ),
-              TextButton(onPressed: () {}, child: Text('forgot password?',style: TextStyle(color: MyTheme.appBarColor),))
+
             ]),
           ),
         ),
