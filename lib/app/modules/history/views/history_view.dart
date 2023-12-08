@@ -55,79 +55,82 @@ class HistoryView extends GetView<HistoryController> {
           Expanded(
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 5,
-                itemBuilder: (BuildContext context, index) {
-                  return Column(
-                    // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+              child: RefreshIndicator(
+                onRefresh: () async{  },
+                child: ListView.builder(
+                  shrinkWrap: true,
+                  itemCount: 5,
+                  itemBuilder: (BuildContext context, index) {
+                    return Column(
+                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 3,
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    SizedBox(
+                                      height: 40,
+                                      width: 80,
+                                      child: Center(
+                                          child: Image.asset(
+                                              AssetHelper.laboratoryLogo,
+                                              fit: BoxFit.fill)),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Text(
+                                      "03.33 PM",
+                                      style: MyTheme.outfit(
+                                          color: MyTheme.numbersColor),
+                                    ),
+                                    Text(
+                                      "2023-11-07",
+                                      style: MyTheme.outfit(
+                                          color: MyTheme.numbersColor),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 5,
                               child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   SizedBox(
-                                    height: 40,
-                                    width: 80,
-                                    child: Center(
-                                        child: Image.asset(
-                                            AssetHelper.laboratoryLogo,
-                                            fit: BoxFit.fill)),
+                                    height: Get.height * .02,
                                   ),
-                                  SizedBox(
-                                    height: 20,
+                                  _serviceDetails(
+                                    "Bill Number:00000",
                                   ),
-                                  Text(
-                                    "03.33 PM",
-                                    style: MyTheme.outfit(
-                                        color: MyTheme.numbersColor),
+                                  _serviceDetails(
+                                    "Bill Number:00000",
                                   ),
-                                  Text(
-                                    "2023-11-07",
-                                    style: MyTheme.outfit(
-                                        color: MyTheme.numbersColor),
+                                  _serviceDetails(
+                                    "Samples",
                                   ),
+
+
+                                  SizedBox(height: Get.height * .03,)
                                 ],
                               ),
                             ),
-                          ),
-                          Expanded(
-                            flex: 5,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                SizedBox(
-                                  height: Get.height * .02,
-                                ),
-                                _serviceDetails(
-                                  "Bill Number:00000",
-                                ),
-                                _serviceDetails(
-                                  "Bill Number:00000",
-                                ),
-                                _serviceDetails(
-                                  "Samples",
-                                ),
 
-
-                                SizedBox(height: Get.height * .03,)
-                              ],
-                            ),
-                          ),
-
-                        ],
-                      ),
-                      Container(
-                        height: 7,
-                        color: MyTheme.dividerColor,
-                      )
-                    ],
-                  );
-                },
+                          ],
+                        ),
+                        Container(
+                          height: 7,
+                          color: MyTheme.dividerColor,
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           )
