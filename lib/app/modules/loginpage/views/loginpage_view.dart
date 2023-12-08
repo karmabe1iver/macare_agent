@@ -79,10 +79,8 @@ class LoginpageView extends GetView<LoginpageController> {
               ),
               ElevatedButton(
                 onPressed: () {
-                  String email = controller.usernameController.text;
-                  String password = controller.passwordController.text;
-                  print('Email: $email, Password: $password');
-                  Get.toNamed(Routes.HOME);
+                  controller.fetchData();
+
                 },
                 child: Text('LOGIN'),
                 style: ElevatedButton.styleFrom(

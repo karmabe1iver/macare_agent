@@ -5,10 +5,11 @@ description: MACare Agent App
 environment: 
   sdk: '>=3.1.2 <4.0.0'
 
-dependencies: 
+dependencies:
   cupertino_icons: ^1.0.2
   get: 4.6.6
   google_fonts: ^6.1.0
+  dio: ^5.4.0
   url_launcher: ^6.0.10
   flutter_phone_direct_caller: ^2.1.1
   flutter: 

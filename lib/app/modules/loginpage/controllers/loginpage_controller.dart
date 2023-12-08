@@ -1,5 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:macare_agent/app/data/api_services/login_services.dart';
+import 'package:macare_agent/app/data/model/login_model.dart';
+
+import '../../../app.dart';
+import '../../../routes/app_pages.dart';
 
 class LoginpageController extends GetxController {
   //TODO: Implement LoginpageController
@@ -7,11 +12,10 @@ class LoginpageController extends GetxController {
   final count = 0.obs;
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
-  RxBool isPasswordVisible = true.obs ;
+  RxBool isPasswordVisible = true.obs;
+
   @override
-
   void onInit() {
-
     super.onInit();
   }
 
@@ -25,5 +29,19 @@ class LoginpageController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
-}
+  Future<void> fetchData() async {
+    LoginResponseModel response = await LoginServices.staffLogin(
+        employeeReference: usernameController.text,
+        password: passwordController.text);
+    if(response.access!=null) {
+      App.token=response.access!;
+      App.employeeReferences=response.employeeReference!;
+      Get.snackbar("Login", "Completed");
+      Get.toNamed(Routes.HOME);
+
+    }else{
+      Get.snackbar("Login", "Failed");
+    }
+  }
+    void increment() => count.value++;
+  }
