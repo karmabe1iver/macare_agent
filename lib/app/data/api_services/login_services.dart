@@ -8,6 +8,5 @@ abstract class LoginServices {
     dynamic response = await MyDio().customPost(ApiPaths.stafflogin,
         data: {'employee_reference': employeeReference, 'password': password});
     return LoginResponseModel.fromJson(response);
-
   }
 }

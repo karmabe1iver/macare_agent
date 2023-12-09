@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
 
@@ -15,6 +16,8 @@ class LoginpageController extends GetxController {
 
   @override
   void onInit() {
+    usernameController.text="emp-1001";
+    passwordController.text="staging@123";
     super.onInit();
   }
 
@@ -34,6 +37,8 @@ class LoginpageController extends GetxController {
         password: passwordController.text);
     if(response.access!=null) {
       Get.snackbar("Login", "Completed");
+      App.token= response.access !;
+      App.employeereference= response.employeeReference! ;
       Get.toNamed(Routes.HOME);
 
     }else{
