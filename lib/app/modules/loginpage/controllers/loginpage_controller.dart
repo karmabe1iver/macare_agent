@@ -4,6 +4,7 @@ import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
 
+import '../../../app.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginpageController extends GetxController {
@@ -36,6 +37,8 @@ class LoginpageController extends GetxController {
         employeeReference: usernameController.text,
         password: passwordController.text);
     if(response.access!=null) {
+      App.token=response.access!;
+      App.employeeReferences=response.employeeReference!;
       Get.snackbar("Login", "Completed");
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;

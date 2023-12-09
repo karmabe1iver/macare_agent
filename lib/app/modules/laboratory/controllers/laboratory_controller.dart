@@ -1,11 +1,18 @@
 import 'package:get/get.dart';
+import 'package:macare_agent/app/data/api_services/laboratory_services.dart';
+import 'package:macare_agent/app/presets/api_paths.dart';
+import 'package:macare_agent/app/utils/my_dio.dart';
+
+import '../../../data/model/laboratory_model.dart';
 
 class LaboratoryController extends GetxController {
-  //TODO: Implement LaboratoryController
 
-  final count = 0.obs;
+  RxList<LaboratoryResponseModel> laboratoryList =
+      <LaboratoryResponseModel>[].obs;
+
   @override
   void onInit() {
+    laboratoryFetchData();
     super.onInit();
   }
 
@@ -19,5 +26,12 @@ class LaboratoryController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  Future<void> laboratoryFetchData() async {
+    List<LaboratoryResponseModel> response =
+        await LaboratoryServices.laboratoryDetails();
+    if(response != null){
+      laboratoryList.value = response??[];
+    }
+  }
+
 }

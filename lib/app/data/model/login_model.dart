@@ -32,10 +32,10 @@ class LoginResponseModel {
   );
 
   Map<String, dynamic> toJson() => {
-  "access": access,
-  "refresh": refresh,
-  "employee_reference": employeeReference,
-  "name": name,
-  "user_type": userType,
+    "access": access,
+    "refresh": refresh,
+    "employee_reference": employeeReference,
+    "name": name,
+    "user_type": userType,
   };
 }
