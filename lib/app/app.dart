@@ -6,4 +6,8 @@ abstract class App{
 
 
 
+  static String agentUpdateReference ='';
+
+
+
 }

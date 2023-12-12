@@ -9,6 +9,8 @@ abstract class ApiPaths{
   static String deliveryUrl = 'pharmacy/get-allocation-for-agent/';
   static String deliveryAcceptRejectCondition1Url = 'pharmacy/prescription-agent-updates/';
   static String deliveryAcceptRejectCondition2Url = 'pharmacy/delivery-agent-updates/';
+  static String laboratoryAcceptUrl = "laboratory/agent-accept-request/";
+  static String laboratoryRejectUrl = "laboratory/laboratory-allocation-agent-reject/";
 
 
 }

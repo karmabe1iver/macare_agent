@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -10,6 +11,7 @@ import '../controllers/laboratory_controller.dart';
 
 class LaboratoryView extends GetView<LaboratoryController> {
   const LaboratoryView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     Get.lazyPut(() => LaboratoryController());
@@ -27,7 +29,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: [
-                    SizedBox(height: Get.height*.04,),
+                    SizedBox(height: Get.height * .04,),
                     Text(
                       "MAcare",
                       style: MyTheme.outfit(
@@ -58,191 +60,233 @@ class LaboratoryView extends GetView<LaboratoryController> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
               child: RefreshIndicator(
-                onRefresh: () async{  },
+                onRefresh: () async {},
                 child: Obx(
-                      ()=> ListView.builder(padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    itemCount: controller.laboratoryList.length,
-                    itemBuilder: (BuildContext context, index) {
-                      return Column(
-                        children: [
-                          MaterialButton(
-                            onPressed: (){
-                              // print(model[index].visibile.value);
-                              // print(model[index].status.value);
-                              //
-                              // if (!model[index].visibile.value &&
-                              //     model[index].status.value != "pending") {
-                              //   Get.toNamed(Routes.COLLOCTIONDETAILS);
-                              // }
-                            },
-                            child: Column(
-                             // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Row(
-                                  children: [
-                                    Expanded(
-                                      flex: 4,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 40,
-                                              width: 80,
-                                              child: Center(
-                                                  child: Image.asset(
-                                                      AssetHelper.laboratoryLogo,
-                                                      fit: BoxFit.fill)),
-                                            ),
-                                            const SizedBox(
-                                              height: 20,
-                                            ),
-                                            Text(
-                                              controller.laboratoryList[index].laboratoryBookingTime.toString(),
-                                              style: MyTheme.outfit(
-                                                  color: MyTheme.numbersColor),
-                                            ),
-                                            Text(
-                                              controller.laboratoryList[index].laboratoryBookingDate.toString(),
-                                              style: MyTheme.outfit(
-                                                  color: MyTheme.numbersColor),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 4,
-                                      child: Column(
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        children: [
-                                          const SizedBox(height: 10,),
-                                          Text(
-                                            controller.laboratoryList[index].customerNameForCollection.toString(),
-                                            style: MyTheme.outfit(
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          SizedBox(
-                                            height: Get.height*.02,
-                                          ),
-                                          _addressDetails(
-                                            controller.laboratoryList[index].customerAddressForCollection.toString(),
-                                          ),
-                                          _addressDetails(
-                                            "Pin:637006",
-                                          ),
-                                          _addressDetails(
-                                            "health issues test",
-                                          ),
-                                          _addressDetails(
-                                            "Kaloor,Kochin",
-                                          ),
-                                          _addressDetails(
-                                            "Samples",
-                                          ),
-                                          _addressDetails(
-                                            "Status : ${controller.laboratoryList[index].allocationStatus}"
+                      () =>
+                      ListView.builder(padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: controller.laboratoryList.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return Column(
+                            children: [
+                              MaterialButton(
+                                onPressed: () {
 
+                                  if (controller
+                                      .laboratoryList[index]
+                                      .allocationStatus != "pending") {
+                                  Get.toNamed(Routes.COLLOCTIONDETAILS);
+                                  }
+                                },
+                                child: Column(
+                                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 4,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 40,
+                                                  width: 80,
+                                                  child: Center(
+                                                      child: Image.asset(
+                                                          AssetHelper
+                                                              .laboratoryLogo,
+                                                          fit: BoxFit.fill)),
+                                                ),
+                                                const SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Text(
+                                                  controller
+                                                      .laboratoryList[index]
+                                                      .laboratoryBookingTime
+                                                      .toString(),
+                                                  style: MyTheme.outfit(
+                                                      color: MyTheme
+                                                          .numbersColor),
+                                                ),
+                                                Text(
+                                                  controller
+                                                      .laboratoryList[index]
+                                                      .laboratoryBookingDate
+                                                      .toString(),
+                                                  style: MyTheme.outfit(
+                                                      color: MyTheme
+                                                          .numbersColor),
+                                                ),
+                                              ],
+                                            ),
                                           ),
-                                          SizedBox(height: Get.height*.03,)
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 4,
-                                      child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          SizedBox(height: Get.height*.15,),
-                                          Visibility(visible:  controller.laboratoryList[index].allocationStatus == "pending"
-                                            ,
-                                              child: Container(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment.spaceEvenly,
-                                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                                  children: [
-                                                    Expanded(
-                                                      flex:5,
-                                                      child: GestureDetector(
-                                                       // color: Color(0xFFECF3F3),
-                                                        onTap: () {
-                                                          model[index].visibile.value =
-                                                          false;
-                                                        },
-                                                        child: Container(
-                                                          color: const Color(0xFFECF3F3),
-                                                          //height: Get.height*.02,
-                                                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Reject",
-                                                              maxLines: 1,
-                                                              style: MyTheme.outfit(
-                                                                textSize: 12,
-                                                                //Get.height*.015,
-                                                                  color: Colors.red),
+                                        ),
+                                        Expanded(
+                                          flex: 4,
+                                          child: Column(
+                                            crossAxisAlignment: CrossAxisAlignment
+                                                .start,
+                                            children: [
+                                              const SizedBox(height: 10,),
+                                              Text(
+                                                controller.laboratoryList[index]
+                                                    .customerNameForCollection
+                                                    .toString(),
+                                                style: MyTheme.outfit(
+                                                    fontWeight: FontWeight
+                                                        .w500),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * .02,
+                                              ),
+                                              _addressDetails(
+                                                controller.laboratoryList[index]
+                                                    .customerAddressForCollection
+                                                    .toString(),
+                                              ),
+                                              _addressDetails(
+                                                "Pin:637006",
+                                              ),
+                                              _addressDetails(
+                                                "health issues test",
+                                              ),
+                                              _addressDetails(
+                                                "Kaloor,Kochin",
+                                              ),
+                                              _addressDetails(
+                                                "Samples",
+                                              ),
+                                              _addressDetails(
+                                                  "Status : ${controller
+                                                      .laboratoryList[index]
+                                                      .allocationStatus}"
+
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * .03,)
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 4,
+                                          child: Column(
+                                            mainAxisAlignment: MainAxisAlignment
+                                                .end,
+                                            children: [
+                                              SizedBox(
+                                                height: Get.height * .15,),
+                                              Visibility(visible: controller
+                                                  .laboratoryList[index]
+                                                  .allocationStatus == "pending"
+                                                ,
+                                                child: Container(
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceEvenly,
+                                                    crossAxisAlignment: CrossAxisAlignment
+                                                        .end,
+                                                    children: [
+                                                      Expanded(
+                                                        flex: 5,
+                                                        child: GestureDetector(
+                                                          // color: Color(0xFFECF3F3),
+                                                          onTap: () {
+                                                            controller
+                                                                .laboratoryDialogBox(agentUpdateReference: controller.laboratoryList[index].agentUpdateReference.toString(), context: context);
+
+                                                            // model[index].visibile.value =
+                                                            // false;
+                                                          },
+                                                          child: Container(
+                                                            color: const Color(
+                                                                0xFFECF3F3),
+                                                            //height: Get.height*.02,
+                                                            padding: const EdgeInsets
+                                                                .symmetric(
+                                                                vertical: 5,
+                                                                horizontal: 5),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "Reject",
+                                                                maxLines: 1,
+                                                                style: MyTheme
+                                                                    .outfit(
+                                                                    textSize: 12,
+                                                                    //Get.height*.015,
+                                                                    color: Colors
+                                                                        .red),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    const Expanded(
-                                                      flex: 0,
-                                                        child: SizedBox(width: 5,)),
-                                                    Expanded(
-                                                      flex: 5,
-                                                      child: GestureDetector(
-                                                        // color: Color(0xFFECF3F3),
-                                                        onTap: () {
-                                                          model[index].visibile.value =
-                                                          false;
-                                                          model[index].status.value =
-                                                          "accept";
-                                                        },
-                                                        child: Container(
-                                                          color: const Color(0xFFECF3F3),
-                                                          //height: Get.height*.02,
-                                                          padding: const EdgeInsets.symmetric(vertical: 5,horizontal: 5),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Accept",
-                                                              maxLines: 1,
-                                                              style: MyTheme.outfit(
-                                                                  textSize: 12,
-                                                                  // textSize: Get.height*.015,
-                                                                  color: Colors.green),
+                                                      const Expanded(
+                                                          flex: 0,
+                                                          child: SizedBox(
+                                                            width: 5,)),
+                                                      Expanded(
+                                                        flex: 5,
+                                                        child: GestureDetector(
+                                                          // color: Color(0xFFECF3F3),
+                                                          onTap: () {
+                                                            controller
+                                                                .laboratoryAcceptData(
+                                                                bRef: controller
+                                                                    .laboratoryList[index]
+                                                                    .bRef
+                                                                    .toString());
+                                                          },
+                                                          child: Container(
+                                                            color: const Color(
+                                                                0xFFECF3F3),
+                                                            //height: Get.height*.02,
+                                                            padding: const EdgeInsets
+                                                                .symmetric(
+                                                                vertical: 5,
+                                                                horizontal: 5),
+                                                            child: Center(
+                                                              child: Text(
+                                                                "Accept",
+                                                                maxLines: 1,
+                                                                style: MyTheme
+                                                                    .outfit(
+                                                                    textSize: 12,
+                                                                    // textSize: Get.height*.015,
+                                                                    color: Colors
+                                                                        .green),
+                                                              ),
                                                             ),
                                                           ),
                                                         ),
                                                       ),
-                                                    ),
-                                                    const Expanded(
-                                                        flex: 2,
-                                                        child: SizedBox()
-                                                    ),
-                                                  ],
+                                                      const Expanded(
+                                                          flex: 2,
+                                                          child: SizedBox()
+                                                      ),
+                                                    ],
+                                                  ),
                                                 ),
                                               ),
-                                            ),
 
-                                        ],
-                                      ),
-                                    )
+                                            ],
+                                          ),
+                                        )
+                                      ],
+                                    ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: 7,
-                            color: MyTheme.dividerColor,
-                          ),
-                        ],
-                      );
-                    },
-                  ),
+                              ),
+                              Container(
+                                height: 7,
+                                color: MyTheme.dividerColor,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                 ),
               ),
             ),

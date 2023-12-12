@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:macare_agent/app/modules/delivery_details/views/delivery_details_view.dart';
 import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
 
@@ -15,7 +16,7 @@ class HomeController extends GetxController {
     const LaboratoryView(),
     const DeliveryView(),
     const HistoryView(),
-    LoginpageView(),
+    DeliveryDetailsView()
   ].obs;
   Rx<PageStorageBucket> bucket = PageStorageBucket().obs;
   Rx<Widget> currentScreen= const LaboratoryView().obs;

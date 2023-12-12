@@ -14,8 +14,6 @@ import '../modules/laboratory/bindings/laboratory_binding.dart';
 import '../modules/laboratory/views/laboratory_view.dart';
 import '../modules/loginpage/bindings/loginpage_binding.dart';
 import '../modules/loginpage/views/loginpage_view.dart';
-import '../modules/payment/bindings/payment_binding.dart';
-import '../modules/payment/views/payment_view.dart';
 
 part 'app_routes.dart';
 
@@ -60,10 +58,6 @@ class AppPages {
       page: () => const AddTestView(),
       binding: AddTestBinding(),
     ),
-    GetPage(
-      name: _Paths.PAYMENT,
-      page: () => const PaymentView(),
-      binding: PaymentBinding(),
-    ),
+
   ];
 }

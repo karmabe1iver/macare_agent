@@ -47,7 +47,7 @@ class MyDio {
   Future<dynamic> customPost(
       String path, {
         data,
-        baseurl,
+        baseUrl,
         Map<String, dynamic>? queryParameters,
         Options? options,
         CancelToken? cancelToken,
@@ -63,7 +63,7 @@ class MyDio {
       //   return null;
       // };
 
-      Response resp = await _dio.post((baseurl ?? generalurl) + path,
+      Response resp = await _dio.post((baseUrl ?? generalurl) + path,
           data: data,
           options: Options(responseType: ResponseType.plain, headers: {
             Headers.contentTypeHeader: "application/json",
