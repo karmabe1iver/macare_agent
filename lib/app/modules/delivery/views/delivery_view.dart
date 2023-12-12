@@ -15,6 +15,7 @@ class DeliveryView extends GetView<DeliveryController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut(() => DeliveryController());
+    controller.deliveryFetchData();
     return Scaffold(
       body: Column(
         children: [
@@ -65,229 +66,278 @@ class DeliveryView extends GetView<DeliveryController> {
                   controller.deliveryFetchData();
                 },
                 child: Obx(
-                  () => ListView.builder(
-                    padding: EdgeInsets.zero,
-                    shrinkWrap: true,
-                    itemCount: controller.deliveryDetails.length,
-                    itemBuilder: (BuildContext context, index) {
-                      return Column(
-                        children: [
-                          MaterialButton(
-                            onPressed: () {
-                              if (kDebugMode) {
-                                print(model[index].visibile.value);
-                                print(model[index].status.value);
-                              }
+                      () =>
+                      ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: controller.deliveryDetails.length,
+                        itemBuilder: (BuildContext context, index) {
+                          return Column(
+                            children: [
+                              MaterialButton(
+                                onPressed: () {
+                                  if (kDebugMode) {
 
-                              if (!model[index].visibile.value &&
-                                  model[index].status.value != "pending") {
-                                Get.toNamed(Routes.COLLOCTIONDETAILS);
-                              }
-                            },
-                            child: Column(
-                              children: [
-                                Row(
+                                  }
+
+                                  if (controller
+                                      .deliveryDetails[index]
+                                      .allocationStatus != "pending") {
+                                    Get.toNamed(Routes.PAYMENT);
+                                  }
+                                },
+                                child: Column(
                                   children: [
-                                    Expanded(
-                                      flex: 4,
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Column(
-                                          children: [
-                                            SizedBox(
-                                              height: 40,
-                                              width: 80,
-                                              child: Center(
-                                                  child: Image.asset(
-                                                      AssetHelper.houseLogo,
-                                                      fit: BoxFit.fill)),
-                                            ),
-                                            SizedBox(
-                                              height: 20,
-                                            ),
-                                            Text(
-                                              controller.deliveryDetails[index]
-                                                  .orderDate,
-                                              style: MyTheme.outfit(
-                                                  color: MyTheme.numbersColor),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 4,
-                                      child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 20,
-                                          ),
-                                          Text(
-                                            controller
-                                                .deliveryDetails[index]
-                                                .deliveryDetails!
-                                                .first
-                                                .customerName
-                                                .toString(),
-                                            style: MyTheme.outfit(
-                                                fontWeight: FontWeight.w500),
-                                          ),
-                                          SizedBox(
-                                            height: Get.height * .02,
-                                          ),
-                                          _addressDetails(
-                                            controller
-                                                .deliveryDetails[index]
-                                                .deliveryDetails!
-                                                .first
-                                                .customerAddress
-                                                .toString(),
-                                          ),
-                                          _addressDetails(
-                                            "Pin:637006",
-                                          ),
-                                          Obx(
-                                            () => Visibility(
-                                              visible: true,
-                                              child: _addressDetails(
-                                                controller.deliveryDetails[index]
-                                                            .allocationStatus ==
-                                                        "accepted"
-                                                    ? "Status : Accepted"
-                                                    : "Status : Pending",
-                                              ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                            height: Get.height * .03,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    Expanded(
-                                      flex: 5,
-                                      child: Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          SizedBox(
-                                            height: Get.height * .08,
-                                          ),
-                                          Obx(
-                                            () => Visibility(
-                                              visible: controller
-                                                      .deliveryDetails[index]
-                                                      .allocationStatus ==
-                                                  "pending",
-                                              child: Container(
-                                                child: Row(
-                                                  mainAxisAlignment:
-                                                      MainAxisAlignment
-                                                          .spaceEvenly,
-                                                  crossAxisAlignment:
-                                                      CrossAxisAlignment.end,
-                                                  children: [
-                                                    Expanded(
-                                                      flex: 4,
-                                                      child: GestureDetector(
-                                                        onTap: () {
-                                                          model[index]
-                                                              .visibile
-                                                              .value = false;
-                                                        },
-                                                        child: Container(
-                                                          color: const Color(
-                                                              0xFFECF3F3),
-                                                          //height: Get.height*.02,
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical: 5,
-                                                                  horizontal:
-                                                                      5),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Reject",
-                                                              maxLines: 1,
-                                                              style: MyTheme.outfit(
-                                                                  textSize:
-                                                                      Get.height *
-                                                                          .015,
-                                                                  color: Colors
-                                                                      .red),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    const Expanded(
-                                                        flex: 0,
-                                                        child: SizedBox(
-                                                          width: 5,
-                                                        )),
-                                                    Expanded(
-                                                      flex: 4,
-                                                      child: GestureDetector(
-                                                        // color: Color(0xFFECF3F3),
-                                                        onTap: () {
-                                                          model[index]
-                                                              .visibile
-                                                              .value = false;
-                                                          model[index]
-                                                                  .status
-                                                                  .value =
-                                                              "accept";
-                                                        },
-                                                        child: Container(
-                                                          color: const Color(
-                                                              0xFFECF3F3),
-                                                          padding:
-                                                              const EdgeInsets
-                                                                  .symmetric(
-                                                                  vertical: 5,
-                                                                  horizontal:
-                                                                      5),
-                                                          child: Center(
-                                                            child: Text(
-                                                              "Accept",
-                                                              maxLines: 1,
-                                                              style: MyTheme.outfit(
-                                                                  textSize:
-                                                                      Get.height *
-                                                                          .015,
-                                                                  color: Colors
-                                                                      .green),
-                                                            ),
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ),
-                                                  ],
+                                    Row(
+                                      children: [
+                                        Expanded(
+                                          flex: 4,
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Column(
+                                              children: [
+                                                SizedBox(
+                                                  height: 40,
+                                                  width: 80,
+                                                  child: Center(
+                                                      child: Image.asset(
+                                                          AssetHelper.houseLogo,
+                                                          fit: BoxFit.fill)),
                                                 ),
-                                              ),
+                                                SizedBox(
+                                                  height: 20,
+                                                ),
+                                                Text(
+                                                  controller
+                                                      .deliveryDetails[index]
+                                                      .orderDate,
+                                                  style: MyTheme.outfit(
+                                                      color: MyTheme
+                                                          .numbersColor),
+                                                ),
+                                              ],
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 4,
+                                          child: Column(
+                                            crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                            children: [
+                                              SizedBox(
+                                                height: 20,
+                                              ),
+                                              Text(
+                                                controller
+                                                    .deliveryDetails[index]
+                                                    .deliveryDetails!
+                                                    .first
+                                                    .customerName
+                                                    .toString(),
+                                                style: MyTheme.outfit(
+                                                    fontWeight: FontWeight
+                                                        .w500),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * .02,
+                                              ),
+                                              _addressDetails(
+                                                controller
+                                                    .deliveryDetails[index]
+                                                    .deliveryDetails!
+                                                    .first
+                                                    .customerAddress
+                                                    .toString(),
+                                              ),
+                                              _addressDetails(
+                                                "Pin:637006",
+                                              ),
+                                              Obx(
+                                                    () =>
+                                                    Visibility(
+                                                      visible: true,
+                                                      child: _addressDetails(
+                                                        controller
+                                                            .deliveryDetails[
+                                                        index]
+                                                            .allocationStatus ==
+                                                            "accepted"
+                                                            ? "Status : Accepted"
+                                                            : "Status : Pending",
+                                                      ),
+                                                    ),
+                                              ),
+                                              SizedBox(
+                                                height: Get.height * .03,
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 5,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                            children: [
+                                              SizedBox(
+                                                height: Get.height * .08,
+                                              ),
+                                              Obx(
+                                                    () =>
+                                                    Visibility(
+                                                      visible: controller
+                                                          .deliveryDetails[index]
+                                                          .allocationStatus ==
+                                                          "pending",
+                                                      child: Container(
+                                                        child: Row(
+                                                          mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceEvenly,
+                                                          crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .end,
+                                                          children: [
+                                                            Expanded(
+                                                              flex: 4,
+                                                              child: GestureDetector(
+                                                                onTap: () {
+                                                                  controller
+                                                                      .deliveryDialogBox(
+                                                                      allocationReferrence: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .allocationReference
+                                                                          .toString(),
+                                                                      deliveryType: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .type
+                                                                          .toString(),
+                                                                      orderReferrence: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .orderReference
+                                                                          .toString(), context: context);
+                                                                  // model[index]
+                                                                  //     .visibile
+                                                                  //     .value = false;
+                                                                },
+                                                                child: Container(
+                                                                  color: const Color(
+                                                                      0xFFECF3F3),
+                                                                  //height: Get.height*.02,
+                                                                  padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                      vertical: 5,
+                                                                      horizontal:
+                                                                      5),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      "Reject",
+                                                                      maxLines: 1,
+                                                                      style: MyTheme
+                                                                          .outfit(
+                                                                          textSize:
+                                                                          Get
+                                                                              .height *
+                                                                              .015,
+                                                                          color: Colors
+                                                                              .red),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                            const Expanded(
+                                                                flex: 0,
+                                                                child: SizedBox(
+                                                                  width: 5,
+                                                                )),
+                                                            Expanded(
+                                                              flex: 4,
+                                                              child: GestureDetector(
+                                                                // color: Color(0xFFECF3F3),
+                                                                onTap: () {
+                                                                  controller
+                                                                      .acceptFetchData(
+                                                                      orderReferrence: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .orderReference
+                                                                          .toString(),
+                                                                      allocationReferrence: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .allocationReference
+                                                                          .toString(),
+                                                                      deliveryType: controller
+                                                                          .deliveryDetails[
+                                                                      index]
+                                                                          .type
+                                                                          .toString());
+
+
+                                                                  // model[index]
+                                                                  //     .visibile
+                                                                  //     .value = false;
+                                                                  // model[index]
+                                                                  //         .status
+                                                                  //         .value =
+                                                                  //     "accept";
+                                                                },
+                                                                child: Container(
+                                                                  color: const Color(
+                                                                      0xFFECF3F3),
+                                                                  padding:
+                                                                  const EdgeInsets
+                                                                      .symmetric(
+                                                                      vertical: 5,
+                                                                      horizontal:
+                                                                      5),
+                                                                  child: Center(
+                                                                    child: Text(
+                                                                      "Accept",
+                                                                      maxLines: 1,
+                                                                      style: MyTheme
+                                                                          .outfit(
+                                                                          textSize:
+                                                                          Get
+                                                                              .height *
+                                                                              .015,
+                                                                          color: Colors
+                                                                              .green),
+                                                                    ),
+                                                                  ),
+                                                                ),
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            width: Get.width,
-                            height: 7,
-                            child: Container(
-                              color: MyTheme.dividerColor,
-                            ),
-                          )
-                        ],
-                      );
-                    },
-                  ),
+                              ),
+                              SizedBox(
+                                width: Get.width,
+                                height: 7,
+                                child: Container(
+                                  color: MyTheme.dividerColor,
+                                ),
+                              )
+                            ],
+                          );
+                        },
+                      ),
                 ),
               ),
             ),
@@ -304,4 +354,5 @@ class DeliveryView extends GetView<DeliveryController> {
           fontWeight: FontWeight.w400, color: MyTheme.smallFontColor),
     );
   }
+
 }

@@ -11,9 +11,9 @@ String deliveryResponseModelToJson(List<DeliveryResponseModel> data) => json.enc
 class DeliveryResponseModel {
   String? allocationReference;
   String? allocationStatus;
-  dynamic? orderReference;
-  dynamic? orderDate;
-  String? orderAmount;
+  dynamic orderReference;
+  dynamic orderDate;
+  dynamic orderAmount;
   String? orderStatus;
   List<PharmacyInfo>? pharmacyInfo;
   List<OrderItem>? orderItems;
@@ -131,10 +131,10 @@ class DeliveryDetail {
 class OrderItem {
   String? id;
   String? productName;
-  String? productPrice;
+  dynamic productPrice;
   String? productStock;
   dynamic productOfferPercentage;
-  double? productOfferPrice;
+  dynamic productOfferPrice;
   String? maxAllowedSellingQuantity;
   String? productImage;
   String? manufacturerName;

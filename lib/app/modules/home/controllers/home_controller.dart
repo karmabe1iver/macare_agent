@@ -12,9 +12,9 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
 
   RxList<Widget> screens = [
-    LaboratoryView(),
-    DeliveryView(),
-    HistoryView(),
+    const LaboratoryView(),
+    const DeliveryView(),
+    const HistoryView(),
     LoginpageView(),
   ].obs;
   Rx<PageStorageBucket> bucket = PageStorageBucket().obs;

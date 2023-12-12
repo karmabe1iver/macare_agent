@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:macare_agent/app/modules/loginpage/bindings/loginpage_binding.dart';
-import 'package:macare_agent/app/modules/loginpage/views/loginpage_view.dart';
 
 import '../modules/add_test/bindings/add_test_binding.dart';
 import '../modules/add_test/views/add_test_view.dart';
@@ -14,6 +12,10 @@ import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/laboratory/bindings/laboratory_binding.dart';
 import '../modules/laboratory/views/laboratory_view.dart';
+import '../modules/loginpage/bindings/loginpage_binding.dart';
+import '../modules/loginpage/views/loginpage_view.dart';
+import '../modules/payment/bindings/payment_binding.dart';
+import '../modules/payment/views/payment_view.dart';
 
 part 'app_routes.dart';
 
@@ -47,15 +49,21 @@ class AppPages {
       name: _Paths.DELIVERY,
       page: () => DeliveryView(),
       binding: DeliveryBinding(),
-    ),GetPage(
+    ),
+    GetPage(
       name: _Paths.LOGINPAGE,
       page: () => LoginpageView(),
       binding: LoginpageBinding(),
     ),
     GetPage(
-       name: _Paths.ADD_TEST,
-       page: () => const AddTestView(),
-       binding: AddTestBinding(),
+      name: _Paths.ADD_TEST,
+      page: () => const AddTestView(),
+      binding: AddTestBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT,
+      page: () => const PaymentView(),
+      binding: PaymentBinding(),
     ),
   ];
 }
