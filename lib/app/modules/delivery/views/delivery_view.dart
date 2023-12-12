@@ -76,14 +76,11 @@ class DeliveryView extends GetView<DeliveryController> {
                             children: [
                               MaterialButton(
                                 onPressed: () {
-                                  if (kDebugMode) {
-
-                                  }
 
                                   if (controller
                                       .deliveryDetails[index]
                                       .allocationStatus != "pending") {
-                                    Get.toNamed(Routes.PAYMENT);
+                                    Get.toNamed(Routes.DELIVERY_DETAILS);
                                   }
                                 },
                                 child: Column(

@@ -1,4 +1,8 @@
 import 'package:get/get.dart';
+import 'package:macare_agent/app/modules/delivery_details/bindings/delivery_details_binding.dart';
+import 'package:macare_agent/app/modules/delivery_details/views/delivery_details_view.dart';
+import 'package:macare_agent/app/modules/payment/bindings/payment_binding.dart';
+import 'package:macare_agent/app/modules/payment/views/payment_view.dart';
 
 import '../modules/add_test/bindings/add_test_binding.dart';
 import '../modules/add_test/views/add_test_view.dart';
@@ -57,6 +61,16 @@ class AppPages {
       name: _Paths.ADD_TEST,
       page: () => const AddTestView(),
       binding: AddTestBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENT,
+      page: () => const PaymentView(),
+      binding: PaymentBinding(),
+    ),
+    GetPage(
+      name: _Paths.DELIVERY_DETAILS,
+      page: () => const DeliveryDetailsView(),
+      binding: DeliveryDetailsBinding(),
     ),
 
   ];
