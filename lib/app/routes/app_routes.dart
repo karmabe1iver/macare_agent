@@ -4,7 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-  static const BOTTOM_NAVIGATION = _Paths.BOTTOM_NAVIGATION;
+   static const BOTTOM_NAVIGATION = _Paths.BOTTOM_NAVIGATION;
   static const LABORATORY = _Paths.LABORATORY;
   static const COLLOCTIONDETAILS = _Paths.COLLOCTIONDETAILS;
   static const HISTORY = _Paths.HISTORY;

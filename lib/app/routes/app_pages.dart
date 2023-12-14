@@ -69,7 +69,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DELIVERY_DETAILS,
-      page: () => const DeliveryDetailsView(),
+      page: () => DeliveryDetailsView(),
       binding: DeliveryDetailsBinding(),
     ),
 

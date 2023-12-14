@@ -19,21 +19,62 @@ class HomeView extends GetView<HomeController> {
 
       ///Bottom Navigation
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(type: BottomNavigationBarType.fixed,
+        () => BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex.value,
           onTap: (index) {
             controller.currentIndex.value = index;
             // controller.currentScreen.value = controller.screens[index];
           },
-          items:  [
-             BottomNavigationBarItem(
-                icon: Image.asset(AssetHelper.laboratoryLogo,height: 40,width: 40,), label: "LABORATORY",activeIcon: Image.asset(AssetHelper.laboratoryLogoSelected,height: 40,width: 40,)),
-             BottomNavigationBarItem(
-                icon: Image.asset(AssetHelper.deliveryLogo,height: 40,width: 40,), label: "DELIVERY",activeIcon: Image.asset(AssetHelper.deliveryLogoSelected,height: 40,width: 40,)),
-             BottomNavigationBarItem(
-                icon: Image.asset(AssetHelper.historyLogo,height: 40,width: 40,), label: "HISTORY",activeIcon: Image.asset(AssetHelper.historyLogoSelected,height: 40,width: 40,)),
-             BottomNavigationBarItem(
-                icon: Image.asset(AssetHelper.logoutLogo,height: 40,width: 40,), label: "LOGOUT",activeIcon: Image.asset(AssetHelper.logoutLogoSelected,height: 40,width: 40,)),
+          items: [
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  AssetHelper.laboratoryLogo,
+                  height: 40,
+                  width: 40,
+                ),
+                label: "LABORATORY",
+                activeIcon: Image.asset(
+                  AssetHelper.laboratoryLogoSelected,
+                  height: 40,
+                  width: 40,
+                )),
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  AssetHelper.deliveryLogo,
+                  height: 40,
+                  width: 40,
+                ),
+                label: "DELIVERY",
+                activeIcon: Image.asset(
+                  AssetHelper.deliveryLogoSelected,
+                  height: 40,
+                  width: 40,
+                )),
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  AssetHelper.historyLogo,
+                  height: 40,
+                  width: 40,
+                ),
+                label: "HISTORY",
+                activeIcon: Image.asset(
+                  AssetHelper.historyLogoSelected,
+                  height: 40,
+                  width: 40,
+                )),
+            BottomNavigationBarItem(
+                icon: Image.asset(
+                  AssetHelper.logoutLogo,
+                  height: 40,
+                  width: 40,
+                ),
+                label: "LOGOUT",
+                activeIcon: Image.asset(
+                  AssetHelper.logoutLogoSelected,
+                  height: 40,
+                  width: 40,
+                )),
           ],
           selectedItemColor: MyTheme.bottomNavigationBarSelectedColor,
           unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
@@ -41,5 +82,4 @@ class HomeView extends GetView<HomeController> {
       ),
     );
   }
-  
 }

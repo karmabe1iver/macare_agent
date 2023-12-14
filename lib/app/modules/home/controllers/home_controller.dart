@@ -16,7 +16,8 @@ class HomeController extends GetxController {
     const LaboratoryView(),
     const DeliveryView(),
     const HistoryView(),
-    DeliveryDetailsView()
+    const HistoryView(),
+
   ].obs;
   Rx<PageStorageBucket> bucket = PageStorageBucket().obs;
   Rx<Widget> currentScreen= const LaboratoryView().obs;
