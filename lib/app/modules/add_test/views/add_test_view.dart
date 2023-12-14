@@ -46,6 +46,8 @@ class AddTestView extends GetView<AddTestController> {
                   IconButton(
                     onPressed: () {
                       Get.toNamed(Routes.SEARCH_PAGE,);
+
+
                     },
                     icon: const Icon(
                       CupertinoIcons.add,
@@ -151,9 +153,8 @@ class AddTestView extends GetView<AddTestController> {
                               ),
                               Spacer(),
                               const Icon(Icons.currency_rupee),
-                              _addressDetails(
-                                "1000",
-                              ),
+                          Obx(() => Text('${controller.sum.value}',style: MyTheme.outfit(
+                              fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),),)
                             ],
                           ),
                         ),
@@ -226,21 +227,24 @@ class AddTestView extends GetView<AddTestController> {
                               child: SizedBox(
                                 height: 49,
                                 width: Get.width / 2.4,
-                                child: TextButton(
-                                    onPressed: () {
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          controller.isChecked.value == true
-                                          ?  MyTheme.buttonColor
-                                      :  Colors.grey.shade400),
-                                    ),
-                                    child: Text(
-                                      'CHECKOUT',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: Get.height * .018),
-                                    )),
+                                child: Obx(
+                                  ()=> TextButton(
+                                      onPressed: () {
+                                        Get.toNamed(Routes.LABORATORY);
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            controller.isChecked.value == true
+                                            ?  MyTheme.buttonColor
+                                        :  Colors.grey.shade400),
+                                      ),
+                                      child: Text(
+                                        'CHECKOUT',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: Get.height * .018),
+                                      )),
+                                ),
                               ),
                             ),
                           ],
