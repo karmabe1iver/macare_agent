@@ -81,8 +81,9 @@ class LoginpageView extends GetView<LoginpageController> {
                 onPressed: () {
                   controller.fetchData();
 
+
                 },
-                child: Text('LOGIN'),
+                child: Text('LOGIN',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
                     shape: StadiumBorder(), fixedSize: Size(250, 40),backgroundColor: MyTheme.appBarColor),
               ),

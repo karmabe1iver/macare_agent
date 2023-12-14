@@ -72,11 +72,11 @@ class DeliveryDetail {
   String? id;
   String? customerName;
   String? customerAddress;
-  String? customerPhone;
+  dynamic customerPhone;
   String? customerNearestLandmark;
-  String? customerLatitude;
-  String? customerLongitude;
-  String? pinCode;
+  dynamic customerLatitude;
+  dynamic customerLongitude;
+  dynamic pinCode;
   bool? deleteStatus;
   DateTime? createdOn;
   String? customerReference;
@@ -211,8 +211,8 @@ class PharmacyInfo {
   String? branchState;
   String? branchPincode;
   bool? deleteStatus;
-  String? latitude;
-  String? longitude;
+  dynamic latitude;
+  dynamic longitude;
   String? deliveryLimitUpto;
   String? workingTimeFrom;
   String? workingTimeTo;
@@ -316,7 +316,7 @@ class PrescriptionInfo {
   String? status;
   String? reason;
   String? billNumber;
-  String? billAmount;
+  double? billAmount;
   String? paymentMethod;
   DateTime? createdOn;
   String? customerReference;

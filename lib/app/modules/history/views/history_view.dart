@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../../routes/app_pages.dart';
+
 import '../../../utils/asset_helper.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/history_controller.dart';
@@ -12,6 +12,9 @@ class HistoryView extends GetView<HistoryController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => HistoryController());
+    controller.historyFetchData();
+
     return Scaffold(
       body: Column(
         children: [
@@ -56,80 +59,83 @@ class HistoryView extends GetView<HistoryController> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
               child: RefreshIndicator(
-                onRefresh: () async{  },
-                child: ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: 5,
-                  itemBuilder: (BuildContext context, index) {
-                    return Column(
-                      // mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Row(
-                          children: [
-                            Expanded(
-                              flex: 3,
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
+                onRefresh: () async{ controller.historyFetchData(); },
+                child: Obx(
+                  ()=> ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: controller.historyDetails.length,
+                    itemBuilder: (BuildContext context, index) {
+                      return Column(
+                        // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                flex: 3,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        height: 40,
+                                        width: 80,
+                                        child: Center(
+                                            child: Image.asset(
+                                                AssetHelper.laboratoryLogo,
+                                                fit: BoxFit.fill)),
+                                      ),
+                                      const SizedBox(
+                                        height: 20,
+                                      ),
+                                      Text(
+                                        controller.historyDetails[index].bookingReferenceBookingTime.toString(),
+                                        style: MyTheme.outfit(
+                                            color: MyTheme.numbersColor),
+                                      ),
+                                      Text(
+                                        controller.historyDetails[index].bookingReferenceBookingDate.toString(),
+                                        style: MyTheme.outfit(
+                                            color: MyTheme.numbersColor),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                flex: 5,
                                 child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     SizedBox(
-                                      height: 40,
-                                      width: 80,
-                                      child: Center(
-                                          child: Image.asset(
-                                              AssetHelper.laboratoryLogo,
-                                              fit: BoxFit.fill)),
+                                      height: Get.height * .02,
                                     ),
-                                    SizedBox(
-                                      height: 20,
+                                    _serviceDetails('Bill Number:  ${
+                                        controller.historyDetails[index].bookingReferenceBillNumber.toString()}',
                                     ),
-                                    Text(
-                                      "03.33 PM",
-                                      style: MyTheme.outfit(
-                                          color: MyTheme.numbersColor),
+
+                                    _serviceDetails('Bill Amount:  ${
+                                      controller.historyDetails[index].bookingReferenceBillAmount.toString()}',
                                     ),
-                                    Text(
-                                      "2023-11-07",
-                                      style: MyTheme.outfit(
-                                          color: MyTheme.numbersColor),
+                                    _serviceDetails('Samples: ${
+                                      controller.historyDetails[index].bookingReferenceSampleType.toString()}',
                                     ),
+
+
+                                    SizedBox(height: Get.height * .03,)
                                   ],
                                 ),
                               ),
-                            ),
-                            Expanded(
-                              flex: 5,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  SizedBox(
-                                    height: Get.height * .02,
-                                  ),
-                                  _serviceDetails(
-                                    "Bill Number:00000",
-                                  ),
-                                  _serviceDetails(
-                                    "Bill Number:00000",
-                                  ),
-                                  _serviceDetails(
-                                    "Samples",
-                                  ),
 
-
-                                  SizedBox(height: Get.height * .03,)
-                                ],
-                              ),
-                            ),
-
-                          ],
-                        ),
-                        Container(
-                          height: 7,
-                          color: MyTheme.dividerColor,
-                        )
-                      ],
-                    );
-                  },
+                            ],
+                          ),
+                          Container(
+                            height: 7,
+                            color: MyTheme.dividerColor,
+                          )
+                        ],
+                      );
+                    },
+                  ),
                 ),
               ),
             ),

@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
@@ -6,6 +8,7 @@ import 'package:macare_agent/app/data/model/login_model.dart';
 
 import '../../../app.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/my_theme.dart';
 
 class LoginpageController extends GetxController {
   //TODO: Implement LoginpageController
@@ -39,13 +42,29 @@ class LoginpageController extends GetxController {
     if(response.access!=null) {
       App.token=response.access!;
       App.employeeReferences=response.employeeReference!;
-      Get.snackbar("Login", "Completed");
+      Fluttertoast.showToast(
+        msg: "Login Completed ",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
       Get.toNamed(Routes.HOME);
 
     }else{
-      Get.snackbar("Login", "Failed");
+      Fluttertoast.showToast(
+        msg: "Something went wrong!!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
     }
   }
     void increment() => count.value++;
