@@ -13,6 +13,7 @@ abstract class Routes {
   static const ADD_TEST = _Paths.ADD_TEST;
   static const PAYMENT = _Paths.PAYMENT;
   static const DELIVERY_DETAILS = _Paths.DELIVERY_DETAILS;
+  static const SEARCH_PAGE = _Paths.SEARCH_PAGE;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const ADD_TEST = '/add_test';
   static const PAYMENT = '/payment';
   static const DELIVERY_DETAILS = '/delivery-details';
+  static const SEARCH_PAGE = '/search-page';
 }

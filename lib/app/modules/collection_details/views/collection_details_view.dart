@@ -2,9 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:macare_agent/app/data/model/add_test_response_model.dart';
+import 'package:macare_agent/app/data/model/laboratory_model.dart';
+import 'package:macare_agent/app/modules/add_test/controllers/add_test_controller.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../../app.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/collection_details_controller.dart';
 
@@ -14,8 +18,9 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
   @override
   Widget build(BuildContext context) {
     Get.lazyPut(() => CollectionDetailsController());
+
     return Scaffold(
-        bottomNavigationBar: _bottomBar(),
+        bottomNavigationBar: _bottomBar(controller.argument.value),
         body: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -74,7 +79,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                '7012913930',
+                                controller.argument.value!.customerNameForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016),
@@ -84,7 +89,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 width: Get.width,
                               ),
                               Text(
-                                'Kolathara',
+                                controller.argument.value!.customerAddressForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
@@ -95,7 +100,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 width: Get.width,
                               ),
                               Text(
-                                'test@g.com',
+                                controller.argument.value!.customerEmailForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
@@ -106,7 +111,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 width: Get.width,
                               ),
                               Text(
-                                '7012913930',
+                                controller.argument.value!.customerPhoneForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016,
@@ -125,7 +130,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 height: 8,
                                 width: Get.width,
                               ),
-                              Text('Amar shankar',
+                              Text(controller.argument.value!.customerNameBookedBy.toString(),
                                   style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .018,
@@ -135,20 +140,20 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 width: Get.width,
                               ),
                               Text(
-                                'Calicut,Kollathara',
+                                controller.argument.value!.customerAddressBookedBy.toString(),
                                 style: _addressStyle(),
                               ),
                               Text(
-                                'Marakan kadav paramb',
+                                controller.argument.value!.customerEmailBookedBy.toString(),
                                 style: _addressStyle(),
                               ),
-                              Text('Pin:637006', style: _addressStyle()),
-                              SizedBox(
-                                height: 8,
-                                width: Get.width,
-                              ),
+                              //Text('Pin:637006', style: _addressStyle()),
+                              // SizedBox(
+                              //   height: 8,
+                              //   width: Get.width,
+                              // ),
                               Text(
-                                '7012913930',
+                                controller.argument.value!.customerPhoneBookedBy.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .015,
@@ -211,20 +216,20 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           height: 8,
                           width: Get.width,
                         ),
-                        Text('Macare Diagno Center Kaloor',
+                        Text(controller.argument.value!.laboratoryName.toString(),
                             style: MyTheme.outfit(
                               fontWeight: FontWeight.w500,
                               textSize: Get.height * .018,
                             )),
                         Text(
-                          'Kaloor,Kochin',
+                          controller.argument.value!.laboratoryAddress.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
                               color: MyTheme.textColor),
                         ),
                         Text(
-                          '18001211135',
+                          controller.argument.value!.laboratoryContact.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w500,
                               textSize: Get.height * .018,
@@ -345,7 +350,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
         color: MyTheme.textColor);
   }
 
-  Widget _bottomBar() {
+  Widget _bottomBar(LaboratoryResponseModel argument) {
     return Row(
       children: [
         Expanded(
@@ -378,7 +383,15 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
-                     Get.toNamed(Routes.ADD_TEST);
+                     // Get.toNamed(Routes.ADD_TEST);
+
+                    String status="Booking Proccessed";
+                     controller.statusFetchData(bookingReference: argument.bRef,
+                         bookingAllocationStatus: status,
+                         bookingStatus: status,
+                         empReference: App.employeereference,  );
+
+
                   },
                   child: Text(
                     'REACHED',

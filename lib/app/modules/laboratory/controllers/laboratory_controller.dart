@@ -8,13 +8,16 @@ import 'package:macare_agent/app/data/api_services/laboratory_services.dart';
 import 'package:macare_agent/app/data/model/response_model.dart';
 import 'package:macare_agent/app/presets/api_paths.dart';
 import 'package:macare_agent/app/utils/my_dio.dart';
+import 'package:macare_agent/app/utils/my_theme.dart';
 
 import '../../../data/model/laboratory_model.dart';
 
 class LaboratoryController extends GetxController {
+
   RxList<LaboratoryResponseModel> laboratoryList =
       <LaboratoryResponseModel>[].obs;
   TextEditingController laboratoryDialogController = TextEditingController();
+
 
   @override
   void onInit() {
@@ -48,7 +51,8 @@ class LaboratoryController extends GetxController {
         print(response);
       }
       if (response.message == "saved") {
-        Get.snackbar(response.message.toString(), response.message.toString());
+        Get.snackbar(response.message.toString(), response.message.toString(),
+        snackPosition: SnackPosition.BOTTOM,backgroundColor: MyTheme.snackBarColor,colorText: MyTheme.snackBarTextColor);
         laboratoryFetchData();
       }
     }
@@ -64,7 +68,8 @@ class LaboratoryController extends GetxController {
         print(response);
       }
       if (response.message == "updated") {
-        Get.snackbar(response.message.toString(), response.message.toString());
+        Get.snackbar(response.message.toString(), response.message.toString(),
+        snackPosition: SnackPosition.BOTTOM,backgroundColor: MyTheme.snackBarColor,colorText: MyTheme.snackBarTextColor);
         laboratoryFetchData();
       }
     }
