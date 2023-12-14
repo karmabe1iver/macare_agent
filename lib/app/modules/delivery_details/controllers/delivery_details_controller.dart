@@ -18,11 +18,11 @@ class DeliveryDetailsController extends GetxController {
 
   Rx<DeliveryResponseModel> argument = DeliveryResponseModel().obs;
   final count = 0.obs;
-  final String phoneNumber = 'tel:+123456789';
 
   void makePhoneCall() async {
     final Uri url = Uri(
-        scheme: 'tel', path: phoneNumber
+      scheme: 'tel',
+      path: argument.value!.deliveryDetails!.first.customerPhone.toString(),
     );
     if (await canLaunchUrl(url)) {
       await launchUrl(url);
@@ -64,6 +64,7 @@ class DeliveryDetailsController extends GetxController {
     }
 
     if (response.message!="saved") {
+
       Fluttertoast.showToast(
         msg: "Something went wrong!!!",
         toastLength: Toast.LENGTH_SHORT,
@@ -74,6 +75,7 @@ class DeliveryDetailsController extends GetxController {
         fontSize: 16.0,
       );
     } else {
+      App.deliverytype = true;
       Fluttertoast.showToast(
         msg: "Picked",
         toastLength: Toast.LENGTH_SHORT,
@@ -86,43 +88,42 @@ class DeliveryDetailsController extends GetxController {
     }
   }
 
-Future<void> showdirectionFetchData({required String allocationReferrence,
-  required String deliveryType,
-  required String orderReference,}) async {
-  dynamic response;
-  if (deliveryType == "prescription") {
-    response = DeliveryDetails.deliveryDetailsCondition1(
-        allocationReference: allocationReferrence, oderstatus: 'On the way');
-    if (deliveryType != "prescription") {
-      response =
-    DeliveryDetails.deliveryDetailsCondition2(
-        orderReference: orderReference,
-        employeereference: App.employeereference,
-        oderstatus: 'On the way');
-
-  }
-    if (response.message!="saved") {
-      Fluttertoast.showToast(
-        msg: "Something went wrong!!!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    } else {
-      Fluttertoast.showToast(
-        msg: "Picked",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+  Future<void> showdirectionFetchData({
+    required String allocationReferrence,
+    required String deliveryType,
+    required String orderReference,
+  }) async {
+    dynamic response;
+    if (deliveryType == "prescription") {
+      response = DeliveryDetails.deliveryDetailsCondition1(
+          allocationReference: allocationReferrence, oderstatus: 'On the way');
+      if (deliveryType != "prescription") {
+        response = DeliveryDetails.deliveryDetailsCondition2(
+            orderReference: orderReference,
+            employeereference: App.employeereference,
+            oderstatus: 'On the way');
+      }
+      if (response.message != "saved") {
+        Fluttertoast.showToast(
+          msg: "Something went wrong!!!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: MyTheme.appBarColor,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } else {
+        Fluttertoast.showToast(
+          msg: "Picked",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: MyTheme.appBarColor,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
     }
   }
-}
-
 void increment() => count.value++;}

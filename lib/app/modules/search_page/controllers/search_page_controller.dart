@@ -36,15 +36,7 @@ class SearchPageController extends GetxController {
     super.onClose();
   }
 
-  // void onCheckboxSelected(int index) {
-  //   if (selectedIndex.value == index) {
-  //     // Uncheck the checkbox if it's already selected
-  //     selectedIndex.value = -1;
-  //   } else {
-  //     // Check the selected checkbox
-  //     selectedIndex.value = index;
-  //   }
-  // }
+
   void onCheckboxSelected(int index, SearchModel model) {
     if (selectedList.contains(model)) {
       selectedList.remove(model);

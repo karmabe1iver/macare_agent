@@ -17,6 +17,15 @@ abstract class ApiPaths{
   static String addTestStatusUrl = "laboratory/collection-agent-status-update/";
   static String searchUrl = "laboratory/search-laboratory-price-list/";
   static String addSelectedTestUrl = "laboratory/laboratory-booking-test-allocation/";
+  static String deliveryDetailscondition1Url = "pharmacy/prescription-agent-updates/";
+  static String deliveryDetailscondition2Url = "pharmacy/delivery-agent-updates/";
+  static String paymentcondition1Url = "pharmacy/prescription-agent-updates/";
+  static String paymentcondition2Url = "pharmacy/delivery-agent-updates/";
+  static String historyUrl = "laboratory/agent-history/";
+  static String deletedUrl = "laboratory/laboratory-booking-test-allocation/";
+  static String checkoutUrl = "laboratory/collection-agent-status-update/";
+  static String laboratoryPaymentUrl = "laboratory/collection-agent-status-update/";
+
 
 
 }

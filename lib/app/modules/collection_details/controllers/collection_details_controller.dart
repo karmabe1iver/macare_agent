@@ -12,15 +12,13 @@ import '../../../utils/my_theme.dart';
 class CollectionDetailsController extends GetxController {
 
   Rx<LaboratoryResponseModel> argument=LaboratoryResponseModel().obs;
-
   final count = 0.obs;
-  final String phoneNumber = 'tel:+123456789';
   RxList<AddTestResponseModel> addTestList =
       <AddTestResponseModel>[].obs;
 
   void makePhoneCall() async {
     final Uri url = Uri(
-      scheme: 'tel', path: phoneNumber
+        scheme: 'tel', path: argument.value!.customerPhoneForCollection.toString()
     );
     if(await canLaunchUrl(url)){
       await launchUrl(url);
@@ -50,7 +48,9 @@ class CollectionDetailsController extends GetxController {
     ResponseModel response = await AddTestServices.statusFetchData(
         bookingReference: bookingReference, bookingAllocationStatus: bookingAllocationStatus,
         bookingStatus: bookingStatus, empReference: empReference);
+
     if (response.message == "saved") {
+      App.deliverytype = true;
       Get.toNamed(Routes.ADD_TEST,arguments: bookingReference,);
       App.laboratoryReference=argument.value.lbReference!;
       Get.snackbar(response.message.toString(), response.message.toString(),

@@ -472,7 +472,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                         deliveryType: controller.argument.value.type.toString(),
                         orderReference: controller.argument.value.orderReference
                             .toString());
-                    Get.toNamed(Routes.PAYMENT,arguments: controller.argument);
+                    Get.toNamed(Routes.PAYMENT,arguments: controller.argument.value);
                   },
                   child: Text(
                     'REACHED',

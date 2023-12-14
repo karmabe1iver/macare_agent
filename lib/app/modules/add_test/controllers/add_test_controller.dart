@@ -1,13 +1,17 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/data/api_services/add_test_services.dart';
 import 'package:macare_agent/app/data/model/add_test_response_model.dart';
 import 'package:macare_agent/app/data/model/response_model.dart';
 
+import '../../../app.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 
 class AddTestController extends GetxController {
 
   RxList<AddTestResponseModel> addTestList = <AddTestResponseModel>[].obs;
+  TextEditingController collectionChargeController = TextEditingController();
   RxString reference="".obs;
 
   final count = 0.obs;
@@ -16,6 +20,7 @@ RxBool isChecked = false.obs;
   void onInit() {
     reference.value=Get.arguments;
     fetchData();
+    addTestTotal();
     super.onInit();
   }
 
@@ -29,12 +34,61 @@ RxBool isChecked = false.obs;
     super.onClose();
   }
 
+
   Future<void> fetchData()async{
     List<AddTestResponseModel> response = await AddTestServices.fetchData(bookingReference: Get.arguments);
     if (response != null) {
       addTestList.value = response ?? [];
+      addTestTotal();
     }
   }
 
+
+  Future<void>fetchDeleteTest({required id })async{
+    dynamic response = await AddTestServices.fetchDeletedTest(id: id);
+    if (response.message == "updated") {
+      fetchData();
+    }
+  }
+  RxInt sum = 0.obs;
+  RxInt totalFeee = 0.obs;
+
+  Future<void> addTestTotal() async {
+    List<int> numbers = [];
+
+    for (var i = 0; i < addTestList.length; i++) {
+      String? testFeeString = addTestList[i].testFee;
+
+      if (testFeeString != null) {
+        int? testFee = int.parse(testFeeString);
+
+        if (testFee != null) {
+          numbers.add(testFee);
+        }
+      }
+    }
+
+    int calculatedSum = numbers.fold(0, (previousValue, element) => previousValue + element);
+    sum.value = calculatedSum;
+    // if(collectionChargeController.text.isNotEmpty) {.
+    collectionChargeController.text = '0';
+
+      int totalFee = calculatedSum + int.parse(collectionChargeController.text);
+      totalFeee.value = totalFee;
+      App.totalfeeee = totalFeee.value.toString();
+    //}
+
+  }
+  Future<void> fetchCheckout( {required bookingReference,required bookingAllocationStatus,
+    required bookingStatus,required empReference,})async{
+    dynamic response = await AddTestServices.fetchCheckout(
+        bookingReference: bookingReference, bookingAllocationStatus: bookingAllocationStatus,
+        bookingStatus: bookingStatus, empReference: empReference);
+    if (response.message == "saved") {
+      Get.toNamed(Routes.PAYMENT,);
+      Get.snackbar(response.message.toString(), response.message.toString(),
+          snackPosition: SnackPosition.BOTTOM,backgroundColor: MyTheme.snackBarColor,colorText: MyTheme.snackBarTextColor);
+    }
+  }
 
 }

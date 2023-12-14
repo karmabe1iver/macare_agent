@@ -112,6 +112,7 @@ class SearchPageView extends GetView<SearchPageController> {
         child: TextButton(
           onPressed: () {
             controller.addSelectedTests();
+            Get.back();
           },
           child: Text(
             "Submit",

@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'package:get/get.dart';
 import 'package:macare_agent/app/routes/app_pages.dart';
 
+import '../../../app.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/add_test_controller.dart';
 
@@ -45,7 +47,7 @@ class AddTestView extends GetView<AddTestController> {
                   const Spacer(),
                   IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.SEARCH_PAGE,);
+                      Get.toNamed(Routes.SEARCH_PAGE);
                     },
                     icon: const Icon(
                       CupertinoIcons.add,
@@ -113,7 +115,13 @@ class AddTestView extends GetView<AddTestController> {
                                                   flex: 1,
                                                   child: IconButton(
                                                       onPressed: () {
-                                                        controller.addTestList.removeAt(index);
+                                                        //controller.addTestList.removeAt(index);
+                                                        controller
+                                                            .fetchDeleteTest(
+                                                            id: controller
+                                                                .addTestList[index]
+                                                                .id
+                                                                .toString());
                                                       },
                                                       icon: const Icon(
                                                         CupertinoIcons.delete,
@@ -151,8 +159,9 @@ class AddTestView extends GetView<AddTestController> {
                               ),
                               Spacer(),
                               const Icon(Icons.currency_rupee),
-                              _addressDetails(
-                                "1000",
+                              SizedBox(width: 45,
+                                child: Obx(() => Text('${controller.sum.value}',style: MyTheme.outfit(
+                                    fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),),),
                               ),
                             ],
                           ),
@@ -166,9 +175,12 @@ class AddTestView extends GetView<AddTestController> {
                               ),
                               Spacer(),
                               const Icon(Icons.currency_rupee),
-                              _addressDetails(
-                                "1000",
-                              ),
+                              SizedBox(height: 10,width:45,
+                                   child: TextFormField(onChanged: (value){ controller.addTestTotal();},
+                                    controller: controller.collectionChargeController,
+                                    keyboardType: TextInputType.number,inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                    style: TextStyle(fontSize: 15),
+                                  )),
                             ],
                           ),
                         ),
@@ -176,16 +188,20 @@ class AddTestView extends GetView<AddTestController> {
                           padding: EdgeInsets.all(4.0),
                           child: Row(
                             children: [
-                              Text(
+                              const Text(
                                 "Total Fee",
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                               Spacer(),
-                              Icon(Icons.currency_rupee),
-                              Text("1300",
-                                  style: MyTheme.outfit(
-                                    fontWeight: FontWeight.w500,
-                                  )),
+                              const Icon(Icons.currency_rupee),
+                              SizedBox(width: 45,
+                                child: Obx(
+                                    ()=> Text('${controller.totalFeee.value}',
+                                      style: MyTheme.outfit(
+                                        fontWeight: FontWeight.w500,
+                                      )),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -226,21 +242,33 @@ class AddTestView extends GetView<AddTestController> {
                               child: SizedBox(
                                 height: 49,
                                 width: Get.width / 2.4,
-                                child: TextButton(
-                                    onPressed: () {
-                                    },
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                      MaterialStateProperty.all<Color>(
-                                          controller.isChecked.value == true
-                                          ?  MyTheme.buttonColor
-                                      :  Colors.grey.shade400),
-                                    ),
-                                    child: Text(
-                                      'CHECKOUT',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: Get.height * .018),
-                                    )),
+                                child: Obx(
+                                      ()=> TextButton(
+                                      onPressed: () {
+                                        if(controller.isChecked.value == true){
+                                          String status="Sample Collected";
+                                          controller.fetchCheckout(bookingReference: App.bookingReference,
+                                            bookingAllocationStatus: status,
+                                            bookingStatus: status,
+                                            empReference: App.employeereference,  );
+
+                                        }
+                                        ;
+                                        //Get.toNamed(Routes.LABORATORY);
+                                      },
+                                      style: ButtonStyle(
+                                        backgroundColor:
+                                        MaterialStateProperty.all<Color>(
+                                            controller.isChecked.value == true
+                                                ?  MyTheme.buttonColor
+                                                :  Colors.grey.shade400),
+                                      ),
+                                      child: Text(
+                                        'CHECKOUT',
+                                        style: TextStyle(
+                                            color: Colors.white, fontSize: Get.height * .018),
+                                      )),
+                                ),
                               ),
                             ),
                           ],
