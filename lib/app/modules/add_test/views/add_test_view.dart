@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:macare_agent/app/routes/app_pages.dart';
 
 import '../../../utils/my_theme.dart';
 import '../controllers/add_test_controller.dart';
@@ -11,6 +12,7 @@ class AddTestView extends GetView<AddTestController> {
 
   @override
   Widget build(BuildContext context) {
+    Get.lazyPut(() => AddTestController());
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -42,7 +44,9 @@ class AddTestView extends GetView<AddTestController> {
                   ),
                   const Spacer(),
                   IconButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.toNamed(Routes.SEARCH_PAGE,);
+                    },
                     icon: const Icon(
                       CupertinoIcons.add,
                       color: MyTheme.bottomNavigationBarUnSelectedColor,
@@ -60,72 +64,77 @@ class AddTestView extends GetView<AddTestController> {
                 children: [
                   ConstrainedBox(
                     constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
-                    child: ListView.builder(//physics: const NeverScrollableScrollPhysics(),
-                      padding: EdgeInsets.zero,
-                      shrinkWrap: true,
-                      itemCount: 5,
-                      physics: const NeverScrollableScrollPhysics(),
-                      itemBuilder: (BuildContext context, index) {
-                        return Column(
-                          children: [
-                            Row(
-                              children: [
-                                const Expanded(flex: 0, child: SizedBox()),
-                                Expanded(
-                                  flex: 8,
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.only(top: 30, bottom: 40,right: 10,left: 15),
-                                        child: Row(
-                                          children: [
-                                            Expanded(
-                                              flex: 4,
-                                              child: Text(
-                                                "X-RAY-GDHFHfdhdrdrrjfghfhgfF",
-                                                style: MyTheme.outfit(
-                                                    fontWeight: FontWeight.w300,
-                                                    textSize: 20),
+                    child: Obx(
+                      ()=> ListView.builder(
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        itemCount: controller.addTestList.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, index) {
+                          return Column(
+                            children: [
+                              Row(
+                                children: [
+                                  const Expanded(flex: 0, child: SizedBox()),
+                                  Expanded(
+                                    flex: 8,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(top: 30, bottom: 40,right: 10,left: 15),
+                                          child: Row(
+                                            children: [
+                                              Expanded(
+                                                flex: 4,
+                                                child: Text(
+                           controller
+                               .addTestList[index].testName.toString(),
+                                                  style: MyTheme.outfit(
+                                                      fontWeight: FontWeight.w300,
+                                                      textSize: 20),
+                                                ),
                                               ),
-                                            ),
-                                            SizedBox(width: Get.width*.03,),
-                                            Expanded(
-                                                flex: 2,
-                                                child: Row(
-                                                  children: [
-                                                    const Icon(Icons.currency_rupee),
-                                                    Text(
-                                                      "1000",
-                                                      style: MyTheme.outfit(
-                                                          fontWeight: FontWeight.w500,
-                                                          textSize: 20),
-                                                    ),
-                                                  ],
-                                                )),
-                                            Expanded(
-                                                flex: 1,
-                                                child: IconButton(
-                                                    onPressed: () {},
-                                                    icon: const Icon(
-                                                      CupertinoIcons.delete,
-                                                      color: Colors.red,
-                                                    )))
-                                          ],
+                                              SizedBox(width: Get.width*.03,),
+                                              Expanded(
+                                                  flex: 2,
+                                                  child: Row(
+                                                    children: [
+                                                      const Icon(Icons.currency_rupee),
+                                                      Text(
+                                                         controller.addTestList[index].testFee.toString(),
+                                                        style: MyTheme.outfit(
+                                                            fontWeight: FontWeight.w500,
+                                                            textSize: 20),
+                                                      ),
+                                                    ],
+                                                  )),
+                                              Expanded(
+                                                  flex: 1,
+                                                  child: IconButton(
+                                                      onPressed: () {
+                                                        controller.addTestList.removeAt(index);
+                                                      },
+                                                      icon: const Icon(
+                                                        CupertinoIcons.delete,
+                                                        color: Colors.red,
+                                                      )))
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                            Container(
-                              height: 7,
-                              color: MyTheme.dividerColor,
-                            ),
-                          ],
-                        );
-                      },
+                                ],
+                              ),
+                              Container(
+                                height: 7,
+                                color: MyTheme.dividerColor,
+                              ),
+                            ],
+                          );
+                        },
+                      ),
                     ),
                   ),
                   Padding(
@@ -220,14 +229,17 @@ class AddTestView extends GetView<AddTestController> {
                                 child: TextButton(
                                     onPressed: () {
                                     },
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                      MaterialStateProperty.all<Color>(
+                                          controller.isChecked.value == true
+                                          ?  MyTheme.buttonColor
+                                      :  Colors.grey.shade400),
+                                    ),
                                     child: Text(
                                       'CHECKOUT',
                                       style: TextStyle(
                                           color: Colors.white, fontSize: Get.height * .018),
-                                    ),
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                      MaterialStateProperty.all<Color>(MyTheme.buttonColor),
                                     )),
                               ),
                             ),

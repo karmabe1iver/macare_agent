@@ -3,6 +3,8 @@ abstract class App{
   static String employeeReferences = "";
   static String employeereference ='';
 
+  static String bookingReference ='';
+  static String laboratoryReference="";
 
 
 

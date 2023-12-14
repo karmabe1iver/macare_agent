@@ -6,6 +6,7 @@ import 'package:macare_agent/app/routes/app_pages.dart';
 import 'package:macare_agent/app/utils/asset_helper.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 
+import '../../../app.dart';
 import '../../../data/model/visibility_model.dart';
 import '../controllers/laboratory_controller.dart';
 
@@ -75,7 +76,9 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                   if (controller
                                       .laboratoryList[index]
                                       .allocationStatus != "pending") {
-                                  Get.toNamed(Routes.COLLOCTIONDETAILS);
+                                    App.bookingReference=controller.laboratoryList[index].bRef!;
+                                  Get.toNamed(Routes.COLLOCTIONDETAILS,arguments: controller
+                                      .laboratoryList[index]);
                                   }
                                 },
                                 child: Column(
@@ -146,14 +149,17 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                     .customerAddressForCollection
                                                     .toString(),
                                               ),
-                                              _addressDetails(
-                                                "Pin:637006",
-                                              ),
+                                            //  _addressDetails("Pin:637006",),
                                               _addressDetails(
                                                 "health issues test",
+                                               //  controller.laboratoryList[index]
+                                               //      .customerAddressForCollection
+                                               //      .toString(),
                                               ),
                                               _addressDetails(
-                                                "Kaloor,Kochin",
+                                                 controller.laboratoryList[index]
+                                                     .customerEmailForCollection
+                                                     .toString(),
                                               ),
                                               _addressDetails(
                                                 "Samples",

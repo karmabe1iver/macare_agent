@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
+import 'package:macare_agent/app/utils/my_theme.dart';
 
 import '../../../app.dart';
 import '../../../routes/app_pages.dart';
@@ -39,13 +41,19 @@ class LoginpageController extends GetxController {
     if(response.access!=null) {
       App.token=response.access!;
       App.employeeReferences=response.employeeReference!;
-      Get.snackbar("Login", "Completed");
+      Get.snackbar("Login", "Completed",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: MyTheme.snackBarColor,
+      colorText: MyTheme.snackBarTextColor);
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
       Get.toNamed(Routes.HOME);
 
     }else{
-      Get.snackbar("Login", "Failed");
+      Get.snackbar("Login", "Failed",
+      snackPosition: SnackPosition.BOTTOM,
+      backgroundColor: MyTheme.snackBarColor,
+      colorText: MyTheme.snackBarTextColor);
     }
   }
     void increment() => count.value++;
