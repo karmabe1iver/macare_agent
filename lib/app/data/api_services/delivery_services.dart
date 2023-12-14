@@ -31,7 +31,7 @@ abstract class DeliveryServices {
         ApiPaths.deliveryAcceptRejectCondition2Url,
         baseUrl: ApiPaths.baseUrl,
         queryParameters: {
-          'allocation_reference': orderReference,
+          'order_reference': orderReference,
           "order_status": 'proccesed',
           'employee_reference': employeereference,
           'allocation_status': 'accepted'
@@ -55,7 +55,7 @@ abstract class DeliveryServices {
         ApiPaths.deliveryAcceptRejectCondition2Url,
         baseUrl: ApiPaths.baseUrl,
         queryParameters: {
-          'allocation_reference': orderReference,
+          'order_reference': orderReference,
           "order_status": 'proccesed',
           'employee_reference': employeereference,
           'allocation_status': 'accepted',

@@ -4,6 +4,7 @@ import 'package:flutter_check_box_rounded/flutter_check_box_rounded.dart';
 
 import 'package:get/get.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/payment_controller.dart';
 
@@ -56,12 +57,22 @@ class PaymentView extends GetView<PaymentController> {
               width: Get.width,
               color: Colors.white,
               child: Center(
-                  child: Text(
-                '₹2237.75',
-                style: TextStyle(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.currency_rupee,
                     color: MyTheme.appBarColor,
-                    fontSize: Get.height * 0.050,
-                    fontWeight: FontWeight.w500),
+                    size: Get.height * 0.050,
+                  ),
+                  Text(
+                    controller.argument.value.orderAmount,
+                    style: TextStyle(
+                        color: MyTheme.appBarColor,
+                        fontSize: Get.height * 0.050,
+                        fontWeight: FontWeight.w500),
+                  ),
+                ],
               )),
             ),
             SizedBox(
@@ -103,7 +114,16 @@ class PaymentView extends GetView<PaymentController> {
                 width: Get.width * 0.85,
                 child: Obx(
                   () => TextButton(
-                    onPressed: () {},
+                    onPressed: () {if(controller.checkBox1Selected.value == true){
+                      controller.paymentFetchData(
+                          allocationReferrence: controller
+                              .argument.value.allocationReference
+                              .toString(),
+                          deliveryType: controller.argument.value.type.toString(),
+                          orderReference: controller.argument.value.orderReference.toString());
+
+                    }
+                    },
                     style: ButtonStyle(
                         shape:
                             MaterialStateProperty.all<RoundedRectangleBorder>(

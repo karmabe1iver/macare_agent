@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/modules/delivery_details/views/delivery_details_view.dart';
 import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
-import 'package:macare_agent/app/modules/search_page/views/search_page_view.dart';
 
 import '../../delivery/views/delivery_view.dart';
 import '../../history/views/history_view.dart';
@@ -18,6 +17,7 @@ class HomeController extends GetxController {
     const DeliveryView(),
     const HistoryView(),
     const HistoryView(),
+
   ].obs;
   Rx<PageStorageBucket> bucket = PageStorageBucket().obs;
   Rx<Widget> currentScreen= const LaboratoryView().obs;

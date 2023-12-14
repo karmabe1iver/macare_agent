@@ -1,16 +1,19 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:macare_agent/app/utils/asset_helper.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/delivery_details_controller.dart';
 
 class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
-  const DeliveryDetailsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+
     Get.lazyPut(() => DeliveryDetailsController());
     return Scaffold(
       bottomNavigationBar: _bottomBar(),
@@ -24,9 +27,12 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
             child: Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(bottom: 9.0, left: 10,top: 28),
+                  padding:
+                      const EdgeInsets.only(bottom: 9.0, left: 10, top: 28),
                   child: IconButton(
-                    onPressed: () {Get.back();},
+                    onPressed: () {
+                      Get.back();
+                    },
                     icon: const Icon(
                       CupertinoIcons.left_chevron,
                       color: Colors.white,
@@ -49,8 +55,9 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
           ),
           Expanded(
             child: RefreshIndicator(
-              onRefresh: () async{  },
-              child: ListView(
+              onRefresh: () async {},
+              child: Obx(
+                () => ListView(
                   padding: EdgeInsets.zero,
                   children: [
                     SizedBox(
@@ -82,7 +89,9 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                 //   width: Get.width,
                                 // ),
                                 Text(
-                                  'Kolathara',
+                                  controller.argument.value!.deliveryDetails!
+                                      .first.customerAddress
+                                      .toString(),
                                   style: MyTheme.outfit(
                                       fontWeight: FontWeight.w400,
                                       textSize: Get.height * .016,
@@ -104,7 +113,9 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                   width: Get.width,
                                 ),
                                 Text(
-                                  '7012913930',
+                                  controller.argument.value!.deliveryDetails!
+                                      .first.customerPhone
+                                      .toString(),
                                   style: MyTheme.outfit(
                                       fontWeight: FontWeight.w500,
                                       textSize: Get.height * .016,
@@ -123,7 +134,10 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                   height: 8,
                                   width: Get.width,
                                 ),
-                                Text('Amar shankar',
+                                Text(
+                                    controller.argument.value!.deliveryDetails!
+                                        .first.customerName
+                                        .toString(),
                                     style: MyTheme.outfit(
                                       fontWeight: FontWeight.w500,
                                       textSize: Get.height * .018,
@@ -133,7 +147,9 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                   width: Get.width,
                                 ),
                                 Text(
-                                  'Calicut,Kollathara',
+                                  controller.argument.value!.deliveryDetails!
+                                      .first.customerAddress
+                                      .toString(),
                                   style: _addressStyle(),
                                 ),
                                 // Text(
@@ -146,7 +162,9 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                 //   width: Get.width,
                                 // ),
                                 Text(
-                                  '7012913930',
+                                  controller.argument.value!.deliveryDetails!
+                                      .first.customerPhone
+                                      .toString(),
                                   style: MyTheme.outfit(
                                       fontWeight: FontWeight.w500,
                                       textSize: Get.height * .015,
@@ -164,7 +182,6 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                           flex: 2,
                           child: Column(
                             children: [
-
                               InkWell(
                                 onTap: controller.makePhoneCall,
                                 child: Container(
@@ -207,12 +224,14 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                             height: 8,
                             width: Get.width,
                           ),
-                          Text('null,null,null',
+                          Text(
+                              controller
+                                  .argument
+                                  .value.pharmacyInfo!.first.branchName.toString(),
                               style: MyTheme.outfit(
-                                //fontWeight: FontWeight.w500,
-                                textSize: Get.height * .018,
-                                color: MyTheme.smallFontColor
-                              )),
+                                  //fontWeight: FontWeight.w500,
+                                  textSize: Get.height * .018,
+                                  color: MyTheme.smallFontColor)),
                           // Text(
                           //   'Kaloor,Kochin',
                           //   style: MyTheme.outfit(
@@ -259,16 +278,18 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                           Row(
                             children: [
                               Text(
-                                '2020/12/32',
+                                controller.argument.value.orderDate.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .018,
                                     color: MyTheme.numbersColor),
                               ),
-                              SizedBox(width: 10,),
-
+                              SizedBox(
+                                width: 10,
+                              ),
                               Text(
-                                '2234.75',
+                                controller.argument.value.orderAmount
+                                    .toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .038,
@@ -313,43 +334,88 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                             height: Get.height * .018,
                             width: Get.width,
                           ),
-                          Row(
-                            children: [
-                              Container(height: 80,width: 60,
-                                child: Image.asset(AssetHelper.laboratoryLogo,),),
-                              Padding(
-                                padding: const EdgeInsets.all(10.0),
-                                child: Column(
-                                  children: [
-                                    Text(
-                                      'Avas 20 mg 10 s',
-                                      style: MyTheme.outfit(
-                                          fontWeight: FontWeight.w500,
-                                          textSize: Get.height * .018,),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                                minHeight: 0,
+                                minWidth: 0,
+                                maxHeight: Get.height),
+                            child: ListView.builder(
+                                itemCount: controller
+                                    .argument.value.orderItems!.length,
+                                shrinkWrap: true,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Row(children: [
+                                    Container(
+                                      height: 80,
+                                      width: 60,
+                                      child: Image.network(controller.argument
+                                          .value.orderItems![index].productImage
+                                          .toString()),
                                     ),
-                                    Text(
-                                      '12.03AM',
-                                      style: MyTheme.outfit(
-                                          fontWeight: FontWeight.w400,
-                                          textSize: Get.height * .018,
-                                          color: MyTheme.phoneNumberTextColor),
+                                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          controller.argument.value
+                                              .orderItems![index].productName
+                                              .toString(),
+                                          style: MyTheme.outfit(
+                                            fontWeight: FontWeight.w500,
+                                            textSize: Get.height * .018,
+                                          ),
+                                        ),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.currency_rupee,
+                                              color:
+                                                  MyTheme.phoneNumberTextColor,
+                                              size: Get.height * .018,
+                                            ),
+                                            Text(
+                                              controller
+                                                  .argument
+                                                  .value
+                                                  .orderItems![index]
+                                                  .productPrice
+                                                  .toString(),
+                                              style: MyTheme.outfit(
+                                                  fontWeight: FontWeight.w400,
+                                                  textSize: Get.height * .018,
+                                                  color: MyTheme
+                                                      .phoneNumberTextColor),
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          controller
+                                              .argument
+                                              .value
+                                              .orderItems![index]
+                                              .manufacturerName
+                                              .toString(),
+                                          style: MyTheme.outfit(
+                                              fontWeight: FontWeight.w400,
+                                              textSize: Get.height * .018,
+                                              color: Colors.grey),
+                                        ),
+                                      ],
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ],
+                                  ]);
+                                }),
                           ),
-
                         ],
                       ),
-                    ),
-                  ]),
+                    )
+                  ],
+                ),
+              ),
             ),
           )
         ],
       ),
     );
   }
+
   TextStyle _addressStyle() {
     return MyTheme.outfit(
         fontWeight: FontWeight.w400,
@@ -358,6 +424,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
   }
 
   Widget _bottomBar() {
+
     return Row(
       children: [
         Expanded(
@@ -368,7 +435,15 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
               height: 49,
               width: Get.width / 2.4,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    openMaps(double.parse(controller.argument.value.deliveryDetails!.first.customerLatitude), double.parse(controller.argument.value.deliveryDetails!.first.customerLongitude));
+
+                     controller.showdirectionFetchData(allocationReferrence: controller
+                         .argument.value!.allocationReference
+                         .toString(), deliveryType: controller.argument.value.type.toString(), orderReference: controller.argument.value.orderReference
+                         .toString());
+
+                  },
                   child: Text(
                     'SHOW DIRECTION',
                     style: TextStyle(
@@ -376,7 +451,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
                   )),
             ),
           ),
@@ -390,7 +465,14 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
-
+                    controller.deliveryDetailsFetchData(
+                        allocationReferrence: controller
+                            .argument.value!.allocationReference
+                            .toString(),
+                        deliveryType: controller.argument.value.type.toString(),
+                        orderReference: controller.argument.value.orderReference
+                            .toString());
+                    Get.toNamed(Routes.PAYMENT,arguments: controller.argument);
                   },
                   child: Text(
                     'REACHED',
@@ -399,7 +481,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                    MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
                   )),
             ),
           ),
@@ -407,4 +489,15 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
       ],
     );
   }
+  void openMaps(double latitude, double longitude) async {
+    String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+
+    if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+      await launchUrl(Uri.parse(googleMapsUrl));
+    } else {
+      throw 'Could not open the map.';
+    }
+  }
+
+
 }
