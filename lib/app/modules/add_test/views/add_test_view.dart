@@ -51,7 +51,7 @@ class AddTestView extends GetView<AddTestController> {
                     },
                     icon: const Icon(
                       CupertinoIcons.add,
-                      color: MyTheme.bottomNavigationBarUnSelectedColor,
+                      color: Colors.white,
                       size: 40,
                     ),
                   )
@@ -146,20 +146,20 @@ class AddTestView extends GetView<AddTestController> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(25),
+                    padding: const EdgeInsets.all(15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Row(
+                          padding: const EdgeInsets.only(bottom: 10.0),
+                          child: Row(mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               _addressDetails(
                                 "Subtotal Fee",
                               ),
                               Spacer(),
-                              const Icon(Icons.currency_rupee),
-                              SizedBox(width: 45,
+                              const Icon(Icons.currency_rupee,size: 15,),
+                              SizedBox(width: 50,
                                 child: Obx(() => Text('${controller.sum.value}',style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),),),
                               ),
@@ -167,18 +167,19 @@ class AddTestView extends GetView<AddTestController> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.all(4.0),
+                          padding: const EdgeInsets.only(bottom: 10.0),
                           child: Row(
                             children: [
                               _addressDetails(
                                 " Collection Charge",
                               ),
                               Spacer(),
-                              const Icon(Icons.currency_rupee),
-                              SizedBox(height: 10,width:45,
+                              const Icon(Icons.currency_rupee,size: 15,),
+                              SizedBox(height: 10,width:50,
                                    child: TextFormField(
                                      onChanged: (value){ controller.addTestTotal();},
                                     controller: controller.collectionChargeController,
+
                                     keyboardType: TextInputType.number,
                                     style: TextStyle(fontSize: 15),
                                   )),
@@ -186,7 +187,7 @@ class AddTestView extends GetView<AddTestController> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.all(4.0),
+                          padding: EdgeInsets.only(bottom: 4.0),
                           child: Row(
                             children: [
                               const Text(
@@ -194,8 +195,8 @@ class AddTestView extends GetView<AddTestController> {
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
                               Spacer(),
-                              const Icon(Icons.currency_rupee),
-                              SizedBox(width: 45,
+                              const Icon(Icons.currency_rupee,size: 15,),
+                              SizedBox(width: 50,
                                 child: Obx(
                                     ()=> Text('${controller.totalFeee.value}',
                                       style: MyTheme.outfit(
@@ -246,7 +247,7 @@ class AddTestView extends GetView<AddTestController> {
                                 child: Obx(
                                       ()=> TextButton(
                                       onPressed: () {
-                                        if(controller.isChecked.value == true){
+                                        if(controller.isChecked.value == true ){
                                           String status="Sample Collected";
                                           controller.fetchCheckout(bookingReference: App.bookingReference,
                                             bookingAllocationStatus: status,
@@ -254,7 +255,6 @@ class AddTestView extends GetView<AddTestController> {
                                             empReference: App.employeereference,  );
 
                                         }
-                                        ;
                                         //Get.toNamed(Routes.LABORATORY);
                                       },
                                       style: ButtonStyle(

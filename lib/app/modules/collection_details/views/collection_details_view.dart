@@ -78,45 +78,37 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
+                              controller.argument.value!.customerNameForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerNameForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016),
-                              ),
-                              SizedBox(
-                                height: 8,
-                                width: Get.width,
-                              ),
+                              ):SizedBox(),
+                              controller.argument.value!.customerAddressForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerAddressForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
                                     color: MyTheme.textColor),
-                              ),
-                              SizedBox(
-                                height: 8,
-                                width: Get.width,
-                              ),
+                              ):SizedBox(),
+                              controller.argument.value!.customerEmailForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerEmailForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
                                     color: MyTheme.textColor),
-                              ),
-                              SizedBox(
-                                height: 8,
-                                width: Get.width,
-                              ),
+                              ):SizedBox(),
+                              controller.argument.value!.customerPhoneForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerPhoneForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016,
                                     color: MyTheme.phoneNumberTextColor),
-                              ),
+                              ):SizedBox(),
                               SizedBox(
                                 height: 8,
                                 width: Get.width,
@@ -130,35 +122,35 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 height: 8,
                                 width: Get.width,
                               ),
+                              controller.argument.value!.customerNameBookedBy!.isNotEmpty?
                               Text(controller.argument.value!.customerNameBookedBy.toString(),
                                   style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .018,
-                                  )),
-                              SizedBox(
-                                height: 8,
-                                width: Get.width,
-                              ),
+                                  )):SizedBox(),
+                              controller.argument.value!.customerAddressBookedBy!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerAddressBookedBy.toString(),
                                 style: _addressStyle(),
-                              ),
+                              ):SizedBox(),
+                              controller.argument.value!.customerEmailBookedBy!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerEmailBookedBy.toString(),
                                 style: _addressStyle(),
-                              ),
+                              ):SizedBox(),
                               //Text('Pin:637006', style: _addressStyle()),
                               // SizedBox(
                               //   height: 8,
                               //   width: Get.width,
                               // ),
+                              controller.argument.value!.customerPhoneBookedBy!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerPhoneBookedBy.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .015,
                                     color: MyTheme.phoneNumberTextColor),
-                              ),
+                              ):SizedBox(),
                               SizedBox(
                                 height: 10,
                                 width: Get.width,
@@ -169,11 +161,8 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                       ),
                       Expanded(
                         flex: 2,
-                        child: Column(
+                        child: Column(mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            SizedBox(
-                              height: Get.height * .20,
-                            ),
                             InkWell(
                               onTap: controller.makePhoneCall,
                               child: Container(
@@ -361,7 +350,9 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
               height: 49,
               width: Get.width / 2.4,
               child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    openMaps(double.parse(controller.argument.value.customerLatitude), double.parse(controller.argument.value.customerLongitude));
+                  },
                   child: Text(
                     'SHOW DIRECTION',
                     style: TextStyle(
@@ -369,7 +360,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
                   )),
             ),
           ),
@@ -408,4 +399,12 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
       ],
     );
   }
-}
+  void openMaps(double latitude, double longitude) async {
+    String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+
+    if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
+      await launchUrl(Uri.parse(googleMapsUrl));
+    } else {
+      throw 'Could not open the map.';
+    }
+  }}

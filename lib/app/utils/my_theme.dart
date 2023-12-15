@@ -25,6 +25,7 @@ abstract class MyTheme {
       TextDecoration? decoration,
       double? spacing}) {
     return GoogleFonts.outfit(
+      fontStyle: fontStyle,
       color: color?? Colors.black,
       fontSize: textSize ?? 15,
       fontWeight: fontWeight ?? FontWeight.normal,

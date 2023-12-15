@@ -56,15 +56,6 @@ class CollectionDetailsController extends GetxController {
       Get.toNamed(Routes.ADD_TEST,arguments: bookingReference,);
       App.laboratoryReference=argument.value.lbReference!;
 
-      Fluttertoast.showToast(
-          msg: "Picked",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
       } else {
         App.deliverytype = true;
         Fluttertoast.showToast(

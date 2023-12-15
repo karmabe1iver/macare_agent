@@ -14,21 +14,21 @@ class LaboratoryResponseModel {
   String? laboratoryName;
   String? laboratoryAddress;
   String? laboratoryContact;
-  String? latitude;
-  String? longitude;
+  dynamic latitude;
+  dynamic longitude;
   dynamic laboratoryBookingTime;
   dynamic laboratoryBookingAllocation;
   String? laboratorySampleType;
-  DateTime? laboratoryBookingDate;
+  dynamic laboratoryBookingDate;
   String? bRef;
   String? lbReference;
   String? customerNameForCollection;
   String? customerAddressForCollection;
-  String? customerPhoneForCollection;
-  String? customerEmailForCollection;
+  dynamic customerPhoneForCollection;
+  dynamic customerEmailForCollection;
   String?customerNearestLandmark;
-  String?customerLatitude;
-  String? customerLongitude;
+  dynamic customerLatitude;
+  dynamic customerLongitude;
   String? customerNameBookedBy;
   String? customerAddressBookedBy;
   String? customerPhoneBookedBy;
@@ -72,7 +72,7 @@ class LaboratoryResponseModel {
     laboratoryBookingTime: json["laboratory_booking_time"],
     laboratoryBookingAllocation: json["laboratory_booking_allocation"],
     laboratorySampleType: json["laboratory_sample_type"],
-    laboratoryBookingDate: DateTime.parse(json["laboratory_booking_date"]),
+    laboratoryBookingDate: json["laboratory_booking_date"],
     bRef: json["b_ref"],
     lbReference: json["lb_reference"],
     customerNameForCollection: json["customer_name_for_collection"],
@@ -99,7 +99,7 @@ class LaboratoryResponseModel {
     "laboratory_booking_time": laboratoryBookingTime,
     "laboratory_booking_allocation": laboratoryBookingAllocation,
     "laboratory_sample_type": laboratorySampleType,
-    "laboratory_booking_date": "${laboratoryBookingDate!.year.toString().padLeft(4, '0')}-${laboratoryBookingDate!.month.toString().padLeft(2, '0')}-${laboratoryBookingDate!.day.toString().padLeft(2, '0')}",
+    "laboratory_booking_date": laboratoryBookingDate,
     "b_ref": bRef,
     "lb_reference": lbReference,
     "customer_name_for_collection": customerNameForCollection,
