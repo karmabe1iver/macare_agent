@@ -41,7 +41,7 @@ class PaymentController extends GetxController {
     required String deliveryType,
     required String orderReference,
   }) async {
-    DeliveryDetailsCon2ResponseModel resp;
+    dynamic resp;
     if (App.deliverytype == false) {
       if (deliveryType == "prescription") {
         resp = await PaymentDetails.paymentCondition1(

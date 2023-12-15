@@ -61,7 +61,7 @@ class AddTestView extends GetView<AddTestController> {
           ),
           Expanded(
             child: RefreshIndicator(
-              onRefresh: () async{  },
+              onRefresh: () async{  controller.fetchData(); },
               child: ListView(
                 children: [
                   ConstrainedBox(
@@ -176,9 +176,10 @@ class AddTestView extends GetView<AddTestController> {
                               Spacer(),
                               const Icon(Icons.currency_rupee),
                               SizedBox(height: 10,width:45,
-                                   child: TextFormField(onChanged: (value){ controller.addTestTotal();},
+                                   child: TextFormField(
+                                     onChanged: (value){ controller.addTestTotal();},
                                     controller: controller.collectionChargeController,
-                                    keyboardType: TextInputType.number,inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                                    keyboardType: TextInputType.number,
                                     style: TextStyle(fontSize: 15),
                                   )),
                             ],

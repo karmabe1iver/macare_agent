@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
@@ -112,7 +113,20 @@ class SearchPageView extends GetView<SearchPageController> {
         child: TextButton(
           onPressed: () {
             controller.addSelectedTests();
+
             Get.back();
+            Fluttertoast.showToast(
+              msg: "Added Tests",
+              toastLength: Toast.LENGTH_SHORT,
+              gravity: ToastGravity.BOTTOM,
+              timeInSecForIosWeb: 1,
+              backgroundColor: MyTheme.appBarColor,
+              textColor: Colors.white,
+              fontSize: 16.0,
+
+            );
+
+
           },
           child: Text(
             "Submit",

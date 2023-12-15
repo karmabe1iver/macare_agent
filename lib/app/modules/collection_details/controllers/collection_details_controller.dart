@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/data/model/add_test_response_model.dart';
 import 'package:macare_agent/app/data/model/laboratory_model.dart';
@@ -53,8 +55,28 @@ class CollectionDetailsController extends GetxController {
       App.deliverytype = true;
       Get.toNamed(Routes.ADD_TEST,arguments: bookingReference,);
       App.laboratoryReference=argument.value.lbReference!;
-      Get.snackbar(response.message.toString(), response.message.toString(),
-          snackPosition: SnackPosition.BOTTOM,backgroundColor: MyTheme.snackBarColor,colorText: MyTheme.snackBarTextColor);
-    }
+
+      Fluttertoast.showToast(
+          msg: "Picked",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: MyTheme.appBarColor,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      } else {
+        App.deliverytype = true;
+        Fluttertoast.showToast(
+          msg: "Something went wrong!!!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: MyTheme.appBarColor,
+          textColor: Colors.white,
+          fontSize: 16.0,
+        );
+      }
+
   }
 }

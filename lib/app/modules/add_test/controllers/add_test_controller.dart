@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/data/api_services/add_test_services.dart';
 import 'package:macare_agent/app/data/model/add_test_response_model.dart';
@@ -71,7 +73,6 @@ RxBool isChecked = false.obs;
     int calculatedSum = numbers.fold(0, (previousValue, element) => previousValue + element);
     sum.value = calculatedSum;
     // if(collectionChargeController.text.isNotEmpty) {.
-    collectionChargeController.text = '0';
 
       int totalFee = calculatedSum + int.parse(collectionChargeController.text);
       totalFeee.value = totalFee;
@@ -86,9 +87,30 @@ RxBool isChecked = false.obs;
         bookingStatus: bookingStatus, empReference: empReference);
     if (response.message == "saved") {
       Get.toNamed(Routes.PAYMENT,);
-      Get.snackbar(response.message.toString(), response.message.toString(),
-          snackPosition: SnackPosition.BOTTOM,backgroundColor: MyTheme.snackBarColor,colorText: MyTheme.snackBarTextColor);
+
+      Fluttertoast.showToast(
+        msg: "Picked!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else {
+      App.deliverytype = true;
+      Fluttertoast.showToast(
+        msg: "Something went wrong!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
     }
   }
 
-}
+
+

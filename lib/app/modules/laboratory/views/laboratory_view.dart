@@ -39,7 +39,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Hi Praveen",
+                      App.employeename,
                       style: MyTheme.outfit(color: MyTheme.smallFontColor),
                     ),
                   ],
@@ -61,7 +61,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
               child: RefreshIndicator(
-                onRefresh: () async {},
+                onRefresh: () async { controller.laboratoryFetchData();},
                 child: Obx(
                       () =>
                       ListView.builder(padding: EdgeInsets.zero,
