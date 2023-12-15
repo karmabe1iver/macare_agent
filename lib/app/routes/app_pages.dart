@@ -29,55 +29,55 @@ class AppPages {
   static const INITIAL = Routes.LOGINPAGE;
 
   static final routes = [
-    GetPage(
-      name: _Paths.HOME,
-      page: () => const HomeView(),
-      binding: HomeBinding(),
-    ),
-    GetPage(
-      name: _Paths.LABORATORY,
-      page: () => const LaboratoryView(),
-      binding: LaboratoryBinding(),
-    ),
-    GetPage(
-      name: _Paths.COLLOCTIONDETAILS,
-      page: () => const CollectionDetailsView(),
-      binding: CollectionDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.HISTORY,
-      page: () => const HistoryView(),
-      binding: HistoryBinding(),
-    ),
-    GetPage(
-      name: _Paths.DELIVERY,
-      page: () => DeliveryView(),
-      binding: DeliveryBinding(),
-    ),
-    GetPage(
-      name: _Paths.LOGINPAGE,
-      page: () => LoginpageView(),
-      binding: LoginpageBinding(),
-    ),
-    GetPage(
-      name: _Paths.ADD_TEST,
-      page: () => const AddTestView(),
-      binding: AddTestBinding(),
-    ),
-    GetPage(
-      name: _Paths.PAYMENT,
-      page: () => const PaymentView(),
-      binding: PaymentBinding(),
-    ),
-    GetPage(
-      name: _Paths.DELIVERY_DETAILS,
-      page: () => DeliveryDetailsView(),
-      binding: DeliveryDetailsBinding(),
-    ),
-    GetPage(
-      name: _Paths.SEARCH_PAGE,
-      page: () => const SearchPageView(),
-      binding: SearchPageBinding(),
-    ),
+  GetPage(
+  name: _Paths.HOME,
+  page: () => const HomeView(),
+  binding: HomeBinding(),
+  ),
+  GetPage(
+  name: _Paths.LABORATORY,
+  page: () => const LaboratoryView(),
+  binding: LaboratoryBinding(),
+  ),
+  GetPage(
+  name: _Paths.COLLOCTIONDETAILS,
+  page: () => const CollectionDetailsView(),
+  binding: CollectionDetailsBinding(),
+  ),
+  GetPage(
+  name: _Paths.HISTORY,
+  page: () => const HistoryView(),
+  binding: HistoryBinding(),
+  ),
+  GetPage(
+  name: _Paths.DELIVERY,
+  page: () => DeliveryView(),
+  binding: DeliveryBinding(),
+  ),
+  GetPage(
+  name: _Paths.LOGINPAGE,
+  page: () => LoginpageView(),
+  binding: LoginpageBinding(),
+  ),
+  GetPage(
+  name: _Paths.ADD_TEST,
+  page: () => const AddTestView(),
+  binding: AddTestBinding(),
+  ),
+  GetPage(
+  name: _Paths.PAYMENT,
+  page: () => const PaymentView(),
+  binding: PaymentBinding(),
+  ),
+  GetPage(
+  name: _Paths.DELIVERY_DETAILS,
+  page: () => DeliveryDetailsView(),
+  binding: DeliveryDetailsBinding(),
+  ),
+  GetPage(
+  name: _Paths.SEARCH_PAGE,
+  page: () => const SearchPageView(),
+  binding: SearchPageBinding(),
+  ),
   ];
 }

@@ -50,6 +50,7 @@ class CollectionDetailsController extends GetxController {
     ResponseModel response = await AddTestServices.statusFetchData(
         bookingReference: bookingReference, bookingAllocationStatus: bookingAllocationStatus,
         bookingStatus: bookingStatus, empReference: empReference);
+    App.deliverytype = true;
     if (response.message == "saved") {
       Get.toNamed(Routes.ADD_TEST,arguments: bookingReference,);
       App.laboratoryReference=argument.value.lbReference!;

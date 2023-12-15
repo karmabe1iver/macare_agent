@@ -22,6 +22,7 @@ abstract class ApiPaths{
   static String paymentcondition1Url = "pharmacy/prescription-agent-updates/";
   static String paymentcondition2Url = "pharmacy/delivery-agent-updates/";
   static String historyUrl = "laboratory/agent-history/";
+  static String laboratoryPaymentUrl = "laboratory/collection-agent-status-update/";
 
 
 }

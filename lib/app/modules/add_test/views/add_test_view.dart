@@ -230,7 +230,7 @@ class AddTestView extends GetView<AddTestController> {
                                 child: Obx(
                                   ()=> TextButton(
                                       onPressed: () {
-                                        Get.toNamed(Routes.LABORATORY);
+                                        Get.toNamed(Routes.PAYMENT);
                                       },
                                       style: ButtonStyle(
                                         backgroundColor:

@@ -5,6 +5,7 @@ abstract class App{
 
   static String bookingReference ='';
   static String laboratoryReference="";
+  static bool deliverytype=false;
 
 
 
