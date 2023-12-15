@@ -1,9 +1,8 @@
-import 'dart:ffi';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app.dart';
@@ -14,7 +13,9 @@ import '../controllers/delivery_details_controller.dart';
 class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
   @override
   Widget build(BuildContext context) {
-
+    DateTime initial=DateTime.parse(controller.argument.value.orderDate);
+    DateFormat formattedDate = DateFormat('dd/MM/yyyy');
+    String date= formattedDate.format(initial);
     Get.lazyPut(() => DeliveryDetailsController());
     return Scaffold(
       bottomNavigationBar: _bottomBar(),
@@ -66,7 +67,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                       width: Get.width,
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(10.0),
+                      padding: const EdgeInsets.all(19.0),
                       child: Text('DELIVERY ADDRESS',
                           style: MyTheme.outfit(fontWeight: FontWeight.w500)),
                     ),
@@ -75,29 +76,41 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                         Expanded(
                           flex: 4,
                           child: Padding(
-                            padding: const EdgeInsets.only(left: 10.0),
+                            padding: const EdgeInsets.only(left: 19.0),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                // Text(
-                                //   '7012913930',
-                                //   style: MyTheme.outfit(
-                                //       fontWeight: FontWeight.w500,
-                                //       textSize: Get.height * .016),
-                                // ),
-                                //  SizedBox(
-                                //   height: 8,
-                                //   width: Get.width,
-                                // ),
-                                Text(
-                                  controller.argument.value!.deliveryDetails!
-                                      .first.customerAddress
-                                      .toString(),
-                                  style: MyTheme.outfit(
-                                      fontWeight: FontWeight.w400,
-                                      textSize: Get.height * .016,
-                                      color: MyTheme.textColor),
+                                controller.argument.value!.deliveryDetails!
+                                        .first.customerName!.isNotEmpty
+                                    ? Text(
+                                        controller.argument.value!
+                                            .deliveryDetails!.first.customerName
+                                            .toString(),
+                                        style: MyTheme.outfit(
+                                          fontWeight: FontWeight.w500,
+                                          textSize: Get.height * .018,
+                                        ))
+                                    : SizedBox(),
+                                SizedBox(
+                                  height: 5,
+                                  width: Get.width,
                                 ),
+                                controller.argument.value!.deliveryDetails!
+                                        .first.customerAddress!.isNotEmpty
+                                    ? Text(
+                                        controller
+                                            .argument
+                                            .value!
+                                            .deliveryDetails!
+                                            .first
+                                            .customerAddress
+                                            .toString(),
+                                        style: MyTheme.outfit(
+                                            fontWeight: FontWeight.w400,
+                                            textSize: Get.height * .016,
+                                            color: MyTheme.textColor),
+                                      )
+                                    : SizedBox(),
                                 SizedBox(
                                   height: 5,
                                   width: Get.width,
@@ -113,64 +126,24 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                   height: 8,
                                   width: Get.width,
                                 ),
-                                Text(
-                                  controller.argument.value!.deliveryDetails!
-                                      .first.customerPhone
-                                      .toString(),
-                                  style: MyTheme.outfit(
-                                      fontWeight: FontWeight.w500,
-                                      textSize: Get.height * .016,
-                                      color: MyTheme.phoneNumberTextColor),
-                                ),
-                                // SizedBox(
-                                //   height: 8,
-                                //   width: Get.width,
-                                // ),
-                                // Text('BOOKED BY',
-                                //     style: MyTheme.outfit(
-                                //       fontWeight: FontWeight.w500,
-                                //       textSize: Get.height * .020,
-                                //     )),
-                                SizedBox(
-                                  height: 8,
-                                  width: Get.width,
-                                ),
-                                Text(
-                                    controller.argument.value!.deliveryDetails!
-                                        .first.customerName
-                                        .toString(),
-                                    style: MyTheme.outfit(
-                                      fontWeight: FontWeight.w500,
-                                      textSize: Get.height * .018,
-                                    )),
-                                SizedBox(
-                                  height: 8,
-                                  width: Get.width,
-                                ),
-                                Text(
-                                  controller.argument.value!.deliveryDetails!
-                                      .first.customerAddress
-                                      .toString(),
-                                  style: _addressStyle(),
-                                ),
-                                // Text(
-                                //   'Marakan kadav paramb',
-                                //   style: _addressStyle(),
-                                // ),
-                                // Text('Pin:637006', style: _addressStyle()),
-                                // SizedBox(
-                                //   height: 8,
-                                //   width: Get.width,
-                                // ),
-                                Text(
-                                  controller.argument.value!.deliveryDetails!
-                                      .first.customerPhone
-                                      .toString(),
-                                  style: MyTheme.outfit(
-                                      fontWeight: FontWeight.w500,
-                                      textSize: Get.height * .015,
-                                      color: MyTheme.phoneNumberTextColor),
-                                ),
+                                controller.argument.value!.deliveryDetails!
+                                        .first.customerPhone.isNotEmpty
+                                    ? Text(
+                                        controller
+                                            .argument
+                                            .value!
+                                            .deliveryDetails!
+                                            .first
+                                            .customerPhone
+                                            .toString(),
+                                        style: MyTheme.outfit(
+                                            fontWeight: FontWeight.w500,
+                                            textSize: Get.height * .016,
+                                            color:
+                                                MyTheme.phoneNumberTextColor),
+                                      )
+                                    : SizedBox(),
+
                                 SizedBox(
                                   height: 10,
                                   width: Get.width,
@@ -181,24 +154,27 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                         ),
                         Expanded(
                           flex: 2,
-                          child: Column(
-                            children: [
-                              InkWell(
-                                onTap: controller.makePhoneCall,
-                                child: Container(
-                                  width: 43.0,
-                                  height: 43.0,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    color: MyTheme.buttonColor,
-                                  ),
-                                  child: const Icon(
-                                    Icons.call,
-                                    color: Colors.white,
+                          child: Padding(
+                            padding: const EdgeInsets.only(bottom: 25.0,right: 0),
+                            child: Column(
+                              children: [
+                                InkWell(
+                                  onTap: controller.makePhoneCall,
+                                  child: Container(
+                                    width: 43.0,
+                                    height: 43.0,
+                                    decoration: const BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      color: MyTheme.buttonColor,
+                                    ),
+                                    child: const Icon(
+                                      Icons.call,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ],
@@ -225,28 +201,17 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                             height: 8,
                             width: Get.width,
                           ),
-                          Text(
-                              controller
-                                  .argument
-                                  .value.pharmacyInfo!.first.branchName.toString(),
-                              style: MyTheme.outfit(
-                                  //fontWeight: FontWeight.w500,
-                                  textSize: Get.height * .018,
-                                  color: MyTheme.smallFontColor)),
-                          // Text(
-                          //   'Kaloor,Kochin',
-                          //   style: MyTheme.outfit(
-                          //       fontWeight: FontWeight.w400,
-                          //       textSize: Get.height * .018,
-                          //       color: MyTheme.textColor),
-                          // ),
-                          // Text(
-                          //   '18001211135',
-                          //   style: MyTheme.outfit(
-                          //       fontWeight: FontWeight.w500,
-                          //       textSize: Get.height * .018,
-                          //       color: MyTheme.phoneNumberTextColor),
-                          // ),
+                          controller.argument.value.pharmacyInfo!.first
+                                  .branchName!.isNotEmpty
+                              ? Text(
+                                  controller.argument.value.pharmacyInfo!.first
+                                      .branchName
+                                      .toString(),
+                                  style: MyTheme.outfit(
+                                      //fontWeight: FontWeight.w500,
+                                      textSize: Get.height * .018,
+                                      color: MyTheme.smallFontColor))
+                              : SizedBox(),
                           SizedBox(
                             height: 5,
                             width: Get.width,
@@ -278,34 +243,45 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                           ),
                           Row(
                             children: [
-                              Text(
-                                controller.argument.value.orderDate.toString(),
-                                style: MyTheme.outfit(
-                                    fontWeight: FontWeight.w400,
-                                    textSize: Get.height * .018,
-                                    color: MyTheme.numbersColor),
-                              ),
+                              controller.argument.value.orderAmount.isNotEmpty
+                                  ? Icon(
+                                      Icons.currency_rupee,
+                                      color: MyTheme.phoneNumberTextColor,
+                                      size: Get.height * .038 ,
+                                    )
+                                  : SizedBox(),
+                              controller.argument.value.orderAmount.isNotEmpty
+                                  ? Text(
+                                      controller.argument.value.orderAmount
+                                          .toString(),
+                                      style: MyTheme.outfit(
+                                          fontWeight: FontWeight.w400,
+                                          textSize: Get.height * .038,
+                                          color: MyTheme.numbersColor),
+                                    )
+                                  : SizedBox(),
+                              Spacer(),
+
+                              date.isNotEmpty
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(
+                                        top: 19,
+                                      ),
+                                      child: Text(date
+                                            .toString(),
+                                        style: MyTheme.outfit(
+                                            fontWeight: FontWeight.w400,
+                                            textSize: Get.height * .018,
+                                            color: Colors.grey.shade400),
+                                      ),
+                                    )
+                                  : SizedBox(),
                               SizedBox(
                                 width: 10,
-                              ),
-                              Text(
-                                controller.argument.value.orderAmount
-                                    .toString(),
-                                style: MyTheme.outfit(
-                                    fontWeight: FontWeight.w400,
-                                    textSize: Get.height * .038,
-                                    color: MyTheme.numbersColor),
                               ),
                             ],
                           ),
 
-                          // Text(
-                          //   'Blood sample collection',
-                          //   style: MyTheme.outfit(
-                          //       fontWeight: FontWeight.w400,
-                          //       textSize: Get.height * .018,
-                          //       color: MyTheme.textColor),
-                          // ),
                           SizedBox(
                             height: 5,
                             width: Get.width,
@@ -349,29 +325,60 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                     Container(
                                       height: 80,
                                       width: 60,
-                                      child: Image.network(controller.argument
-                                          .value.orderItems![index].productImage
-                                          .toString()),
+                                      child: controller
+                                              .argument
+                                              .value
+                                              .orderItems![index]
+                                              .productImage!
+                                              .isNotEmpty
+                                          ? Image.network(controller
+                                              .argument
+                                              .value
+                                              .orderItems![index]
+                                              .productImage
+                                              .toString())
+                                          : SizedBox(),
                                     ),
-                                    Column(crossAxisAlignment: CrossAxisAlignment.start,
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Text(
-                                          controller.argument.value
-                                              .orderItems![index].productName
-                                              .toString(),
-                                          style: MyTheme.outfit(
-                                            fontWeight: FontWeight.w500,
-                                            textSize: Get.height * .018,
-                                          ),
-                                        ),
+                                        controller
+                                                .argument
+                                                .value
+                                                .orderItems![index]
+                                                .productName!
+                                                .isNotEmpty
+                                            ? Text(
+                                                controller
+                                                    .argument
+                                                    .value
+                                                    .orderItems![index]
+                                                    .productName
+                                                    .toString(),
+                                                style: MyTheme.outfit(
+                                                  fontWeight: FontWeight.w500,
+                                                  textSize: Get.height * .018,
+                                                ),
+                                              )
+                                            : SizedBox(),
                                         Row(
-                                          children: [
+                                          children: [ controller
+                                              .argument
+                                              .value
+                                              .orderItems![index]
+                                              .productPrice.isNotEmpty?
                                             Icon(
                                               Icons.currency_rupee,
                                               color:
                                                   MyTheme.phoneNumberTextColor,
                                               size: Get.height * .018,
-                                            ),
+                                            ):SizedBox(),
+                                            controller
+                                                .argument
+                                                .value
+                                                .orderItems![index]
+                                                .productPrice.isNotEmpty?
                                             Text(
                                               controller
                                                   .argument
@@ -384,9 +391,14 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                                   textSize: Get.height * .018,
                                                   color: MyTheme
                                                       .phoneNumberTextColor),
-                                            ),
+                                            ):SizedBox(),
                                           ],
                                         ),
+                                        controller
+                                            .argument
+                                            .value
+                                            .orderItems![index]
+                                            .manufacturerName!.isNotEmpty?
                                         Text(
                                           controller
                                               .argument
@@ -398,7 +410,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                               fontWeight: FontWeight.w400,
                                               textSize: Get.height * .018,
                                               color: Colors.grey),
-                                        ),
+                                        ):SizedBox(),
                                       ],
                                     ),
                                   ]);
@@ -425,7 +437,6 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
   }
 
   Widget _bottomBar() {
-
     return Row(
       children: [
         Expanded(
@@ -437,13 +448,19 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
-                    openMaps(double.parse(controller.argument.value.deliveryDetails!.first.customerLatitude), double.parse(controller.argument.value.deliveryDetails!.first.customerLongitude));
+                    openMaps(
+                        double.parse(controller.argument.value.deliveryDetails!
+                            .first.customerLatitude),
+                        double.parse(controller.argument.value.deliveryDetails!
+                            .first.customerLongitude));
 
-                     controller.showdirectionFetchData(allocationReferrence: controller
-                         .argument.value!.allocationReference
-                         .toString(), deliveryType: controller.argument.value.type.toString(), orderReference: controller.argument.value.orderReference
-                         .toString());
-
+                    controller.showdirectionFetchData(
+                        allocationReferrence: controller
+                            .argument.value!.allocationReference
+                            .toString(),
+                        deliveryType: controller.argument.value.type.toString(),
+                        orderReference: controller.argument.value.orderReference
+                            .toString());
                   },
                   child: Text(
                     'SHOW DIRECTION',
@@ -452,7 +469,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                   style: ButtonStyle(
                     backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
                   )),
             ),
           ),
@@ -473,8 +490,10 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                         deliveryType: controller.argument.value.type.toString(),
                         orderReference: controller.argument.value.orderReference
                             .toString());
-                    App.totalfeeee=controller.argument.value.orderAmount.toString();
-                    Get.toNamed(Routes.PAYMENT,arguments: controller.argument.value);
+                    App.totalfeeee =
+                        controller.argument.value.orderAmount.toString();
+                    Get.toNamed(Routes.PAYMENT,
+                        arguments: controller.argument.value);
                   },
                   child: Text(
                     'REACHED',
@@ -491,8 +510,10 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
       ],
     );
   }
+
   void openMaps(double latitude, double longitude) async {
-    String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
+    String googleMapsUrl =
+        'https://www.google.com/maps/search/?api=1&query=$latitude,$longitude';
 
     if (await canLaunchUrl(Uri.parse(googleMapsUrl))) {
       await launchUrl(Uri.parse(googleMapsUrl));
@@ -500,6 +521,4 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
       throw 'Could not open the map.';
     }
   }
-
-
 }
