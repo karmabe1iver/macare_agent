@@ -4,7 +4,7 @@ part of 'app_pages.dart';
 abstract class Routes {
   Routes._();
   static const HOME = _Paths.HOME;
-   static const BOTTOM_NAVIGATION = _Paths.BOTTOM_NAVIGATION;
+  static const BOTTOM_NAVIGATION = _Paths.BOTTOM_NAVIGATION;
   static const LABORATORY = _Paths.LABORATORY;
   static const COLLOCTIONDETAILS = _Paths.COLLOCTIONDETAILS;
   static const HISTORY = _Paths.HISTORY;
@@ -14,6 +14,7 @@ abstract class Routes {
   static const PAYMENT = _Paths.PAYMENT;
   static const DELIVERY_DETAILS = _Paths.DELIVERY_DETAILS;
   static const SEARCH_PAGE = _Paths.SEARCH_PAGE;
+  static const LABORATORYPAYMENT = _Paths.LABORATORYPAYMENT;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const PAYMENT = '/payment';
   static const DELIVERY_DETAILS = '/delivery-details';
   static const SEARCH_PAGE = '/search-page';
+  static const LABORATORYPAYMENT = '/laboratorypayment';
 }

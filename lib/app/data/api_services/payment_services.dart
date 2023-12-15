@@ -33,6 +33,21 @@ abstract class PaymentDetails{
         }
     );
     return deliveryDetailsCon2ResponseModelFromJson(response);
+  }  static Future<dynamic> laboratorypayment(
+      {required String bookingreference,required String employeereference}) async {
+    dynamic response = await MyDio().customGet(
+        ApiPaths.paymentcondition2Url,
+        baseUrl: ApiPaths.baseUrl,
+        queryParameters: {
+          'booking_reference': bookingreference,
+          "booking_allocation_status": 'Completed',
+           'booking_status': 'Payment Collected',
+          'employee_reference': employeereference,
+          'payment_method' : 'cash'
+
+        }
+    );
+    return responseModelFromJson(response);
   }
 
   static Future<dynamic> laboratorypayment(
