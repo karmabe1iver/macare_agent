@@ -58,6 +58,7 @@ class PaymentController extends GetxController {
 
     }
     if (resp.message == "saved") {
+      App.deliverytype = false;
       Get.toNamed(Routes.HOME, arguments: 1);
       Fluttertoast.showToast(
         msg: "Payment completed",
