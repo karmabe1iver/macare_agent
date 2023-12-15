@@ -39,7 +39,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Hi Praveen",
+                      App.employeename,
                       style: MyTheme.outfit(color: MyTheme.smallFontColor),
                     ),
                   ],

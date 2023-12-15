@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/data/model/visibility_model.dart';
 
+import '../../../app.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/asset_helper.dart';
 import '../../../utils/my_theme.dart';
@@ -42,7 +43,7 @@ class DeliveryView extends GetView<DeliveryController> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Hi Praveen",
+                      App.employeename,
                       style: MyTheme.outfit(color: MyTheme.smallFontColor),
                     ),
                   ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
+import '../../../app.dart';
 import '../../../utils/asset_helper.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/history_controller.dart';
@@ -37,7 +38,7 @@ class HistoryView extends GetView<HistoryController> {
                           fontWeight: FontWeight.w600),
                     ),
                     Text(
-                      "Hi Praveen",
+                      App.employeename,
                       style: MyTheme.outfit(color: MyTheme.smallFontColor),
                     ),
                   ],
