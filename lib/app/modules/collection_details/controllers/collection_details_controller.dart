@@ -14,13 +14,12 @@ class CollectionDetailsController extends GetxController {
   Rx<LaboratoryResponseModel> argument=LaboratoryResponseModel().obs;
 
   final count = 0.obs;
-  final String phoneNumber = 'tel:+123456789';
   RxList<AddTestResponseModel> addTestList =
       <AddTestResponseModel>[].obs;
 
   void makePhoneCall() async {
     final Uri url = Uri(
-      scheme: 'tel', path: phoneNumber
+      scheme: 'tel', path: argument.value!.customerPhoneForCollection.toString()
     );
     if(await canLaunchUrl(url)){
       await launchUrl(url);

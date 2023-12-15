@@ -53,6 +53,7 @@ class LoginpageController extends GetxController {
       );
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
+      App.employeename= response.name! ;
       Get.toNamed(Routes.HOME);
 
     }else{

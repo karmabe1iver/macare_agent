@@ -4,6 +4,7 @@ import 'package:flutter_check_box_rounded/flutter_check_box_rounded.dart';
 
 import 'package:get/get.dart';
 
+import '../../../app.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/payment_controller.dart';
@@ -65,8 +66,8 @@ class PaymentView extends GetView<PaymentController> {
                     color: MyTheme.appBarColor,
                     size: Get.height * 0.050,
                   ),
-                  Text(
-                    controller.argument.value.orderAmount,
+                  Text(amount()
+                    ,
                     style: TextStyle(
                         color: MyTheme.appBarColor,
                         fontSize: Get.height * 0.050,
@@ -151,4 +152,12 @@ class PaymentView extends GetView<PaymentController> {
       ),
     );
   }
+  String amount() {
+    if (App.deliverytype == false) {
+      return controller.argument.value.orderAmount;
+    } else {
+      return '';
+    }
+  }
+
 }
