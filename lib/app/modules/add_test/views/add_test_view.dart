@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:macare_agent/app/routes/app_pages.dart';
@@ -47,7 +48,7 @@ class AddTestView extends GetView<AddTestController> {
                   const Spacer(),
                   IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.SEARCH_PAGE);
+                      Get.offNamed(Routes.SEARCH_PAGE,arguments: Get.arguments);
                     },
                     icon: const Icon(
                       CupertinoIcons.add,
@@ -247,13 +248,18 @@ class AddTestView extends GetView<AddTestController> {
                                 child: Obx(
                                       ()=> TextButton(
                                       onPressed: () {
-                                        if(controller.isChecked.value == true ){
+                                        if(controller.isChecked.value == true&&controller.collectionChargeController.text.isNotEmpty){
                                           String status="Sample Collected";
                                           controller.fetchCheckout(bookingReference: App.bookingReference,
                                             bookingAllocationStatus: status,
                                             bookingStatus: status,
                                             empReference: App.employeereference,  );
 
+                                        }else{
+                                          Fluttertoast.showToast(
+                                              msg: " Please Check Colection charge \n & \n Select Box ",
+                                          backgroundColor: MyTheme.appBarColor,
+                                          textColor: Colors.white);
                                         }
                                         //Get.toNamed(Routes.LABORATORY);
                                       },

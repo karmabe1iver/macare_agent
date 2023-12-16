@@ -8,9 +8,10 @@ import 'package:macare_agent/app/data/model/search_model.dart';
 
 import '../../../app.dart';
 import '../../../data/model/add_selected_test_model.dart';
+import '../../../routes/app_pages.dart';
 
 class SearchPageController extends GetxController {
-  Rx<LaboratoryResponseModel> argument = LaboratoryResponseModel().obs;
+  String argument = "";
 
   //RxInt selectedIndex = (-1).obs;
   TextEditingController searchController = TextEditingController();
@@ -22,7 +23,7 @@ class SearchPageController extends GetxController {
 
   @override
   void onInit() {
-    //argument.value = Get.arguments;
+    argument = Get.arguments;
     super.onInit();
   }
 
@@ -97,6 +98,8 @@ class SearchPageController extends GetxController {
   Future<dynamic> addSelectedTests() async {
     dynamic data= await addSelectTestToJson();
     dynamic response = await AddTestServices.fetchAddSelected(data);
+      Get.offNamed(Routes.ADD_TEST,arguments: argument);
+
   }
 }
 
