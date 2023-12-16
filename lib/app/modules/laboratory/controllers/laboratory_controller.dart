@@ -19,7 +19,6 @@ class LaboratoryController extends GetxController {
   TextEditingController laboratoryDialogController = TextEditingController();
 
 
-
   @override
   void onInit() {
     laboratoryFetchData();
