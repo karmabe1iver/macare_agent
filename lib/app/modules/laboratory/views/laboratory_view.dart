@@ -120,7 +120,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                             crossAxisAlignment: CrossAxisAlignment
                                                 .start,
                                             children: [
-                                              const SizedBox(height: 10,),
+                                              const SizedBox(height: 15,),
                                               controller.laboratoryList[index]
                                                   .customerNameForCollection!.isNotEmpty?
                                               Text(
@@ -131,9 +131,6 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                     fontWeight: FontWeight
                                                         .w500),
                                               ):const SizedBox(),
-                                              SizedBox(
-                                                height: Get.height * .02,
-                                              ),
                                               controller.laboratoryList[index]
                                                   .customerAddressForCollection!.isNotEmpty?
                                               _addressDetails(
@@ -163,17 +160,18 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                       .allocationStatus}"
 
                                               ),
+                                                      SizedBox(height: Get.height*.020,),
                                                       Row(mainAxisAlignment: MainAxisAlignment.end,
                                                         children: [
 
-                                                          Text(
-                                                            controller
-                                                                .laboratoryList[index]
-                                                                .laboratoryBookingDate
-                                                                .toString(),
-                                                            style: MyTheme.outfit(
-                                                                color: MyTheme
-                                                                    .numbersColor,fontStyle: FontStyle.italic),
+                                                          Obx(
+                                                                ()=> Text(
+                                                              controller
+                                                                  .datee.value.toString(),
+                                                              style: MyTheme.outfit(
+                                                                  color: MyTheme
+                                                                      .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
+                                                            ),
                                                           ),
                                                           SizedBox(width: Get.width*.050,),
 
@@ -183,19 +181,19 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                                 .laboratoryBookingTime
                                                                 .toString(),
                                                             style: MyTheme.outfit(
-                                                                color: MyTheme.numbersColor,fontStyle: FontStyle.italic),
+                                                                color: MyTheme.numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
                                                           ),
                                                         ],
                                                       ),
 
                                               SizedBox(
-                                                height: Get.height * .03,),
+                                                height: Get.height * .010,),
                                               Visibility(visible: controller
                                                   .laboratoryList[index]
                                                   .allocationStatus == "pending"
                                                 ,
                                                 child: Padding(
-                                                  padding: const EdgeInsets.only(bottom: 15,),
+                                                  padding: const EdgeInsets.only(bottom: 15,top: 0),
                                                   child: SizedBox(
                                                     child: Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                                       children: [
