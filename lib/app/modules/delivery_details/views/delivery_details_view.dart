@@ -91,10 +91,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                           textSize: Get.height * .018,
                                         ))
                                     : SizedBox(),
-                                SizedBox(
-                                  height: 5,
-                                  width: Get.width,
-                                ),
+
                                 controller.argument.value!.deliveryDetails!
                                         .first.customerAddress!.isNotEmpty
                                     ? Text(
@@ -111,21 +108,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                             color: MyTheme.textColor),
                                       )
                                     : SizedBox(),
-                                SizedBox(
-                                  height: 5,
-                                  width: Get.width,
-                                ),
-                                // Text(
-                                //   'test@g.com',
-                                //   style: MyTheme.outfit(
-                                //       fontWeight: FontWeight.w400,
-                                //       textSize: Get.height * .016,
-                                //       color: MyTheme.textColor),
-                                // ),
-                                SizedBox(
-                                  height: 8,
-                                  width: Get.width,
-                                ),
+
                                 controller.argument.value!.deliveryDetails!
                                         .first.customerPhone.isNotEmpty
                                     ? Text(
@@ -272,7 +255,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                         style: MyTheme.outfit(
                                             fontWeight: FontWeight.w400,
                                             textSize: Get.height * .018,
-                                            color: Colors.grey.shade400),
+                                            color: Colors.grey.shade400,fontStyle: FontStyle.italic),
                                       ),
                                     )
                                   : SizedBox(),

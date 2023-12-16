@@ -24,13 +24,14 @@ abstract class MyTheme {
       double? letterSpacing,
       TextDecoration? decoration,
       double? spacing}) {
-    return GoogleFonts.outfit(
+    return GoogleFonts.montserrat(
       fontStyle: fontStyle,
       color: color?? Colors.black,
       fontSize: textSize ?? 15,
       fontWeight: fontWeight ?? FontWeight.normal,
       letterSpacing: letterSpacing,
       decoration: decoration
+      
     );
   }
 }

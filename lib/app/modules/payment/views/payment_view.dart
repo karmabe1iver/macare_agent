@@ -79,34 +79,40 @@ class PaymentView extends GetView<PaymentController> {
               width: Get.width,
               height: Get.height * 0.010,
             ),
-            Container(
-              height: Get.height * 0.075,
-              width: Get.width,
-              color: Colors.white,
-              child: Padding(
-                padding:
-                    const EdgeInsets.only(bottom: 18.00, top: 18.00, left: 30),
-                child: Row(
-                  children: [
-                    CheckBoxRounded(
-                      size: 20,
-                      isChecked: controller.checkBox1Selected.value,
-                      checkedColor: MyTheme.appBarColor,
-                      onTap: (value) {
-                        controller.checkBox1Selected.value = value!;
-                      },
+             GestureDetector(
+               onTap: () { controller.checkBox1Selected.value = !controller.checkBox1Selected.value; },
+               child: Container(
+                  height: Get.height * 0.075,
+                  width: Get.width,
+                  color: Colors.white,
+                  child: Padding(
+                    padding:
+                        const EdgeInsets.only(bottom: 18.00, top: 18.00, left: 30),
+                    child: Row(
+                      children: [
+                        Obx(
+                        ()=> CheckBoxRounded(
+                            size: 20,
+                            isChecked: controller.checkBox1Selected.value,
+                            checkedColor: MyTheme.appBarColor,
+                            onTap: (value) {
+                              controller.checkBox1Selected.value =!controller.checkBox1Selected.value ;
+                            },
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                        Text(
+                          'By Cash',
+                          style: TextStyle(fontWeight: FontWeight.w600),
+                        )
+                      ],
                     ),
-                    SizedBox(
-                      width: 40,
-                    ),
-                    Text(
-                      'By Cash',
-                      style: TextStyle(fontWeight: FontWeight.w600),
-                    )
-                  ],
+                  ),
                 ),
-              ),
-            ),
+             ),
+
             const Spacer(),
             Center(
               child: SizedBox(
