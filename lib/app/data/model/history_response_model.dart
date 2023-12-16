@@ -13,8 +13,8 @@ class HistoryResponseModel {
   String? bookingReferenceSampleType;
   String? bookingReferenceBillNumber;
   String? bookingReferenceBillAmount;
-  DateTime? bookingReferenceBookingDate;
-  String? bookingReferenceBookingTime;
+  dynamic bookingReferenceBookingDate;
+  dynamic bookingReferenceBookingTime;
   String? bookingReferenceLaboratoryReferenceIdBranchName;
   String? bookingReferenceLaboratoryReferenceIdBranchAddress;
 

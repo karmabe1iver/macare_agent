@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:macare_agent/app/data/api_services/laboratory_services.dart';
 import 'package:macare_agent/app/data/model/response_model.dart';
 import 'package:macare_agent/app/presets/api_paths.dart';
@@ -34,12 +35,21 @@ class LaboratoryController extends GetxController {
   void onClose() {
     super.onClose();
   }
-
+  RxString datee = "" .obs;
   Future<void> laboratoryFetchData() async {
     List<LaboratoryResponseModel> response =
         await LaboratoryServices.fetchData();
     if (response != null) {
       laboratoryList.value = response ?? [];
+      for (var i = 0; i < laboratoryList.length; i++) {
+        DateTime initial = DateTime.parse(laboratoryList[i].laboratoryBookingDate);
+        DateFormat formattedDate = DateFormat('dd/MM/yyyy');
+        String date = formattedDate.format(initial);
+
+        datee.value = date ;
+      }
+
+
     }
   }
 

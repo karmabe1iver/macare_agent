@@ -93,10 +93,12 @@ class HistoryView extends GetView<HistoryController> {
                                         style: MyTheme.outfit(
                                             color: MyTheme.numbersColor),
                                       ),
-                                      Text(
-                                        controller.historyDetails[index].bookingReferenceBookingDate.toString(),
-                                        style: MyTheme.outfit(
-                                            color: MyTheme.numbersColor),
+                                      Obx(
+                                          ()=> Text(
+                                          controller.datee.value.toString(),
+                                          style: MyTheme.outfit(
+                                              color: MyTheme.numbersColor),
+                                        ),
                                       ),
                                     ],
                                   ),
