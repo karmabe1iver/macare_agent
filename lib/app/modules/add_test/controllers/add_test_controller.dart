@@ -21,6 +21,7 @@ RxBool isChecked = false.obs;
   @override
   void onInit() {
     reference.value=Get.arguments;
+    collectionChargeController.text="0";
     fetchData();
     addTestTotal();
     super.onInit();
@@ -73,7 +74,6 @@ RxBool isChecked = false.obs;
     int calculatedSum = numbers.fold(0, (previousValue, element) => previousValue + element);
     sum.value = calculatedSum;
     // if(collectionChargeController.text.isNotEmpty) {.
-
       int totalFee = calculatedSum + int.parse(collectionChargeController.text);
       totalFeee.value = totalFee;
       App.totalfeeee = totalFeee.value.toString();
