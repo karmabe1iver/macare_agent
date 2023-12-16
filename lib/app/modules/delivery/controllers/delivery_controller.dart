@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:intl/intl.dart';
 import 'package:macare_agent/app/data/api_services/delivery_services.dart';
 import 'package:macare_agent/app/data/model/delivery_model.dart';
 
@@ -34,25 +35,35 @@ class DeliveryController extends GetxController {
   void onClose() {
     super.onClose();
   }
+  RxString datee = "" .obs;
 
   Future<void> deliveryFetchData() async {
     List<DeliveryResponseModel> response = await DeliveryServices.delivery();
     if (response != null) {
       deliveryDetails.value = response ?? [];
+      for (var i = 0; i < deliveryDetails.length; i++) {
+        DateTime initial = DateTime.parse(deliveryDetails[i].orderDate);
+        DateFormat formattedDate = DateFormat('dd/MM/yyyy');
+        String date = formattedDate.format(initial);
+
+        datee.value = date ;
+      }
+
+
     }
+
   }
 
-  Future<void> acceptFetchData(
-      {required String orderReferrence,
-      required String allocationReferrence,
-      required String deliveryType}) async {
+  Future<void> acceptFetchData({required String orderReferrence,
+    required String allocationReferrence,
+    required String deliveryType}) async {
     List<DeliveryCon1ResponseModel> response =
-        await DeliveryServices.acceptCondition1(
-            allocationReference: allocationReferrence);
+    await DeliveryServices.acceptCondition1(
+        allocationReference: allocationReferrence);
     List<DeliveryCon2ResponseModel> responsee =
-        await DeliveryServices.acceptCondition2(
-            orderReference: orderReferrence,
-            employeereference: App.employeereference);
+    await DeliveryServices.acceptCondition2(
+        orderReference: orderReferrence,
+        employeereference: App.employeereference);
 
     if (deliveryType == "prescription") {
       deliveryFetchData();
@@ -107,19 +118,18 @@ class DeliveryController extends GetxController {
     }
   }
 
-  Future<void> rejectFetchData(
-      {required String orderReferrence,
-      required String allocationReferrence,
-      required String deliveryType}) async {
+  Future<void> rejectFetchData({required String orderReferrence,
+    required String allocationReferrence,
+    required String deliveryType}) async {
     List<DeliveryCon1ResponseModel> response =
-        await DeliveryServices.rejectCondition1(
-            allocationReference: allocationReferrence,
-            reason: deliveryDialogController.text);
+    await DeliveryServices.rejectCondition1(
+        allocationReference: allocationReferrence,
+        reason: deliveryDialogController.text);
     List<DeliveryCon2ResponseModel> responsee =
-        await DeliveryServices.rejectCondition2(
-            orderReference: orderReferrence,
-            employeereference: App.employeereference,
-            reason: deliveryDialogController.text);
+    await DeliveryServices.rejectCondition2(
+        orderReference: orderReferrence,
+        employeereference: App.employeereference,
+        reason: deliveryDialogController.text);
 
     if (deliveryType == "prescription") {
       deliveryFetchData();
@@ -177,11 +187,10 @@ class DeliveryController extends GetxController {
     }
   }
 
-  Future<void> deliveryDialogBox(
-      {required String allocationReferrence,
-      required String deliveryType,
-      required String orderReferrence,
-      required BuildContext context}) async {
+  Future<void> deliveryDialogBox({required String allocationReferrence,
+    required String deliveryType,
+    required String orderReferrence,
+    required BuildContext context}) async {
     showDialog(
         context: context,
         builder: (BuildContext context) {
