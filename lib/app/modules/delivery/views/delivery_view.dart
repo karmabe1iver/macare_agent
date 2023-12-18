@@ -125,6 +125,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                     //   ),
                                     // ),
                                     Expanded(
+                                      flex: 4,
                                       child: Column(
                                         crossAxisAlignment:
                                         CrossAxisAlignment.start,
@@ -199,14 +200,16 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                 .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
                                                       ),
                                                     ),
+
+                                        ],
+                                      ),
                                           Padding(
                                             padding: const EdgeInsets.all(10.0),
                                             child: Obx(
                                                   () =>
                                                   Visibility(
                                                     visible: controller
-                                                        .deliveryDetails[
-                                                    index]
+                                                        .deliveryDetails[index]
                                                         .allocationStatus ==
                                                         "pending",
                                                     child: Container(
@@ -216,25 +219,22 @@ class DeliveryView extends GetView<DeliveryController> {
                                                             .spaceEvenly,
                                                         children: [
                                                           Expanded(
-                                                            flex: 4,
+
                                                             child:
                                                             GestureDetector(
                                                               onTap: () {
                                                                 controller
                                                                     .deliveryDialogBox(
                                                                     allocationReferrence: controller
-                                                                        .deliveryDetails[
-                                                                    index]
+                                                                        .deliveryDetails[index]
                                                                         .allocationReference
                                                                         .toString(),
                                                                     deliveryType: controller
-                                                                        .deliveryDetails[
-                                                                    index]
+                                                                        .deliveryDetails[index]
                                                                         .type
                                                                         .toString(),
                                                                     orderReferrence: controller
-                                                                        .deliveryDetails[
-                                                                    index]
+                                                                        .deliveryDetails[index]
                                                                         .orderReference
                                                                         .toString(),
                                                                     context:
@@ -285,9 +285,9 @@ class DeliveryView extends GetView<DeliveryController> {
                                                               ),
                                                             ),
                                                           ),
-
+                                                          SizedBox(width: Get.width*.030,),
                                                           Expanded(
-                                                            flex: 4,
+
                                                             child:
                                                             GestureDetector(
                                                               // color: Color(0xFFECF3F3),
@@ -364,9 +364,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                     ),
                                                   ),
                                             ),
-                                          )
-                                        ],
-                                      ),
+                                          ),
                                           SizedBox(
                                             height: Get.height * .01,
                                           )
