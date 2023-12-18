@@ -43,7 +43,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 20.0,left: 15),
                   child: Text(
                     'DELIVERY DETAILS',
                     style: TextStyle(
@@ -255,7 +255,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                         style: MyTheme.outfit(
                                             fontWeight: FontWeight.w400,
                                             textSize: Get.height * .018,
-                                            color: Colors.grey.shade400,fontStyle: FontStyle.italic),
+                                            color: MyTheme.appBarColor,fontStyle: FontStyle.italic),
                                       ),
                                     )
                                   : SizedBox(),
@@ -345,38 +345,6 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                                 ),
                                               )
                                             : SizedBox(),
-                                        Row(
-                                          children: [ controller
-                                              .argument
-                                              .value
-                                              .orderItems![index]
-                                              .productPrice.isNotEmpty?
-                                            Icon(
-                                              Icons.currency_rupee,
-                                              color:
-                                                  MyTheme.phoneNumberTextColor,
-                                              size: Get.height * .018,
-                                            ):SizedBox(),
-                                            controller
-                                                .argument
-                                                .value
-                                                .orderItems![index]
-                                                .productPrice.isNotEmpty?
-                                            Text(
-                                              controller
-                                                  .argument
-                                                  .value
-                                                  .orderItems![index]
-                                                  .productPrice
-                                                  .toString(),
-                                              style: MyTheme.outfit(
-                                                  fontWeight: FontWeight.w400,
-                                                  textSize: Get.height * .018,
-                                                  color: MyTheme
-                                                      .phoneNumberTextColor),
-                                            ):SizedBox(),
-                                          ],
-                                        ),
                                         controller
                                             .argument
                                             .value
@@ -391,9 +359,34 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                               .toString(),
                                           style: MyTheme.outfit(
                                               fontWeight: FontWeight.w400,
-                                              textSize: Get.height * .018,
-                                              color: Colors.grey),
+                                              textSize: Get.height * .014,
+                                              color: MyTheme.smallFontColor),
                                         ):SizedBox(),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.currency_rupee,
+                                              color:
+                                                  MyTheme.phoneNumberTextColor,
+                                              size: Get.height * .018,
+                                            ),
+
+                                            Text(
+                                              controller
+                                                  .argument
+                                                  .value
+                                                  .orderItems![index]
+                                                  .productPrice
+                                                  .toString(),
+                                              style: MyTheme.outfit(
+                                                  fontWeight: FontWeight.w400,
+                                                  textSize: Get.height * .018,
+                                                  color: MyTheme
+                                                      .phoneNumberTextColor),
+                                            )
+                                          ],
+                                        ),
+
                                       ],
                                     ),
                                   ]);

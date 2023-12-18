@@ -36,7 +36,7 @@ class HistoryController extends GetxController {
       if (response != null) {
         historyDetails.value = response ?? [];
         for (var i = 0; i < historyDetails.length; i++) {
-          DateTime initial = DateTime.parse(historyDetails[i].bookingReferenceBookingDate);
+          DateTime initial = DateTime.parse(historyDetails[i].bookingReferenceBookingDate.toString());
           DateFormat formattedDate = DateFormat('dd/MM/yyyy');
           String date = formattedDate.format(initial);
 
