@@ -78,6 +78,8 @@ class HomeView extends GetView<HomeController> {
           ],
           selectedItemColor: MyTheme.bottomNavigationBarSelectedColor,
           unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
+          selectedFontSize: 13,
+          unselectedFontSize: 10,
         ),
       ),
     );

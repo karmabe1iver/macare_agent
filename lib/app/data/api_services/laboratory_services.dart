@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/presets/api_paths.dart';

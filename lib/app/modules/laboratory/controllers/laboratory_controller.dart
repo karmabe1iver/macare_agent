@@ -1,16 +1,10 @@
-
-import 'package:custom_alert_dialog_box/custom_alert_dialog_box.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:macare_agent/app/data/api_services/laboratory_services.dart';
 import 'package:macare_agent/app/data/model/response_model.dart';
-import 'package:macare_agent/app/presets/api_paths.dart';
-import 'package:macare_agent/app/utils/my_dio.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
-
 import '../../../data/model/laboratory_model.dart';
 
 class LaboratoryController extends GetxController {
@@ -89,24 +83,24 @@ class LaboratoryController extends GetxController {
       {required String agentUpdateReference,required BuildContext context}) async {
     showDialog(context: context, builder: (context){
       return AlertDialog(
-        title: Text("Write Your Reason"),
+        title: const Text("Write Your Reason"),
         content: TextField(
           controller: laboratoryDialogController,
-          decoration: InputDecoration(hintText: "Enter your reason here"),
+          decoration: const InputDecoration(hintText: "Enter your reason here"),
         ),
         actions: [
           TextButton(
               onPressed: () {
                 Get.back();
               },
-              child: Text("Cancel")),
+              child: const Text("Cancel")),
           TextButton(
               onPressed: () {
                 laboratoryRejectData(agentUpdateReference: agentUpdateReference);
                 laboratoryDialogController.clear();
                 Get.back();
               },
-              child: Text("Submit")),
+              child: const Text("Submit")),
         ],
       );
     }

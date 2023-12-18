@@ -105,7 +105,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                         style: MyTheme.outfit(
                                             fontWeight: FontWeight.w400,
                                             textSize: Get.height * .016,
-                                            color: MyTheme.textColor),
+                                            color: MyTheme.smallFontColor),
                                       )
                                     : SizedBox(),
 
@@ -416,7 +416,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
     return MyTheme.outfit(
         fontWeight: FontWeight.w400,
         textSize: Get.height * .016,
-        color: MyTheme.textColor);
+        color: MyTheme.smallFontColor);
   }
 
   Widget _bottomBar() {

@@ -1,8 +1,6 @@
 import 'package:macare_agent/app/data/model/response_model.dart';
 import 'package:macare_agent/app/presets/api_paths.dart';
 import 'package:macare_agent/app/utils/my_dio.dart';
-
-import '../../app.dart';
 import '../model/add_test_response_model.dart';
 
 abstract class AddTestServices {
@@ -36,7 +34,7 @@ abstract class AddTestServices {
 
 
   static Future<dynamic> fetchDeletedTest({required String id})async{
-    dynamic response = await MyDio().customPatch(ApiPaths.deletedUrl,"${id}/",baseUrl: ApiPaths.baseUrl,
+    dynamic response = await MyDio().customPatch(ApiPaths.deletedUrl,"$id/",baseUrl: ApiPaths.baseUrl,
     data: {"delete_status":"true"});
     return ResponseModel.fromJson(response);
 

@@ -1,11 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
 import 'package:get/get.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
-
-import '../../../data/model/laboratory_model.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/search_page_controller.dart';
 
@@ -50,8 +45,9 @@ class SearchPageView extends GetView<SearchPageController> {
                         child: TextFormField(//
                           controller: controller.searchController,
                           onChanged: (value){
-                            if(controller.searchController.text.length > 2)
-                          controller.searchFetchData();
+                            if(controller.searchController.text.length > 2) {
+                              controller.searchFetchData();
+                            }
                           },
                           // onEditingComplete: (){
                           //   controller.searchFetchData();
@@ -87,19 +83,18 @@ class SearchPageView extends GetView<SearchPageController> {
                                       .allList[index]
                                       .testName.toString(),),
                               ),
-                              Spacer(),
-                              Container(
-                                  child: Obx(
-                                    ()=> Checkbox(
-                                        activeColor: Colors.white,
-                                        checkColor: Colors.green,
-                                        side: BorderSide(),
-                                        value: controller.selectedList.contains(controller.allList[index]),
-                                        //value: controller.selectedIndex.value == index,
-                                        onChanged: (value) {
-                                          controller.onCheckboxSelected(index,controller.allList[index]);
-                                        }),
-                                  ))
+                              const Spacer(),
+                              Obx(
+                                ()=> Checkbox(
+                                    activeColor: Colors.white,
+                                    checkColor: Colors.green,
+                                    side: const BorderSide(),
+                                    value: controller.selectedList.contains(controller.allList[index]),
+                                    //value: controller.selectedIndex.value == index,
+                                    onChanged: (value) {
+                                      controller.onCheckboxSelected(index,controller.allList[index]);
+                                    }),
+                              )
                             ],
                           ),
                         ),
@@ -123,13 +118,13 @@ class SearchPageView extends GetView<SearchPageController> {
 
 
             },
-            child: Text(
-              "Submit",
-              style: TextStyle(fontSize: Get.height * .028, color: Colors.white),
-            ),
             style: ButtonStyle(
               backgroundColor:
                   MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+            ),
+            child: Text(
+              "Submit",
+              style: TextStyle(fontSize: Get.height * .028, color: Colors.white),
             ),
           ),
         ),

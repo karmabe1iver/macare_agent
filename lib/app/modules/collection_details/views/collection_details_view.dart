@@ -2,14 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:macare_agent/app/data/model/add_test_response_model.dart';
+import 'package:intl/intl.dart';
 import 'package:macare_agent/app/data/model/laboratory_model.dart';
-import 'package:macare_agent/app/modules/add_test/controllers/add_test_controller.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/collection_details_controller.dart';
 
 class CollectionDetailsView extends GetView<CollectionDetailsController> {
@@ -17,6 +15,9 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
 
   @override
   Widget build(BuildContext context) {
+    DateTime initial=DateTime.parse(controller.argument.value.laboratoryBookingDate);
+    DateFormat formattedDate = DateFormat('dd/MM/yyyy');
+    String date= formattedDate.format(initial);
     Get.lazyPut(() => CollectionDetailsController());
 
     return Scaffold(
@@ -84,23 +85,23 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016),
-                              ):SizedBox(),
+                              ):const SizedBox(),
                               controller.argument.value!.customerAddressForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerAddressForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
-                                    color: MyTheme.textColor),
-                              ):SizedBox(),
+                                    color: MyTheme.smallFontColor),
+                              ):const SizedBox(),
                               controller.argument.value!.customerEmailForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerEmailForCollection.toString(),
                                 style: MyTheme.outfit(
                                     fontWeight: FontWeight.w400,
                                     textSize: Get.height * .016,
-                                    color: MyTheme.textColor),
-                              ):SizedBox(),
+                                    color: MyTheme.smallFontColor),
+                              ):const SizedBox(),
                               controller.argument.value!.customerPhoneForCollection!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerPhoneForCollection.toString(),
@@ -108,7 +109,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .016,
                                     color: MyTheme.phoneNumberTextColor),
-                              ):SizedBox(),
+                              ):const SizedBox(),
                               SizedBox(
                                 height: 8,
                                 width: Get.width,
@@ -127,17 +128,17 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                   style: MyTheme.outfit(
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .018,
-                                  )):SizedBox(),
+                                  )):const SizedBox(),
                               controller.argument.value!.customerAddressBookedBy!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerAddressBookedBy.toString(),
                                 style: _addressStyle(),
-                              ):SizedBox(),
+                              ):const SizedBox(),
                               controller.argument.value!.customerEmailBookedBy!.isNotEmpty?
                               Text(
                                 controller.argument.value!.customerEmailBookedBy.toString(),
                                 style: _addressStyle(),
-                              ):SizedBox(),
+                              ):const SizedBox(),
                               //Text('Pin:637006', style: _addressStyle()),
                               // SizedBox(
                               //   height: 8,
@@ -150,7 +151,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                                     fontWeight: FontWeight.w500,
                                     textSize: Get.height * .015,
                                     color: MyTheme.phoneNumberTextColor),
-                              ):SizedBox(),
+                              ):const SizedBox(),
                               SizedBox(
                                 height: 10,
                                 width: Get.width,
@@ -215,7 +216,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
-                              color: MyTheme.textColor),
+                              color: MyTheme.smallFontColor),
                         ),
                         Text(
                           controller.argument.value!.laboratoryContact.toString(),
@@ -258,21 +259,21 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
-                              color: MyTheme.textColor),
+                              color: MyTheme.smallFontColor),
                         ),
                         Text(
                           'Blood sample collection',
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
-                              color: MyTheme.textColor),
+                              color: MyTheme.smallFontColor),
                         ),
                         Text(
                           'Blood sample collection',
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
-                              color: MyTheme.textColor),
+                              color: MyTheme.smallFontColor),
                         ),
                         SizedBox(
                           height: 5,
@@ -311,7 +312,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                               color: MyTheme.phoneNumberTextColor),
                         ),
                         Text(
-                          controller.argument.value!.laboratoryBookingDate.toString(),
+                          date.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
@@ -336,7 +337,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
     return MyTheme.outfit(
         fontWeight: FontWeight.w400,
         textSize: Get.height * .016,
-        color: MyTheme.textColor);
+        color: MyTheme.smallFontColor);
   }
 
   Widget _bottomBar(LaboratoryResponseModel argument) {
@@ -346,21 +347,21 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
           flex: 3,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 49,
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
                     openMaps(double.parse(controller.argument.value.customerLatitude), double.parse(controller.argument.value.customerLongitude));
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
+                  ),
                   child: Text(
                     'SHOW DIRECTION',
                     style: TextStyle(
                         color: Colors.white, fontSize: Get.height * .018),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
                   )),
             ),
           ),
@@ -369,7 +370,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
           flex: 3,
           child: Padding(
             padding: const EdgeInsets.all(8.0),
-            child: Container(
+            child: SizedBox(
               height: 49,
               width: Get.width / 2.4,
               child: TextButton(
@@ -384,14 +385,14 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
 
 
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                  ),
                   child: Text(
                     'REACHED',
                     style: TextStyle(
                         color: Colors.white, fontSize: Get.height * .018),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
                   )),
             ),
           ),

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
@@ -158,7 +157,7 @@ class AddTestView extends GetView<AddTestController> {
                               _addressDetails(
                                 "Subtotal Fee",
                               ),
-                              Spacer(),
+                              const Spacer(),
                               const Icon(Icons.currency_rupee,size: 15,),
                               SizedBox(width: 50,
                                 child: Obx(() => Text('${controller.sum.value}',style: MyTheme.outfit(
@@ -174,7 +173,7 @@ class AddTestView extends GetView<AddTestController> {
                               _addressDetails(
                                 " Collection Charge",
                               ),
-                              Spacer(),
+                              const Spacer(),
                               const Icon(Icons.currency_rupee,size: 15,),
                               SizedBox(height: 10,width:50,
                                    child: TextFormField(
@@ -182,20 +181,20 @@ class AddTestView extends GetView<AddTestController> {
                                     controller: controller.collectionChargeController,
 
                                     keyboardType: TextInputType.number,
-                                    style: TextStyle(fontSize: 15),
+                                    style: const TextStyle(fontSize: 15),
                                   )),
                             ],
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 4.0,left: 5),
+                          padding: const EdgeInsets.only(bottom: 4.0,left: 5),
                           child: Row(
                             children: [
                               const Text(
                                 "Total Fee",
                                 style: TextStyle(fontWeight: FontWeight.w500),
                               ),
-                              Spacer(),
+                              const Spacer(),
                               const Icon(Icons.currency_rupee,size: 15,),
                               SizedBox(width: 50,
                                 child: Obx(
@@ -218,7 +217,7 @@ class AddTestView extends GetView<AddTestController> {
                               Obx(
                                     () => Checkbox(
                                   activeColor: Colors.white,
-                                  side: BorderSide(),
+                                  side: const BorderSide(),
                                   checkColor: Colors.green,
                                   value: controller.isChecked.value,
                                   onChanged: (value) {
@@ -239,7 +238,7 @@ class AddTestView extends GetView<AddTestController> {
                           ),
                         ),
                         Row(
-                          children: [Spacer(),
+                          children: [const Spacer(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: SizedBox(
