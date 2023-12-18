@@ -43,7 +43,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 20.0,left: 15),
                   child: Text(
                     'DELIVERY DETAILS',
                     style: TextStyle(

@@ -51,7 +51,7 @@ class DeliveryView extends GetView<DeliveryController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(

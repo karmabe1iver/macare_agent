@@ -85,21 +85,7 @@ class HistoryView extends GetView<HistoryController> {
                                                 AssetHelper.laboratoryLogo,
                                                 fit: BoxFit.fill)),
                                       ),
-                                      const SizedBox(
-                                        height: 20,
-                                      ),
-                                      Text(
-                                        controller.historyDetails[index].bookingReferenceBookingTime.toString(),
-                                        style: MyTheme.outfit(
-                                            color: MyTheme.numbersColor),
-                                      ),
-                                      Obx(
-                                          ()=> Text(
-                                          controller.datee.value.toString(),
-                                          style: MyTheme.outfit(
-                                              color: MyTheme.numbersColor),
-                                        ),
-                                      ),
+
                                     ],
                                   ),
                                 ),
@@ -122,14 +108,35 @@ class HistoryView extends GetView<HistoryController> {
                                     _serviceDetails('Samples: ${
                                       controller.historyDetails[index].bookingReferenceSampleType.toString()}',
                                     ),
+                                    Row(mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        Text(
+                                          controller.historyDetails[index].bookingReferenceBookingTime.toString(),
+                                          style: MyTheme.outfit(
+                                              color: MyTheme
+                                                  .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),),
+                                        SizedBox(width: Get.width*.030,),
+                                        Obx(
+                                              ()=> Text(
+                                            controller.datee.value.toString(),
+                                                  style: MyTheme.outfit(
+                                                      color: MyTheme
+                                                          .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
+                                          ),
+                                        ),
+                                        SizedBox(width: Get.width*.030,),
+                                      ],
+                                    ),
 
 
-                                    SizedBox(height: Get.height * .03,)
+                                    SizedBox(height: Get.height * .01,)
                                   ],
                                 ),
                               ),
 
+
                             ],
+
                           ),
                           Container(
                             height: 7,
