@@ -59,27 +59,10 @@ class PaymentController extends GetxController {
       if (resp.message == "saved") {
         App.deliverytype = true;
         Get.toNamed(Routes.HOME, arguments: 1);
-        Fluttertoast.showToast(
-          msg: "Payment completed",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-
-        );
+        Fluttertoast.showToast(msg: 'Payment Completed');
       }
       else {
-        Fluttertoast.showToast(
-          msg: "Someting went wrong!!!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
+        Fluttertoast.showToast(msg: "Something went wrong");
       }
     }
   }

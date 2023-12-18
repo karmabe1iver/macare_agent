@@ -100,26 +100,10 @@ class SearchPageController extends GetxController {
 
     if (response.message == "saved") {
       Get.offNamed(Routes.ADD_TEST,arguments: argument);
-      Fluttertoast.showToast(
-        msg: "Added Tests",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      Fluttertoast.showToast(msg: 'Success!!!');
     } else {
       App.deliverytype = true;
-      Fluttertoast.showToast(
-        msg: "Something went wrong!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      Fluttertoast.showToast(msg: 'Something went wrong!!');
     }
 
   }

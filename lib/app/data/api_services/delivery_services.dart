@@ -24,7 +24,7 @@ abstract class DeliveryServices {
           "order_status": 'proccesed',
           'allocation_status': 'accepted'
         });
-    return deliveryCon1ResponseModelFromJson(response);
+    return DeliveryCon1ResponseModel.fromJson(response);
   }static Future<dynamic> acceptCondition2(
       {required String orderReference,required String employeereference}) async {
     dynamic response = await MyDio().customGet(
@@ -36,7 +36,7 @@ abstract class DeliveryServices {
           'employee_reference': employeereference,
           'allocation_status': 'accepted'
         });
-    return deliveryCon2ResponseModelFromJson(response);
+    return deliveryCon1ResponseModelFromJson(response);
   }static Future<dynamic> rejectCondition1(
       {required String allocationReference,required String reason}) async {
     dynamic response = await MyDio().customGet(
@@ -58,8 +58,8 @@ abstract class DeliveryServices {
           'order_reference': orderReference,
           "order_status": 'proccesed',
           'employee_reference': employeereference,
-          'allocation_status': 'accepted',
+          'allocation_status': 'rejected',
           'reason' : reason
           });
-    return deliveryCon2ResponseModelFromJson(response);  }
+    return deliveryCon1ResponseModelFromJson(response);  }
 }

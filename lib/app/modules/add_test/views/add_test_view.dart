@@ -6,6 +6,9 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/routes/app_pages.dart';
 
 import '../../../app.dart';
+import '../../../app.dart';
+import '../../../app.dart';
+import '../../../app.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/add_test_controller.dart';
 
@@ -247,7 +250,10 @@ class AddTestView extends GetView<AddTestController> {
                                 child: Obx(
                                       ()=> TextButton(
                                       onPressed: () {
-                                        if(controller.isChecked.value == true&&controller.collectionChargeController.text.isNotEmpty){
+                                        if(controller.isChecked.value == true
+                                            &&controller.collectionChargeController.text.isNotEmpty
+                                            &&double.parse(controller.collectionChargeController.text) < controller.sum.value
+                                        &&double.parse(controller.collectionChargeController.text)>0){
                                           String status="Sample Collected";
                                           controller.fetchCheckout(bookingReference: App.bookingReference,
                                             bookingAllocationStatus: status,
@@ -256,9 +262,7 @@ class AddTestView extends GetView<AddTestController> {
 
                                         }else{
                                           Fluttertoast.showToast(
-                                              msg: " Please Check Collection charge \n & \n Select Box ",
-                                          backgroundColor: MyTheme.appBarColor,
-                                          textColor: Colors.white);
+                                              msg: " Please Check Collection charge \n & \n Select Box ",);
                                         }
                                         //Get.toNamed(Routes.LABORATORY);
                                       },

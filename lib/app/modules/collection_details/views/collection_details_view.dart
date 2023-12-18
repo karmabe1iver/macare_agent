@@ -83,7 +83,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                               Text(
                                 controller.argument.value!.customerNameForCollection.toString(),
                                 style: MyTheme.outfit(
-                                    fontWeight: FontWeight.w500,
+                                    fontWeight: FontWeight.w600,
                                     textSize: Get.height * .016),
                               ):const SizedBox(),
                               controller.argument.value!.customerAddressForCollection!.isNotEmpty?
@@ -304,20 +304,25 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           height: Get.height * .018,
                           width: Get.width,
                         ),
-                        Text(
-                          controller.argument.value!.laboratoryBookingTime.toString(),
-                          style: MyTheme.outfit(
-                              fontWeight: FontWeight.w400,
-                              textSize: Get.height * .018,
-                              color: MyTheme.phoneNumberTextColor),
-                        ),
-                        Text(
-                          date.toString(),
-                          style: MyTheme.outfit(
-                              fontWeight: FontWeight.w400,
-                              textSize: Get.height * .018,
-                              color: MyTheme.phoneNumberTextColor),
-                        ),
+                        Row(
+                          children: [
+                          Text(
+                            controller.argument.value!.laboratoryBookingTime.toString(),
+                            style: MyTheme.outfit(
+                                fontWeight: FontWeight.w400,
+                                textSize: Get.height * .018,
+                                color: MyTheme.phoneNumberTextColor,),
+                          ),
+                          SizedBox(width: 10,),
+                          Text(
+                            date.toString(),
+                            style: MyTheme.outfit(
+                                fontWeight: FontWeight.w400,
+                                textSize: Get.height * .018,
+                                color: MyTheme.phoneNumberTextColor),
+                          ),
+                        ],)
+                       ,
                         SizedBox(
                           height: 5,
                           width: Get.width,

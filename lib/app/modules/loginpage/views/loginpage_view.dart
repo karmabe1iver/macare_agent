@@ -26,7 +26,7 @@ class LoginpageView extends GetView<LoginpageController> {
           child: Padding(
             padding: const EdgeInsets.all(15.0),
             child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              Container(height: 90
+              SizedBox(height: 90
                   ,width: 300,
                   child: Image.asset(
                 AssetHelper.macareLogo,
@@ -74,20 +74,18 @@ class LoginpageView extends GetView<LoginpageController> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
               ElevatedButton(
                 onPressed: () {
                   controller.fetchData();
-
-
                 },
                 child: Text('LOGIN',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                    shape: StadiumBorder(), fixedSize: Size(250, 40),backgroundColor: MyTheme.appBarColor),
+                    shape: const StadiumBorder(), fixedSize: Size(250, 40),backgroundColor: MyTheme.appBarColor),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
 

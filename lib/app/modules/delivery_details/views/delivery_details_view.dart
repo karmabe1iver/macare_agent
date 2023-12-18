@@ -43,7 +43,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
+                  padding: const EdgeInsets.only(top: 20.0,left: 15),
                   child: Text(
                     'DELIVERY DETAILS',
                     style: TextStyle(
@@ -87,7 +87,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                             .deliveryDetails!.first.customerName
                                             .toString(),
                                         style: MyTheme.outfit(
-                                          fontWeight: FontWeight.w500,
+                                          fontWeight: FontWeight.w600,
                                           textSize: Get.height * .018,
                                         ))
                                     : SizedBox(),
@@ -255,7 +255,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                         style: MyTheme.outfit(
                                             fontWeight: FontWeight.w400,
                                             textSize: Get.height * .018,
-                                            color: Colors.grey.shade400,fontStyle: FontStyle.italic),
+                                            color: MyTheme.appBarColor,fontStyle: FontStyle.italic),
                                       ),
                                     )
                                   : SizedBox(),
@@ -299,7 +299,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                 minHeight: 0,
                                 minWidth: 0,
                                 maxHeight: Get.height),
-                            child: ListView.builder(
+                            child: ListView.builder(padding: EdgeInsets.zero,
                                 itemCount: controller
                                     .argument.value.orderItems!.length,
                                 shrinkWrap: true,
@@ -345,38 +345,6 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                                 ),
                                               )
                                             : SizedBox(),
-                                        Row(
-                                          children: [ controller
-                                              .argument
-                                              .value
-                                              .orderItems![index]
-                                              .productPrice.isNotEmpty?
-                                            Icon(
-                                              Icons.currency_rupee,
-                                              color:
-                                                  MyTheme.phoneNumberTextColor,
-                                              size: Get.height * .018,
-                                            ):SizedBox(),
-                                            controller
-                                                .argument
-                                                .value
-                                                .orderItems![index]
-                                                .productPrice.isNotEmpty?
-                                            Text(
-                                              controller
-                                                  .argument
-                                                  .value
-                                                  .orderItems![index]
-                                                  .productPrice
-                                                  .toString(),
-                                              style: MyTheme.outfit(
-                                                  fontWeight: FontWeight.w400,
-                                                  textSize: Get.height * .018,
-                                                  color: MyTheme
-                                                      .phoneNumberTextColor),
-                                            ):SizedBox(),
-                                          ],
-                                        ),
                                         controller
                                             .argument
                                             .value
@@ -391,9 +359,34 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                               .toString(),
                                           style: MyTheme.outfit(
                                               fontWeight: FontWeight.w400,
-                                              textSize: Get.height * .018,
-                                              color: Colors.grey),
+                                              textSize: Get.height * .014,
+                                              color: MyTheme.smallFontColor),
                                         ):SizedBox(),
+                                        Row(
+                                          children: [
+                                            Icon(
+                                              Icons.currency_rupee,
+                                              color:
+                                                  MyTheme.phoneNumberTextColor,
+                                              size: Get.height * .018,
+                                            ),
+
+                                            Text(
+                                              controller
+                                                  .argument
+                                                  .value
+                                                  .orderItems![index]
+                                                  .productPrice
+                                                  .toString(),
+                                              style: MyTheme.outfit(
+                                                  fontWeight: FontWeight.w400,
+                                                  textSize: Get.height * .018,
+                                                  color: MyTheme
+                                                      .phoneNumberTextColor),
+                                            )
+                                          ],
+                                        ),
+
                                       ],
                                     ),
                                   ]);
@@ -412,12 +405,6 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
     );
   }
 
-  TextStyle _addressStyle() {
-    return MyTheme.outfit(
-        fontWeight: FontWeight.w400,
-        textSize: Get.height * .016,
-        color: MyTheme.smallFontColor);
-  }
 
   Widget _bottomBar() {
     return Row(
@@ -445,14 +432,14 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                         orderReference: controller.argument.value.orderReference
                             .toString());
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
+                  ),
                   child: Text(
                     'SHOW DIRECTION',
                     style: TextStyle(
                         color: Colors.white, fontSize: Get.height * .018),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.appBarColor),
                   )),
             ),
           ),
@@ -475,17 +462,16 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                             .toString());
                     App.totalfeeee =
                         controller.argument.value.orderAmount.toString();
-                    Get.toNamed(Routes.PAYMENT,
-                        arguments: controller.argument.value);
+
                   },
+                  style: ButtonStyle(
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
+                  ),
                   child: Text(
                     'REACHED',
                     style: TextStyle(
                         color: Colors.white, fontSize: Get.height * .018),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor:
-                        MaterialStateProperty.all<Color>(MyTheme.buttonColor),
                   )),
             ),
           ),

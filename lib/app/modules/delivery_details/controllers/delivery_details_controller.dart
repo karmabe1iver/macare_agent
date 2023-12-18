@@ -9,6 +9,7 @@ import '../../../data/api_services/delivery_services.dart';
 import '../../../data/model/delivery_model.dart';
 import '../../../data/model/deliverydetailscon1_model.dart';
 import '../../../data/model/deliverydetailscon2_model.dart';
+import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
 
 class DeliveryDetailsController extends GetxController {
@@ -76,15 +77,9 @@ class DeliveryDetailsController extends GetxController {
       );
     } else {
       App.deliverytype = true;
-      Fluttertoast.showToast(
-        msg: "Picked",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      Get.toNamed(Routes.PAYMENT,
+          arguments: argument.value);
+
     }
   }
 

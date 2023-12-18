@@ -43,7 +43,7 @@ class DeliveryView extends GetView<DeliveryController> {
                     ),
                     Text(
                       App.employeename,
-                      style: MyTheme.outfit(color: MyTheme.smallFontColor),
+                      style: MyTheme.outfit(color: MyTheme.employeeColor),
                     ),
                   ],
                 ),
@@ -51,7 +51,7 @@ class DeliveryView extends GetView<DeliveryController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -146,7 +146,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                 .toString(),
                                             style: MyTheme.outfit(
                                                 fontWeight:
-                                                FontWeight.w500),
+                                                FontWeight.w600),
                                           ) : SizedBox(),
                                           controller
                                               .deliveryDetails[index]
@@ -203,12 +203,15 @@ class DeliveryView extends GetView<DeliveryController> {
 
                                         ],
                                       ),
+                                          SizedBox(
+                                            height: Get.height * .010,),
                                           Padding(
                                             padding: const EdgeInsets.all(10.0),
                                             child: Obx(
                                                   () =>
                                                   Visibility(
-                                                    visible: controller
+                                                    visible:
+                                                    controller
                                                         .deliveryDetails[index]
                                                         .allocationStatus ==
                                                         "pending",
@@ -239,22 +242,22 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                         .toString(),
                                                                     context:
                                                                     context);
-                                                                controller
-                                                                    .deliveryFetchData();
-                                                                Fluttertoast
-                                                                    .showToast(
-                                                                  msg: "Rejected",
-                                                                  toastLength: Toast
-                                                                      .LENGTH_SHORT,
-                                                                  gravity: ToastGravity
-                                                                      .BOTTOM,
-                                                                  timeInSecForIosWeb: 1,
-                                                                  backgroundColor: MyTheme
-                                                                      .appBarColor,
-                                                                  textColor: Colors
-                                                                      .white,
-                                                                  fontSize: 16.0,
-                                                                );
+                                                                // controller
+                                                                //     .deliveryFetchData();
+                                                                // Fluttertoast
+                                                                //     .showToast(
+                                                                //   msg: "Rejected",
+                                                                //   toastLength: Toast
+                                                                //       .LENGTH_SHORT,
+                                                                //   gravity: ToastGravity
+                                                                //       .BOTTOM,
+                                                                //   timeInSecForIosWeb: 1,
+                                                                //   backgroundColor: MyTheme
+                                                                //       .appBarColor,
+                                                                //   textColor: Colors
+                                                                //       .white,
+                                                                //   fontSize: 16.0,
+                                                                // );
                                                                 // model[index]
                                                                 //     .visibile
                                                                 //     .value = false;
@@ -365,9 +368,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                   ),
                                             ),
                                           ),
-                                          SizedBox(
-                                            height: Get.height * .01,
-                                          )
+
                                         ],
                                       ),
                                     ),

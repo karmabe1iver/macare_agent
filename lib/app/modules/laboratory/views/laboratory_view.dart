@@ -37,7 +37,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                     ),
                     Text(
                       App.employeename,
-                      style: MyTheme.outfit(color: MyTheme.smallFontColor),
+                      style: MyTheme.outfit(color: MyTheme.employeeColor),
                     ),
                   ],
                 ),
@@ -129,8 +129,9 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                     .toString(),
                                                 style: MyTheme.outfit(
                                                     fontWeight: FontWeight
-                                                        .w500),
+                                                        .w600),
                                               ):const SizedBox(),
+                                              SizedBox(height: 3,),
                                               controller.laboratoryList[index]
                                                   .customerAddressForCollection!.isNotEmpty?
                                               _addressDetails(

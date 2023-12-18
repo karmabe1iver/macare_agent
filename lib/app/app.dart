@@ -11,6 +11,7 @@ abstract class App{
   static bool deliverytype=false;
   static String employeename ='';
   static String totalfeeee ='';
+  static String subtotalFee ='';
 
 
   static String agentUpdateReference ='';

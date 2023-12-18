@@ -42,30 +42,14 @@ class LoginpageController extends GetxController {
     if(response.access!=null) {
       App.token=response.access!;
       App.employeeReferences=response.employeeReference!;
-      Fluttertoast.showToast(
-        msg: "Login Completed ",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      Fluttertoast.showToast(msg: 'Login Completed!!!');
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
       App.employeename= response.name! ;
       Get.toNamed(Routes.HOME);
 
     }else{
-      Fluttertoast.showToast(
-        msg: "Something went wrong!!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      Fluttertoast.showToast(msg: 'Something went wrong!!');
     }
   }
     void increment() => count.value++;

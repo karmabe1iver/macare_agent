@@ -43,6 +43,7 @@ class SearchPageView extends GetView<SearchPageController> {
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(//
+                          style: MyTheme.outfit(),
                           controller: controller.searchController,
                           onChanged: (value){
                             if(controller.searchController.text.length > 2) {
@@ -72,30 +73,33 @@ class SearchPageView extends GetView<SearchPageController> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              const SizedBox(
-                                width: 5,
-                              ),
-                              Expanded(
-                                child: Text(
-                                  controller
-                                      .allList[index]
-                                      .testName.toString(),),
-                              ),
-                              const Spacer(),
-                              Obx(
-                                ()=> Checkbox(
-                                    activeColor: Colors.white,
-                                    checkColor: Colors.green,
-                                    side: const BorderSide(),
-                                    value: controller.selectedList.contains(controller.allList[index]),
-                                    //value: controller.selectedIndex.value == index,
-                                    onChanged: (value) {
-                                      controller.onCheckboxSelected(index,controller.allList[index]);
-                                    }),
-                              )
-                            ],
+                          child: GestureDetector(
+                            onTap: (){ controller.onCheckboxSelected(index,controller.allList[index]);},
+                            child: Row(
+                              children: [
+                                const SizedBox(
+                                  width: 5,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    controller
+                                        .allList[index]
+                                        .testName.toString(),style: MyTheme.outfit(),),
+                                ),
+                                const Spacer(),
+                                Obx(
+                                  ()=> Checkbox(
+                                      activeColor: Colors.white,
+                                      checkColor: Colors.green,
+                                      side: const BorderSide(),
+                                      value: controller.selectedList.contains(controller.allList[index]),
+                                      //value: controller.selectedIndex.value == index,
+                                      onChanged: (value) {
+                                        controller.onCheckboxSelected(index,controller.allList[index]);
+                                      }),
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         Container(
