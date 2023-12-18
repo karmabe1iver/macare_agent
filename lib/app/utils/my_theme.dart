@@ -11,7 +11,7 @@ abstract class MyTheme {
   static const Color dividerColor = Color(0xFFE8E8F0);
   static const Color buttonColor = Color(0xFF31AC12);
   static const Color appBackgroundColor = Colors.white;
-  static const Color smallFontColor = Color(0xFF989696);
+  static const Color smallFontColor = Color(0xFF5c6b73);
   static const Color numbersColor = Color(0xFF155A77);
   static const Color snackBarColor = Colors.black;
   static const Color snackBarTextColor = Colors.white;

@@ -45,7 +45,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(15.0),
             child: Align(
               alignment: Alignment.topLeft,
               child: Text(
@@ -164,16 +164,6 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                       Row(mainAxisAlignment: MainAxisAlignment.end,
                                                         children: [
 
-                                                          Obx(
-                                                                ()=> Text(
-                                                              controller
-                                                                  .datee.value.toString(),
-                                                              style: MyTheme.outfit(
-                                                                  color: MyTheme
-                                                                      .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
-                                                            ),
-                                                          ),
-                                                          SizedBox(width: Get.width*.050,),
 
                                                           Text(
                                                             controller
@@ -182,6 +172,17 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                                 .toString(),
                                                             style: MyTheme.outfit(
                                                                 color: MyTheme.numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
+                                                          ),
+                                                          SizedBox(width: Get.width*.030,),
+
+                                                          Obx(
+                                                                ()=> Text(
+                                                              controller
+                                                                  .datee.value.toString(),
+                                                              style: MyTheme.outfit(
+                                                                  color: MyTheme
+                                                                      .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
+                                                            ),
                                                           ),
                                                         ],
                                                       ),

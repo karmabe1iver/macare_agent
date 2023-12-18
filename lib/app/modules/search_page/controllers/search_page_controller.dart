@@ -69,7 +69,6 @@ class SearchPageController extends GetxController {
         searchQuery: searchController.text);
     if (response != null) {
       searchList.value = response ?? [];
-
       if (selectedList.isNotEmpty) {
         for (int k = 0; k < searchList.length; k++) {
           for (int i = 0; i < selectedList.length; i++) {
@@ -77,7 +76,7 @@ class SearchPageController extends GetxController {
               searchList.removeAt(k);
             }
           }
-          allList.addAll(searchList);
+          //allList.addAll(searchList);
         }
       }
       allList.addAll(searchList);
