@@ -77,143 +77,146 @@ class DeliveryView extends GetView<DeliveryController> {
                     itemBuilder: (BuildContext context, index) {
                       return Column(
                         children: [
-                          MaterialButton(
-                            onPressed: () {
-                              if (controller.deliveryDetails[index]
-                                  .allocationStatus !=
-                                  "pending") {
-                                Get.toNamed(Routes.DELIVERY_DETAILS,
-                                    arguments: controller
-                                        .deliveryDetails[index]);
-                              }
-                            },
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    // Expanded(
-                                    //   flex: 4,
-                                    //   child: Padding(
-                                    //     padding:
-                                    //     const EdgeInsets.all(8.0),
-                                    //     child: Column(
-                                    //       children: [
-                                    //         SizedBox(
-                                    //           height: 40,
-                                    //           width: 80,
-                                    //           child: Center(
-                                    //               child: Image.asset(
-                                    //                   AssetHelper
-                                    //                       .houseLogo,
-                                    //                   fit: BoxFit.fill)),
-                                    //         ),
-                                    //
-                                    //         SizedBox(
-                                    //           height: 20,
-                                    //         ),
-                                    //         Obx(
-                                    //        ()=> Text(
-                                    //             controller
-                                    //                 .datee.value.toString(),
-                                    //             style: MyTheme.outfit(
-                                    //                 color: MyTheme
-                                    //                     .numbersColor),
-                                    //           ),
-                                    //         )
-                                    //       ],
-                                    //     ),
-                                    //   ),
-                                    // ),
-                                    Expanded(
-                                      child: Column(
-                                        crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                        children: [
-                                          SizedBox(
-                                            height: 20,
-                                          ), controller
-                                              .deliveryDetails[index]
-                                              .deliveryDetails!
-                                              .first
-                                              .customerName!.isNotEmpty ?
-                                          Text(
+                          Container(
+                            height: 100,
+                            width: Get.width,
+                            child: MaterialButton(
+                              onPressed: () {
+                                if (controller.deliveryDetails[index]
+                                    .allocationStatus !=
+                                    "pending") {
+                                  Get.toNamed(Routes.DELIVERY_DETAILS,
+                                      arguments: controller
+                                          .deliveryDetails[index]);
+                                }
+                              },
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      // Expanded(
+                                      //   flex: 4,
+                                      //   child: Padding(
+                                      //     padding:
+                                      //     const EdgeInsets.all(8.0),
+                                      //     child: Column(
+                                      //       children: [
+                                      //         SizedBox(
+                                      //           height: 40,
+                                      //           width: 80,
+                                      //           child: Center(
+                                      //               child: Image.asset(
+                                      //                   AssetHelper
+                                      //                       .houseLogo,
+                                      //                   fit: BoxFit.fill)),
+                                      //         ),
+                                      //
+                                      //         SizedBox(
+                                      //           height: 20,
+                                      //         ),
+                                      //         Obx(
+                                      //        ()=> Text(
+                                      //             controller
+                                      //                 .datee.value.toString(),
+                                      //             style: MyTheme.outfit(
+                                      //                 color: MyTheme
+                                      //                     .numbersColor),
+                                      //           ),
+                                      //         )
+                                      //       ],
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                      Expanded(
+                                        child: Column(
+                                          crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                          children: [
+                                            SizedBox(
+                                              height: 20,
+                                            ), controller
+                                                .deliveryDetails[index]
+                                                .deliveryDetails!
+                                                .first
+                                                .customerName!.isNotEmpty ?
+                                            Text(
+                                              controller
+                                                  .deliveryDetails[index]
+                                                  .deliveryDetails!
+                                                  .first
+                                                  .customerName
+                                                  .toString(),
+                                              style: MyTheme.outfit(
+                                                  fontWeight:
+                                                  FontWeight.w500),
+                                            ) : SizedBox(),
                                             controller
                                                 .deliveryDetails[index]
                                                 .deliveryDetails!
                                                 .first
-                                                .customerName
-                                                .toString(),
-                                            style: MyTheme.outfit(
-                                                fontWeight:
-                                                FontWeight.w500),
-                                          ) : SizedBox(),
-                                          controller
-                                              .deliveryDetails[index]
-                                              .deliveryDetails!
-                                              .first
-                                              .customerAddress!.isNotEmpty ?
-                                          _addressDetails(
+                                                .customerAddress!.isNotEmpty ?
+                                            _addressDetails(
+                                              controller
+                                                  .deliveryDetails[index]
+                                                  .deliveryDetails!
+                                                  .first
+                                                  .customerAddress
+                                                  .toString(),
+                                            ) : SizedBox(),
                                             controller
                                                 .deliveryDetails[index]
                                                 .deliveryDetails!
                                                 .first
-                                                .customerAddress
-                                                .toString(),
-                                          ) : SizedBox(),
-                                          controller
-                                              .deliveryDetails[index]
-                                              .deliveryDetails!
-                                              .first
-                                              .pinCode.isNotEmpty ?
-                                          _addressDetails(
-                                            controller
-                                                .deliveryDetails[index]
-                                                .deliveryDetails!
-                                                .first
-                                                .pinCode
-                                                .toString(),
-                                          ) : SizedBox(),
-                                          Obx(
-                                                () =>
-                                                Visibility(
-                                                  visible: true,
-                                                  child: controller
-                                                      .deliveryDetails[index]
-                                                      .allocationStatus!
-                                                      .isNotEmpty
-                                                      ? _addressDetails(
-                                                      "Status : ${controller
-                                                          .deliveryDetails[index]
-                                                          .allocationStatus
-                                                          .toString()}"):SizedBox(),
-                                                ),
-                                          ),
-                                      Row(mainAxisAlignment: MainAxisAlignment.end,
-                                        children: [
-                                          Obx(
-                                                   ()=> Text(
-                                                        controller
-                                                            .datee.value.toString(),
-                                                        style: MyTheme.outfit(
-                                                            color: MyTheme
-                                                                .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
-                                                      ),
-                                                    ),
-                                          Padding(
-                                            padding: const EdgeInsets.all(10.0),
-                                            child: Obx(
+                                                .pinCode.isNotEmpty ?
+                                            _addressDetails(
+                                              controller
+                                                  .deliveryDetails[index]
+                                                  .deliveryDetails!
+                                                  .first
+                                                  .pinCode
+                                                  .toString(),
+                                            ) : SizedBox(),
+                                            Obx(
                                                   () =>
                                                   Visibility(
-                                                    visible: controller
-                                                        .deliveryDetails[
-                                                    index]
-                                                        .allocationStatus ==
-                                                        "pending",
-                                                    child: Container(
+                                                    visible: true,
+                                                    child: controller
+                                                        .deliveryDetails[index]
+                                                        .allocationStatus!
+                                                        .isNotEmpty
+                                                        ? _addressDetails(
+                                                        "Status : ${controller
+                                                            .deliveryDetails[index]
+                                                            .allocationStatus
+                                                            .toString()}"):SizedBox(),
+                                                  ),
+                                            ),
+                                        Row(mainAxisAlignment: MainAxisAlignment.end,
+                                          children: [
+                                            Obx(
+                                                     ()=> Text(
+                                                          controller
+                                                              .datee.value.toString(),
+                                                          style: MyTheme.outfit(
+                                                              color: MyTheme
+                                                                  .numbersColor,fontStyle: FontStyle.italic,fontWeight: FontWeight.w500,textSize: 10),
+                                                        ),
+                                                      ),
+                                            Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: Obx(
+                                                    () =>
+                                                    Visibility(
+                                                      visible: controller
+                                                          .deliveryDetails[
+                                                      index]
+                                                          .allocationStatus ==
+                                                          "pending",
                                                       child: Row(
-                                                        mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .spaceEvenly,
+                                                        mainAxisSize: MainAxisSize.max,
+                                                        //mainAxisAlignment:
+                                                        // MainAxisAlignment
+                                                        //     .spaceEvenly,
                                                         children: [
                                                           Expanded(
                                                             flex: 4,
@@ -362,21 +365,21 @@ class DeliveryView extends GetView<DeliveryController> {
                                                         ],
                                                       ),
                                                     ),
-                                                  ),
-                                            ),
-                                          )
-                                        ],
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                            SizedBox(
+                                              height: Get.height * .01,
+                                            )
+                                          ],
+                                        ),
                                       ),
-                                          SizedBox(
-                                            height: Get.height * .01,
-                                          )
-                                        ],
-                                      ),
-                                    ),
 
-                                  ],
-                                ),
-                              ],
+                                    ],
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(

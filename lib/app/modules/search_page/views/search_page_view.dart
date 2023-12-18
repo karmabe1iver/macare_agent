@@ -122,18 +122,6 @@ class SearchPageView extends GetView<SearchPageController> {
               controller.addSelectedTests();
 
 
-              Fluttertoast.showToast(
-                msg: "Added Tests",
-                toastLength: Toast.LENGTH_SHORT,
-                gravity: ToastGravity.BOTTOM,
-                timeInSecForIosWeb: 1,
-                backgroundColor: MyTheme.appBarColor,
-                textColor: Colors.white,
-                fontSize: 16.0,
-
-              );
-
-
             },
             child: Text(
               "Submit",

@@ -85,7 +85,7 @@ class AddTestView extends GetView<AddTestController> {
                                       crossAxisAlignment: CrossAxisAlignment.start,
                                       children: [
                                         Padding(
-                                          padding: const EdgeInsets.only(top: 30, bottom: 40,right: 10,left: 15),
+                                          padding: const EdgeInsets.only(top: 30, bottom: 40,right: 10,left: 18),
                                           child: Row(
                                             children: [
                                               Expanded(
@@ -94,8 +94,8 @@ class AddTestView extends GetView<AddTestController> {
                            controller
                                .addTestList[index].testName.toString(),
                                                   style: MyTheme.outfit(
-                                                      fontWeight: FontWeight.w300,
-                                                      textSize: 20),
+                                                      fontWeight: FontWeight.w500,
+                                                      textSize: 15),
                                                 ),
                                               ),
                                               SizedBox(width: Get.width*.03,),
@@ -152,7 +152,7 @@ class AddTestView extends GetView<AddTestController> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
+                          padding: const EdgeInsets.only(bottom: 10.0,left: 4),
                           child: Row(mainAxisAlignment: MainAxisAlignment.start,
                             children: [
                               _addressDetails(
@@ -168,7 +168,7 @@ class AddTestView extends GetView<AddTestController> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(bottom: 10.0),
+                          padding: const EdgeInsets.only(bottom: 10.0,left: 0),
                           child: Row(
                             children: [
                               _addressDetails(
@@ -188,7 +188,7 @@ class AddTestView extends GetView<AddTestController> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(bottom: 4.0),
+                          padding: EdgeInsets.only(bottom: 4.0,left: 5),
                           child: Row(
                             children: [
                               const Text(
@@ -257,7 +257,7 @@ class AddTestView extends GetView<AddTestController> {
 
                                         }else{
                                           Fluttertoast.showToast(
-                                              msg: " Please Check Colection charge \n & \n Select Box ",
+                                              msg: " Please Check Collection charge \n & \n Select Box ",
                                           backgroundColor: MyTheme.appBarColor,
                                           textColor: Colors.white);
                                         }

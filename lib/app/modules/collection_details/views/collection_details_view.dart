@@ -304,14 +304,14 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           width: Get.width,
                         ),
                         Text(
-                          '2023-11-07',
+                          controller.argument.value!.laboratoryBookingTime.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
                               color: MyTheme.phoneNumberTextColor),
                         ),
                         Text(
-                          '12.03AM',
+                          controller.argument.value!.laboratoryBookingDate.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,

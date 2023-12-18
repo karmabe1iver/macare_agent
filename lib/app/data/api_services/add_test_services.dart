@@ -31,6 +31,7 @@ abstract class AddTestServices {
   static Future<dynamic> fetchAddSelected(data) async {
     dynamic response = await MyDio().customPost(ApiPaths.addSelectedTestUrl,
         baseUrl: ApiPaths.baseUrl, data: data);
+    return ResponseModel.fromJson(response);
   }
 
 
