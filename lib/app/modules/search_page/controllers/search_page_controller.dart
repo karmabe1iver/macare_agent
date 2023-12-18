@@ -1,4 +1,6 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/data/api_services/add_test_services.dart';
 import 'package:macare_agent/app/data/api_services/search_services.dart';
@@ -9,6 +11,7 @@ import 'package:macare_agent/app/data/model/search_model.dart';
 import '../../../app.dart';
 import '../../../data/model/add_selected_test_model.dart';
 import '../../../routes/app_pages.dart';
+import '../../../utils/my_theme.dart';
 
 class SearchPageController extends GetxController {
   String argument = "";
@@ -98,7 +101,30 @@ class SearchPageController extends GetxController {
   Future<dynamic> addSelectedTests() async {
     dynamic data= await addSelectTestToJson();
     dynamic response = await AddTestServices.fetchAddSelected(data);
+
+    if (response.message == "saved") {
       Get.offNamed(Routes.ADD_TEST,arguments: argument);
+      Fluttertoast.showToast(
+        msg: "Added Tests",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else {
+      App.deliverytype = true;
+      Fluttertoast.showToast(
+        msg: "Something went wrong!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
 
   }
 }
