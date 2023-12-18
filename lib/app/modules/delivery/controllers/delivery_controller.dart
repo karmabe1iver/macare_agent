@@ -89,6 +89,7 @@ class DeliveryController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        deliveryFetchData();
       }
     } else {
       DeliveryServices.acceptCondition2(
@@ -114,6 +115,7 @@ class DeliveryController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        deliveryFetchData();
       }
     }
   }
@@ -149,7 +151,7 @@ class DeliveryController extends GetxController {
         );
       } else {
         Fluttertoast.showToast(
-          msg: "Accepted",
+          msg: "Rejected",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -157,13 +159,14 @@ class DeliveryController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        deliveryFetchData();
       }
     } else {
       DeliveryServices.rejectCondition2(
           orderReference: orderReferrence,
           employeereference: App.employeereference,
           reason: deliveryDialogController.text);
-      if (response == null) {
+      if (responsee == null) {
         Fluttertoast.showToast(
           msg: "Something went wrong!!",
           toastLength: Toast.LENGTH_SHORT,
@@ -183,6 +186,7 @@ class DeliveryController extends GetxController {
           textColor: Colors.white,
           fontSize: 16.0,
         );
+        deliveryFetchData();
       }
     }
   }
