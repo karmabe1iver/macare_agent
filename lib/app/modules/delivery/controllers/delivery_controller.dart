@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:macare_agent/app/component/show_toast.dart';
 import 'package:macare_agent/app/data/api_services/delivery_services.dart';
 import 'package:macare_agent/app/data/model/delivery_model.dart';
 
@@ -35,7 +36,8 @@ class DeliveryController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  RxString datee = "" .obs;
+
+  RxString datee = "".obs;
 
   Future<void> deliveryFetchData() async {
     List<DeliveryResponseModel> response = await DeliveryServices.delivery();
@@ -46,155 +48,100 @@ class DeliveryController extends GetxController {
         DateFormat formattedDate = DateFormat('dd/MM/yyyy');
         String date = formattedDate.format(initial);
 
-        datee.value = date ;
+        datee.value = date;
       }
-
-
     }
-
   }
 
-  Future<void> acceptFetchData({required String orderReferrence,
-    required String allocationReferrence,
-    required String deliveryType}) async {
-    List<DeliveryCon1ResponseModel> response =
-    await DeliveryServices.acceptCondition1(
-        allocationReference: allocationReferrence);
-    List<DeliveryCon2ResponseModel> responsee =
-    await DeliveryServices.acceptCondition2(
-        orderReference: orderReferrence,
-        employeereference: App.employeereference);
-
+  Future<void> acceptFetchData(
+      {required String orderReferrence,
+      required String allocationReferrence,
+      required String deliveryType}) async {
+    DeliveryCon1ResponseModel response;
     if (deliveryType == "prescription") {
-      deliveryFetchData();
-      DeliveryServices.acceptCondition1(
+      response = await DeliveryServices.acceptCondition1(
           allocationReference: allocationReferrence);
-      if (response == null) {
-        Fluttertoast.showToast(
-          msg: "Something went wrong!!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-      } else {
-        Fluttertoast.showToast(
-          msg: "Accepted",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        deliveryFetchData();
-      }
     } else {
-      DeliveryServices.acceptCondition2(
+      response = await DeliveryServices.acceptCondition2(
           orderReference: orderReferrence,
           employeereference: App.employeereference);
-      if (responsee == null) {
-        Fluttertoast.showToast(
-          msg: "Something went wrong!!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-      } else {
-        Fluttertoast.showToast(
-          msg: "Accepted",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        deliveryFetchData();
-      }
+    }
+
+    if (response.message != "saved") {
+      Fluttertoast.showToast(
+        msg: "Something went wrong!!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Accepted",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+      deliveryFetchData();
     }
   }
 
-  Future<void> rejectFetchData({required String orderReferrence,
-    required String allocationReferrence,
-    required String deliveryType}) async {
-    List<DeliveryCon1ResponseModel> response =
-    await DeliveryServices.rejectCondition1(
-        allocationReference: allocationReferrence,
-        reason: deliveryDialogController.text);
-    List<DeliveryCon2ResponseModel> responsee =
-    await DeliveryServices.rejectCondition2(
-        orderReference: orderReferrence,
-        employeereference: App.employeereference,
-        reason: deliveryDialogController.text);
-
+  Future<void> rejectFetchData(
+      {required String orderReferrence,
+      required String allocationReferrence,
+      required String deliveryType}) async {
+    DeliveryCon1ResponseModel response;
     if (deliveryType == "prescription") {
-      deliveryFetchData();
-
-      DeliveryServices.rejectCondition1(
+      response =
+      await DeliveryServices.rejectCondition1(
           allocationReference: allocationReferrence,
           reason: deliveryDialogController.text);
-      if (response == null) {
-        Fluttertoast.showToast(
-          msg: "Something went wrong!!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-      } else {
-        Fluttertoast.showToast(
-          msg: "Rejected",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
-        deliveryFetchData();
-      }
-    } else {
-      DeliveryServices.rejectCondition2(
+    }else {
+      response =
+      await DeliveryServices.rejectCondition2(
           orderReference: orderReferrence,
           employeereference: App.employeereference,
           reason: deliveryDialogController.text);
-      if (responsee == null) {
-        Fluttertoast.showToast(
-          msg: "Something went wrong!!",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
+    }
+
+
+      if (response.message != 'saved') {
+        showToast(message: "Something went wrong!!");
+        // Fluttertoast.showToast(
+        //   msg: "Something went wrong!!",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.BOTTOM,
+        //   timeInSecForIosWeb: 1,
+        //   backgroundColor: MyTheme.appBarColor,
+        //   textColor: Colors.white,
+        //   fontSize: 16.0,
+        // );
       } else {
-        Fluttertoast.showToast(
-          msg: "Rejected",
-          toastLength: Toast.LENGTH_SHORT,
-          gravity: ToastGravity.BOTTOM,
-          timeInSecForIosWeb: 1,
-          backgroundColor: MyTheme.appBarColor,
-          textColor: Colors.white,
-          fontSize: 16.0,
-        );
+        showToast(message: "Rejected");
+        // Fluttertoast.showToast(
+        //   msg: "Rejected",
+        //   toastLength: Toast.LENGTH_SHORT,
+        //   gravity: ToastGravity.BOTTOM,
+        //   timeInSecForIosWeb: 1,
+        //   backgroundColor: MyTheme.appBarColor,
+        //   textColor: Colors.white,
+        //   fontSize: 16.0,
+        // );
         deliveryFetchData();
       }
-    }
+
   }
 
-  Future<void> deliveryDialogBox({required String allocationReferrence,
-    required String deliveryType,
-    required String orderReferrence,
-    required BuildContext context}) async {
+  Future<void> deliveryDialogBox(
+      {required String allocationReferrence,
+      required String deliveryType,
+      required String orderReferrence,
+      required BuildContext context}) async {
     showDialog(
         context: context,
         builder: (BuildContext context) {
@@ -223,6 +170,7 @@ class DeliveryController extends GetxController {
                   child: Text("Submit")),
             ],
           );
-        });
+        },
+    );
   }
 }
