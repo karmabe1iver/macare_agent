@@ -49,9 +49,10 @@ class SearchPageView extends GetView<SearchPageController> {
                         padding: const EdgeInsets.all(8.0),
                         child: TextFormField(//
                           controller: controller.searchController,
-                          // onChanged: (value){
-                          // controller.searchFetchData();
-                          // },
+                          onChanged: (value){
+                            if(controller.searchController.text.length > 2)
+                          controller.searchFetchData();
+                          },
                           // onEditingComplete: (){
                           //   controller.searchFetchData();
                           // },
