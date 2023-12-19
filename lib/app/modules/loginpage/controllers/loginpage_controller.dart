@@ -5,10 +5,7 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
-
-import '../../../app.dart';
 import '../../../routes/app_pages.dart';
-import '../../../utils/my_theme.dart';
 
 class LoginpageController extends GetxController {
   //TODO: Implement LoginpageController
@@ -17,6 +14,7 @@ class LoginpageController extends GetxController {
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   RxBool isPasswordVisible = true.obs;
+  RxBool isLoading = false.obs;
 
   @override
   void onInit() {
@@ -42,15 +40,14 @@ class LoginpageController extends GetxController {
     if(response.access!=null) {
       App.token=response.access!;
       App.employeeReferences=response.employeeReference!;
+      isLoading(false);
       Fluttertoast.showToast(msg: 'Login Completed!!!');
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
       App.employeename= response.name! ;
       Get.toNamed(Routes.HOME);
-
     }else{
       Fluttertoast.showToast(msg: 'Something went wrong!!');
     }
   }
-    void increment() => count.value++;
   }

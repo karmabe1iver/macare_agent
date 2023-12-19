@@ -1,25 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
-import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/utils/asset_helper.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
-
-import '../../../routes/app_pages.dart';
 import '../controllers/loginpage_controller.dart';
 
 class LoginpageView extends GetView<LoginpageController> {
+  const LoginpageView({super.key});
+
   @override
   Widget build(BuildContext context)
   {
     // Set the status bar color
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: MyTheme.appBarColor,
       statusBarIconBrightness: Brightness.light,
     ));
 
     Get.lazyPut(() => LoginpageController());
+
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -32,7 +31,7 @@ class LoginpageView extends GetView<LoginpageController> {
                 AssetHelper.macareLogo,
                 fit: BoxFit.fill,
               )),
-              SizedBox(height: 110,),
+              const SizedBox(height: 110,),
               TextFormField(
                 controller: controller.usernameController,
                 decoration: InputDecoration(
@@ -44,7 +43,7 @@ class LoginpageView extends GetView<LoginpageController> {
                   disabledBorder: _outlineInputBorder(),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               Obx(
@@ -79,14 +78,21 @@ class LoginpageView extends GetView<LoginpageController> {
               ),
               ElevatedButton(
                 onPressed: () {
+                  controller.isLoading.value = true ;
                   controller.fetchData();
+
                 },
-                child: Text('LOGIN',style: TextStyle(color: Colors.white),),
                 style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), fixedSize: Size(250, 40),backgroundColor: MyTheme.appBarColor),
+                    shape: const StadiumBorder(), fixedSize: const Size(250, 40),backgroundColor: MyTheme.appBarColor),
+                child: const Text('LOGIN',style: TextStyle(color: Colors.white),),
               ),
               const SizedBox(
                 height: 20,
+              ),
+              Obx(
+                    () => controller.isLoading.value
+                    ? const CircularProgressIndicator(color: MyTheme.appBarColor,)
+                    : const SizedBox(),
               ),
 
             ]),
@@ -103,3 +109,4 @@ class LoginpageView extends GetView<LoginpageController> {
     );
   }
 }
+
