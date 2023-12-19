@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 
@@ -10,6 +11,7 @@ void main() {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MACare Agent",
+      builder: FToastBuilder(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
 

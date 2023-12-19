@@ -9,6 +9,7 @@ import '../../../app.dart';
 import '../../../app.dart';
 import '../../../app.dart';
 import '../../../app.dart';
+import '../../../component/show_toast.dart';
 import '../../../utils/my_theme.dart';
 import '../controllers/add_test_controller.dart';
 
@@ -261,8 +262,7 @@ class AddTestView extends GetView<AddTestController> {
                                             empReference: App.employeereference,  );
 
                                         }else{
-                                          Fluttertoast.showToast(
-                                              msg: " Please Check Collection charge \n & \n Select Box ",);
+                                          showToast(msg: " Please Check Collection charge \n &  Select Box ",);
                                         }
                                         //Get.toNamed(Routes.LABORATORY);
                                       },

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:macare_agent/app/app.dart';
 import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
+import '../../../component/show_toast.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginpageController extends GetxController {
@@ -41,13 +42,14 @@ class LoginpageController extends GetxController {
       App.token=response.access!;
       App.employeeReferences=response.employeeReference!;
       isLoading(false);
-      Fluttertoast.showToast(msg: 'Login Completed!!!');
+      showToast(msg: ' Login Completed');
       App.token= response.access !;
       App.employeereference= response.employeeReference! ;
       App.employeename= response.name! ;
       Get.toNamed(Routes.HOME);
     }else{
-      Fluttertoast.showToast(msg: 'Something went wrong!!');
+      //Fluttertoast.showToast(msg: 'Something went wrong!!');
+      showToast(msg: ' Something went wrong');
     }
   }
   }

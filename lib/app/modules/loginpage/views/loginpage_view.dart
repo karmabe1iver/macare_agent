@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:macare_agent/app/utils/asset_helper.dart';
 import 'package:macare_agent/app/utils/my_theme.dart';
@@ -10,6 +11,8 @@ class LoginpageView extends GetView<LoginpageController> {
 
   @override
   Widget build(BuildContext context) {
+    FToast fToast = FToast();
+    fToast.init(context);
     // Set the status bar color
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: MyTheme.appBarColor,
