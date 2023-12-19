@@ -82,7 +82,7 @@ class LoginpageView extends GetView<LoginpageController> {
               ),
               Obx(() {
                 return controller.isLoading.value
-                    ? CircularProgressIndicator(color: MyTheme.appBarColor)
+                    ? const CircularProgressIndicator(color: MyTheme.appBarColor)
                     : ElevatedButton(
                         onPressed: () {
                           controller.isLoading.value = true;

@@ -73,8 +73,8 @@ class SearchPageView extends GetView<SearchPageController> {
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: GestureDetector(
-                            onTap: (){ controller.onCheckboxSelected(index,controller.allList[index]);},
+                          child: MaterialButton(
+                            onPressed: () { controller.onCheckboxSelected(index,controller.allList[index]); },
                             child: Row(
                               children: [
                                 const SizedBox(
