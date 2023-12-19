@@ -9,8 +9,7 @@ class LoginpageView extends GetView<LoginpageController> {
   const LoginpageView({super.key});
 
   @override
-  Widget build(BuildContext context)
-  {
+  Widget build(BuildContext context) {
     // Set the status bar color
     SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: MyTheme.appBarColor,
@@ -24,14 +23,18 @@ class LoginpageView extends GetView<LoginpageController> {
         child: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(15.0),
-            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-              SizedBox(height: 90
-                  ,width: 300,
+            child:
+                Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SizedBox(
+                  height: 90,
+                  width: 300,
                   child: Image.asset(
-                AssetHelper.macareLogo,
-                fit: BoxFit.fill,
-              )),
-              const SizedBox(height: 110,),
+                    AssetHelper.macareLogo,
+                    fit: BoxFit.fill,
+                  )),
+              const SizedBox(
+                height: 110,
+              ),
               TextFormField(
                 controller: controller.usernameController,
                 decoration: InputDecoration(
@@ -47,7 +50,7 @@ class LoginpageView extends GetView<LoginpageController> {
                 height: 10,
               ),
               Obx(
-                    () => TextFormField(
+                () => TextFormField(
                   controller: controller.passwordController,
                   obscureText: controller.isPasswordVisible.value,
                   decoration: InputDecoration(
@@ -61,13 +64,14 @@ class LoginpageView extends GetView<LoginpageController> {
                       onPressed: () {
                         {
                           controller.isPasswordVisible.value =
-                              ! controller.isPasswordVisible.value;
+                              !controller.isPasswordVisible.value;
                         }
                       },
                       icon: Icon(
                         controller.isPasswordVisible.value
                             ? Icons.visibility
-                            : Icons.visibility_off,color: MyTheme.appBarColor,
+                            : Icons.visibility_off,
+                        color: MyTheme.appBarColor,
                       ),
                     ),
                   ),
@@ -76,25 +80,25 @@ class LoginpageView extends GetView<LoginpageController> {
               const SizedBox(
                 height: 50,
               ),
-              ElevatedButton(
-                onPressed: () {
-                  controller.isLoading.value = true ;
-                  controller.fetchData();
-
-                },
-                style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(), fixedSize: const Size(250, 40),backgroundColor: MyTheme.appBarColor),
-                child: const Text('LOGIN',style: TextStyle(color: Colors.white),),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Obx(
-                    () => controller.isLoading.value
-                    ? const CircularProgressIndicator(color: MyTheme.appBarColor,)
-                    : const SizedBox(),
-              ),
-
+              Obx(() {
+                return controller.isLoading.value
+                    ? CircularProgressIndicator(color: MyTheme.appBarColor)
+                    : ElevatedButton(
+                        onPressed: () {
+                          controller.isLoading.value = true;
+                          controller.fetchData();
+                        },
+                        style: ElevatedButton.styleFrom(
+                          shape: const StadiumBorder(),
+                          fixedSize: const Size(250, 40),
+                          backgroundColor: MyTheme.appBarColor,
+                        ),
+                        child: const Text(
+                          'LOGIN',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                      );
+              }),
             ]),
           ),
         ),
@@ -102,11 +106,9 @@ class LoginpageView extends GetView<LoginpageController> {
     );
   }
 
-
   OutlineInputBorder _outlineInputBorder() {
     return const OutlineInputBorder(
       borderSide: BorderSide(color: MyTheme.appBarColor),
     );
   }
 }
-
