@@ -27,7 +27,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                 alignment: Alignment.topLeft,
                 child: Column(
                   children: [
-                    SizedBox(height: Get.height * .04,),
+                    SizedBox(height: Get.height * .06,),
                     Text(
                       "MAcare",
                       style: MyTheme.outfit(
@@ -35,9 +35,12 @@ class LaboratoryView extends GetView<LaboratoryController> {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      App.employeename,
-                      style: MyTheme.outfit(color: MyTheme.employeeColor),
+                    Transform.translate(
+                      offset: const Offset(-8, 0),
+                      child: Text(
+                        App.employeename,
+                        style: MyTheme.outfit(color: MyTheme.employeeColor),
+                      ),
                     ),
                   ],
                 ),
@@ -50,7 +53,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
               alignment: Alignment.topLeft,
               child: Text(
                 "ALLOCATED COLLECTION",
-                style: MyTheme.outfit(fontWeight: FontWeight.w500),
+                style: MyTheme.outfit(fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -58,7 +61,8 @@ class LaboratoryView extends GetView<LaboratoryController> {
             child: ConstrainedBox(
               constraints: const BoxConstraints(minHeight: 0, minWidth: 0),
               child: RefreshIndicator(
-                onRefresh: () async { controller.laboratoryFetchData();},
+                onRefresh: () async {
+                  controller.laboratoryFetchData();},
                 child: Obx(
                       () =>
                       ListView.builder(padding: EdgeInsets.zero,
@@ -161,7 +165,6 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                       .allocationStatus}"
 
                                               ),
-                                                      SizedBox(height: Get.height*.020,),
                                                       Row(mainAxisAlignment: MainAxisAlignment.end,
                                                         children: [
 
@@ -209,9 +212,8 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                               // model[index].visibile.value =
                                                               // false;
                                                             },
-                                                            child: Container(
-                                                              color: const Color(
-                                                                  0xFFECF3F3),
+                                                            child: Container(height: 35,
+                                                              color: MyTheme.rejectButtonColor,
                                                               //height: Get.height*.02,
                                                               padding: const EdgeInsets
                                                                   .symmetric(
@@ -223,7 +225,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                                   maxLines: 1,
                                                                   style: MyTheme
                                                                       .outfit(
-                                                                      textSize: 12,
+                                                                      textSize: 12,fontWeight: FontWeight.w600,
                                                                       //Get.height*.015,
                                                                       color: Colors
                                                                           .red),
@@ -244,9 +246,8 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                                       .bRef
                                                                       .toString());
                                                             },
-                                                            child: Container(
-                                                              color: const Color(
-                                                                  0xFFECF3F3),
+                                                            child: Container(height: 35,
+                                                              color: MyTheme.acceptButtonColor,
                                                               //height: Get.height*.02,
                                                               padding: const EdgeInsets
                                                                   .symmetric(
@@ -258,7 +259,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
                                                                   maxLines: 1,
                                                                   style: MyTheme
                                                                       .outfit(
-                                                                      textSize: 12,
+                                                                      textSize: 12,fontWeight: FontWeight.w600,
                                                                       // textSize: Get.height*.015,
                                                                       color: Colors
                                                                           .green),
@@ -393,7 +394,7 @@ class LaboratoryView extends GetView<LaboratoryController> {
     return Text(
       title,
       style: MyTheme.outfit(
-          fontWeight: FontWeight.w400, color: MyTheme.smallFontColor),
+          fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),
     );
   }
 }

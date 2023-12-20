@@ -32,7 +32,7 @@ class DeliveryView extends GetView<DeliveryController> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: Get.height * .04,
+                      height: Get.height * .06,
                     ),
                     Text(
                       "MAcare",
@@ -41,9 +41,12 @@ class DeliveryView extends GetView<DeliveryController> {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text(
-                      App.employeename,
-                      style: MyTheme.outfit(color: MyTheme.employeeColor),
+                    Transform.translate(
+                      offset: const Offset(-8, 0),
+                      child: Text(
+                        App.employeename,
+                        style: MyTheme.outfit(color: MyTheme.employeeColor),
+                      ),
                     ),
                   ],
                 ),
@@ -56,7 +59,7 @@ class DeliveryView extends GetView<DeliveryController> {
               alignment: Alignment.topLeft,
               child: Text(
                 "ALLOCATED DELIVERIES",
-                style: MyTheme.outfit(fontWeight: FontWeight.w500),
+                style: MyTheme.outfit(fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -263,8 +266,8 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                 //     .value = false;
                                                               },
                                                               child: Container(
-                                                                color: const Color(
-                                                                    0xFFECF3F3),
+                                                                height: 35,
+                                                                color: MyTheme.rejectButtonColor,
                                                                 //height: Get.height*.02,
                                                                 padding: const EdgeInsets
                                                                     .symmetric(
@@ -277,10 +280,8 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                     maxLines: 1,
                                                                     style: MyTheme
                                                                         .outfit(
-                                                                        textSize:
-                                                                        Get
-                                                                            .height *
-                                                                            .015,
+                                                                        textSize: Get.height * .015,
+                                                                        fontWeight: FontWeight.w600,
                                                                         color: Colors
                                                                             .red),
                                                                   ),
@@ -337,9 +338,8 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                 //         .value =
                                                                 //     "accept";
                                                               },
-                                                              child: Container(
-                                                                color: const Color(
-                                                                    0xFFECF3F3),
+                                                              child: Container(height: 35,
+                                                                color: MyTheme.acceptButtonColor,
                                                                 padding: const EdgeInsets
                                                                     .symmetric(
                                                                     vertical: 5,
@@ -351,12 +351,9 @@ class DeliveryView extends GetView<DeliveryController> {
                                                                     maxLines: 1,
                                                                     style: MyTheme
                                                                         .outfit(
-                                                                        textSize:
-                                                                        Get
-                                                                            .height *
-                                                                            .015,
-                                                                        color: Colors
-                                                                            .green),
+                                                                        textSize: Get.height * .015,
+                                                                        fontWeight: FontWeight.w600,
+                                                                        color: Colors.green),
                                                                   ),
                                                                 ),
                                                               ),
@@ -409,7 +406,7 @@ class DeliveryView extends GetView<DeliveryController> {
     return Text(
       title,
       style: MyTheme.outfit(
-          fontWeight: FontWeight.w400, color: MyTheme.smallFontColor),
+          fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),
     );
   }
 }

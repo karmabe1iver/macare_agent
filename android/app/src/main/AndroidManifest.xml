@@ -18,7 +18,7 @@
                  to determine the Window background behind the Flutter UI. -->
             <meta-data
                 android:name="com.google.firebase.messaging.default_notification_channel_id"
-                android:value="High_importance_id_update" />
+                android:value="High_importance_id" />
             <meta-data
                 android:name="io.flutter.embedding.android.NormalTheme"
                 android:resource="@style/NormalTheme" />

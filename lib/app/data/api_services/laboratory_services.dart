@@ -9,7 +9,7 @@ import '../model/response_model.dart';
 abstract class LaboratoryServices {
   static Future<dynamic> fetchData() async {
     dynamic response = await MyDio().customGet(
-        "${ApiPaths.laboratoryUrl}${App.employeeReferences}/",
+        "${ApiPaths.laboratoryUrl}${App.employeereference}/",
         baseUrl: ApiPaths.baseUrl,);
     return laboratoryResponseModelFromJson(response);
   }
@@ -18,7 +18,7 @@ abstract class LaboratoryServices {
         ApiPaths.laboratoryAcceptUrl,
         baseUrl: ApiPaths.baseUrl,
     data: { "booking_reference": bookingReference,
-      "employee_reference": App.employeeReferences,
+      "employee_reference": App.employeereference,
       "allocation_status": "accepted",
       "booking_allocation":"processed"
     });

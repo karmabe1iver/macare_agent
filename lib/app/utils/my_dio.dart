@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
@@ -7,10 +6,14 @@ import 'package:dio/dio.dart';
 import 'package:dio/io.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:macare_agent/app/component/show_toast.dart';
 
 import '../app.dart';
 import '../presets/api_paths.dart';
 import '../presets/api_paths.dart';
+import '../routes/app_pages.dart';
 
 class MyDio {
   static String baseUrl = ApiPaths.baseUrl;
@@ -38,22 +41,38 @@ class MyDio {
 
     (_dio.httpClientAdapter as IOHttpClientAdapter).createHttpClient = () {
       final HttpClient client =
-      HttpClient(context: SecurityContext(withTrustedRoots: false));
+          HttpClient(context: SecurityContext(withTrustedRoots: false));
       client.badCertificateCallback = (cert, host, port) => true;
       return client;
     };
+    _dio.interceptors.add(
+      InterceptorsWrapper(onError: (ex, handel) {
+        if (ex.response?.statusCode == 401) {
+          print("Status[${ex.response?.statusCode}] : ${ex.requestOptions.baseUrl}${ex.requestOptions.path}");
+          print("Data : ${ex.requestOptions.data}");
+          showToast(msg: "Login Expired");
+          Get.offAllNamed(Routes.LOGINPAGE);
+        }
+      },
+      //     onResponse: (response, handler) {
+      //   if (response.statusCode == 200) {
+      //     Get.toNamed(Routes.LOGINPAGE);
+      //   }
+      // }
+      ),
+    );
   }
 
   Future<dynamic> customPost(
-      String path, {
-        data,
-        baseUrl,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    baseUrl,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Dio _dio = Dio();
       // (_dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
@@ -114,15 +133,15 @@ class MyDio {
   }
 
   Future<dynamic> multiPartPost(
-      String path, {
-        data,
-        //required int length,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    //required int length,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Dio dio = Dio();
       // (_dio.httpClientAdapter as IOHttpClientAdapter).onHttpClientCreate =
@@ -161,7 +180,6 @@ class MyDio {
       }
       log('resp >>>${resp.data}');
 
-
       debugPrint("************** Response End ************************");
       dynamic apiResp = resp.data;
       return apiResp;
@@ -191,16 +209,16 @@ class MyDio {
   }
 
   Future<dynamic> customPatch(
-      String path,
-      String id, {
-        data,
-        baseUrl,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    String id, {
+    data,
+    baseUrl,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.patch((baseUrl ?? generalurl) + path + id,
           data: data,
@@ -251,11 +269,11 @@ class MyDio {
 
   Future<dynamic> post(String path,
       {data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress}) async {
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      CancelToken? cancelToken,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceivedProgress}) async {
     try {
       Response resp = await _dio.post(baseUrl + path,
           queryParameters: queryParameters,
@@ -305,7 +323,7 @@ class MyDio {
         if (errorData.containsKey('non_field_errors') &&
             errorData['non_field_errors'] is List) {
           List<String> nonFieldErrors =
-          errorData['non_field_errors'].cast<String>();
+              errorData['non_field_errors'].cast<String>();
           debugPrint('Non-field errors: ${nonFieldErrors.join(', ')}');
         }
       }
@@ -332,14 +350,14 @@ class MyDio {
   }
 
   Future<dynamic> put(
-      String path, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.put(baseUrl + path,
           data: data,
@@ -406,14 +424,14 @@ class MyDio {
   }
 
   Future<dynamic> get(
-      String path, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.get(baseUrl + path,
           queryParameters: queryParameters,
@@ -478,16 +496,16 @@ class MyDio {
   }
 
   Future<dynamic> testGet(
-      String path, {
-        data,
-        headers,
-        textBaseUrl,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    headers,
+    textBaseUrl,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.get(textBaseUrl ?? baseUrl + path,
           queryParameters: queryParameters,
@@ -555,26 +573,26 @@ class MyDio {
   }
 
   Future<dynamic> customGet(
-      String path, {
-        data,
-        baseUrl,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    baseUrl,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.get((baseUrl ?? generalurl) + path,
           queryParameters: queryParameters, options: options
-        //  Options(
-        //    responseType: ResponseType.plain,
-        //    headers: {
-        //      "Content-Type": "application/json",
-        //     "Authorization":"Bearer ${App.token}"
-        //    }
-        // )
-      );
+          //  Options(
+          //    responseType: ResponseType.plain,
+          //    headers: {
+          //      "Content-Type": "application/json",
+          //     "Authorization":"Bearer ${App.token}"
+          //    }
+          // )
+          );
       debugPrint("!!!!!!!!!!!!!! Request Begin !!!!!!!!!!!!!!!!!!!!!");
       debugPrint(
           "REQUEST[${resp.statusCode}] => PATH: ${resp.requestOptions.path}");
@@ -631,16 +649,16 @@ class MyDio {
   }
 
   Future<dynamic> delete(
-      String path,
-      String Id, {
-        baseurl,
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    String Id, {
+    baseurl,
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.delete((baseurl ?? baseUrl) + path + Id,
           options: Options(
@@ -709,16 +727,16 @@ class MyDio {
   }
 
   Future<dynamic> testDelete(
-      String path,
-      String Id, {
-        headers,
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    String Id, {
+    headers,
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.delete(generalurl + path + Id,
           options: Options(
@@ -788,15 +806,15 @@ class MyDio {
   }
 
   Future<dynamic> patch(
-      String path,
-      id, {
-        required data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    id, {
+    required data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.patch(baseUrl + path + id,
           data: data,
@@ -858,15 +876,15 @@ class MyDio {
   }
 
   Future<dynamic> customPatches(
-      String path,
-      id, {
-        required data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    id, {
+    required data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.patch(generalurl + path + id,
           data: data,
@@ -928,17 +946,17 @@ class MyDio {
   }
 
   Future<dynamic> testPatches(
-      String path,
-      id, {
-        required data,
-        headers,
-        testBaseUrl,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path,
+    id, {
+    required data,
+    headers,
+    testBaseUrl,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.patch(testBaseUrl + path + id,
           data: data,
@@ -1004,14 +1022,14 @@ class MyDio {
   }
 
   Future<dynamic> customDelete(
-      String path, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.delete(path,
           data: data,
@@ -1061,14 +1079,14 @@ class MyDio {
   }
 
   Future<dynamic> fileUpload(
-      String path, {
-        data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress,
-      }) async {
+    String path, {
+    data,
+    Map<String, dynamic>? queryParameters,
+    Options? options,
+    CancelToken? cancelToken,
+    ProgressCallback? onSendProgress,
+    ProgressCallback? onReceivedProgress,
+  }) async {
     try {
       Response resp = await _dio.post(baseUrl + path,
           data: data,
@@ -1138,11 +1156,11 @@ class MyDio {
 
   Future<dynamic> documentpost(String path,
       {data,
-        Map<String, dynamic>? queryParameters,
-        Options? options,
-        CancelToken? cancelToken,
-        ProgressCallback? onSendProgress,
-        ProgressCallback? onReceivedProgress}) async {
+      Map<String, dynamic>? queryParameters,
+      Options? options,
+      CancelToken? cancelToken,
+      ProgressCallback? onSendProgress,
+      ProgressCallback? onReceivedProgress}) async {
     try {
       Response resp = await _dio.post(baseUrl + path,
           data: data,
@@ -1190,7 +1208,7 @@ class MyDio {
         if (errorData.containsKey('non_field_errors') &&
             errorData['non_field_errors'] is List) {
           List<String> nonFieldErrors =
-          errorData['non_field_errors'].cast<String>();
+              errorData['non_field_errors'].cast<String>();
           debugPrint('Non-field errors: ${nonFieldErrors.join(', ')}');
         }
       }

@@ -51,12 +51,12 @@ class AppPages {
   ),
   GetPage(
   name: _Paths.DELIVERY,
-  page: () => DeliveryView(),
+  page: () => const DeliveryView(),
   binding: DeliveryBinding(),
   ),
   GetPage(
   name: _Paths.LOGINPAGE,
-  page: () => LoginpageView(),
+  page: () => const LoginpageView(),
   binding: LoginpageBinding(),
   ),
   GetPage(

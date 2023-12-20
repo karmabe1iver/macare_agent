@@ -4,6 +4,7 @@ import 'package:macare_agent/app/modules/delivery_details/views/delivery_details
 import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
 
+import '../../../routes/app_pages.dart';
 import '../../delivery/views/delivery_view.dart';
 import '../../history/views/history_view.dart';
 import '../../loginpage/views/loginpage_view.dart';
@@ -36,6 +37,7 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+
 
 
 }

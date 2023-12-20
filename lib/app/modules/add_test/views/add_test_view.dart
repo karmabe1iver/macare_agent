@@ -98,7 +98,7 @@ class AddTestView extends GetView<AddTestController> {
                                .addTestList[index].testName.toString(),
                                                   style: MyTheme.outfit(
                                                       fontWeight: FontWeight.w500,
-                                                      textSize: 15),
+                                                      textSize: 18),
                                                 ),
                                               ),
                                               SizedBox(width: Get.width*.03,),

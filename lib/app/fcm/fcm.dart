@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:convert';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
@@ -20,7 +18,7 @@ Future<void> handleMessage(RemoteMessage message) async {
 }
 
 const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'High_importance_id_update', // id
+  'High_importance_id', // id
   'High Importance Notifications', // title
   importance: Importance.max,
   playSound: true,

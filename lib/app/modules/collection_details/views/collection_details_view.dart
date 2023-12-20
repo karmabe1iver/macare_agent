@@ -68,7 +68,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                   Padding(
                     padding: const EdgeInsets.all(17.0),
                     child: Text('COLLECTION ADDRESS',
-                        style: MyTheme.outfit(fontWeight: FontWeight.w500)),
+                        style: MyTheme.outfit(fontWeight: FontWeight.w600)),
                   ),
                   Row(
                     children: [
@@ -255,26 +255,26 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                           width: Get.width,
                         ),
                         Text(
-                          'Blood sample collection',
+                            controller.argument.value!.laboratorySampleType.toString(),
                           style: MyTheme.outfit(
                               fontWeight: FontWeight.w400,
                               textSize: Get.height * .018,
                               color: MyTheme.smallFontColor),
                         ),
-                        Text(
-                          'Blood sample collection',
-                          style: MyTheme.outfit(
-                              fontWeight: FontWeight.w400,
-                              textSize: Get.height * .018,
-                              color: MyTheme.smallFontColor),
-                        ),
-                        Text(
-                          'Blood sample collection',
-                          style: MyTheme.outfit(
-                              fontWeight: FontWeight.w400,
-                              textSize: Get.height * .018,
-                              color: MyTheme.smallFontColor),
-                        ),
+                        // Text(
+                        //   'Blood sample collection',
+                        //   style: MyTheme.outfit(
+                        //       fontWeight: FontWeight.w400,
+                        //       textSize: Get.height * .018,
+                        //       color: MyTheme.smallFontColor),
+                        // ),
+                        // Text(
+                        //   'Blood sample collection',
+                        //   style: MyTheme.outfit(
+                        //       fontWeight: FontWeight.w400,
+                        //       textSize: Get.height * .018,
+                        //       color: MyTheme.smallFontColor),
+                        // ),
                         SizedBox(
                           height: 5,
                           width: Get.width,

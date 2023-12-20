@@ -16,6 +16,9 @@ abstract class MyTheme {
   static const Color snackBarColor = Colors.black;
   static const Color snackBarTextColor = Colors.white;
   static  Color employeeColor = Colors.grey.shade200;
+  static  Color rejectButtonColor = Colors.red.shade100;
+  static  Color acceptButtonColor = Colors.green.shade100;
+
   //---------------[Textstyle]-----------------
   static TextStyle outfit(
       {FontStyle? fontStyle,
