@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
 import 'package:macare_agent/app/fcm/fcm.dart';
@@ -16,6 +17,7 @@ Future<void> main() async {
     GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: "MACare Agent",
+      builder: FToastBuilder(),
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
 

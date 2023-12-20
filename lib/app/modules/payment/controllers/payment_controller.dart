@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 
 import '../../../app.dart';
+import '../../../component/show_toast.dart';
 import '../../../data/api_services/delivery_details_services.dart';
 import '../../../data/api_services/payment_services.dart';
 import '../../../data/model/delivery_model.dart';
@@ -59,10 +60,10 @@ class PaymentController extends GetxController {
       if (resp.message == "saved") {
         App.deliverytype = true;
         Get.toNamed(Routes.HOME, arguments: 1);
-        Fluttertoast.showToast(msg: 'Payment Completed');
+        showToast(msg: ' Payment Completed');
       }
       else {
-        Fluttertoast.showToast(msg: "Something went wrong");
+        showToast(msg: 'Something went wrong');
       }
     }
   }

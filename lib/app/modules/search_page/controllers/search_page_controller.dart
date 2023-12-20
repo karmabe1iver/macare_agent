@@ -6,6 +6,7 @@ import 'package:macare_agent/app/data/api_services/search_services.dart';
 import 'package:macare_agent/app/data/model/search_model.dart';
 
 import '../../../app.dart';
+import '../../../component/show_toast.dart';
 import '../../../data/model/add_selected_test_model.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
@@ -100,10 +101,10 @@ class SearchPageController extends GetxController {
 
     if (response.message == "saved") {
       Get.offNamed(Routes.ADD_TEST,arguments: argument);
-      Fluttertoast.showToast(msg: 'Success!!!');
+      showToast(msg: "Success");
     } else {
       App.deliverytype = true;
-      Fluttertoast.showToast(msg: 'Something went wrong!!');
+      showToast(msg: 'Something went wrong');
     }
 
   }

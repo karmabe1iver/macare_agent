@@ -68,25 +68,9 @@ class DeliveryController extends GetxController {
     }
 
     if (response.message != "saved") {
-      Fluttertoast.showToast(
-        msg: "Something went wrong!!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      showToast(msg: 'Something went wrong');
     } else {
-      Fluttertoast.showToast(
-        msg: "Accepted",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
+      showToast(msg: ' Accepted');
       deliveryFetchData();
     }
   }
@@ -111,7 +95,8 @@ class DeliveryController extends GetxController {
 
 
       if (response.message != 'saved') {
-        showToast(message: "Something went wrong!!");
+        //showToast(message: "Something went wrong!!");
+        showToast(msg: 'Something went wrong');
         // Fluttertoast.showToast(
         //   msg: "Something went wrong!!",
         //   toastLength: Toast.LENGTH_SHORT,
@@ -122,7 +107,7 @@ class DeliveryController extends GetxController {
         //   fontSize: 16.0,
         // );
       } else {
-        showToast(message: "Rejected");
+        //showToast(message: "Rejected");
         // Fluttertoast.showToast(
         //   msg: "Rejected",
         //   toastLength: Toast.LENGTH_SHORT,
