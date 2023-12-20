@@ -68,7 +68,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                   Padding(
                     padding: const EdgeInsets.all(17.0),
                     child: Text('COLLECTION ADDRESS',
-                        style: MyTheme.outfit(fontWeight: FontWeight.w500)),
+                        style: MyTheme.outfit(fontWeight: FontWeight.w600)),
                   ),
                   Row(
                     children: [

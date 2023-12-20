@@ -37,9 +37,12 @@ class HistoryView extends GetView<HistoryController> {
                           color: Colors.white,
                           fontWeight: FontWeight.w600),
                     ),
-                    Text(
+                    Transform.translate(
+                      offset: const Offset(-8, 0),
+                      child: Text(
                         App.employeename,
-                      style: MyTheme.outfit(color: MyTheme.smallFontColor),
+                        style: MyTheme.outfit(color: MyTheme.employeeColor),
+                      ),
                     ),
                   ],
                 ),
@@ -52,7 +55,7 @@ class HistoryView extends GetView<HistoryController> {
               alignment: Alignment.topLeft,
               child: Text(
                 "LABORATORY COLLECTION",
-                style: MyTheme.outfit(fontWeight: FontWeight.w500),
+                style: MyTheme.outfit(fontWeight: FontWeight.w600),
               ),
             ),
           ),
@@ -72,7 +75,7 @@ class HistoryView extends GetView<HistoryController> {
                           Row(
                             children: [
                               Expanded(
-                                flex: 3,
+                                flex: 2,
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Column(
@@ -161,7 +164,7 @@ class HistoryView extends GetView<HistoryController> {
     return Text(
       title,
       style: MyTheme.outfit(
-          fontWeight: FontWeight.w400, color: MyTheme.smallFontColor),
+          fontWeight: FontWeight.w500, color: MyTheme.smallFontColor),
     );
   }
 }
