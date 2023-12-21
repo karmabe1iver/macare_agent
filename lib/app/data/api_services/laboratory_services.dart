@@ -20,7 +20,7 @@ abstract class LaboratoryServices {
     data: { "booking_reference": bookingReference,
       "employee_reference": App.employeereference,
       "allocation_status": "accepted",
-      "booking_allocation":"processed"
+      "booking_allocation":"Booking Proccessed"
     });
 
     return ResponseModel.fromJson(response);

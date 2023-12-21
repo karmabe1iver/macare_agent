@@ -6,27 +6,28 @@ import '../../../fcm/fcm.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+  const HomeView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: Obx(
-        () => IndexedStack(
+            () => IndexedStack(
           index: controller.currentIndex.value,
           children: controller.screens.value,
         ),
       ),
-
-      ///Bottom Navigation
       bottomNavigationBar: Obx(
-        () => BottomNavigationBar(
+            () => BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           currentIndex: controller.currentIndex.value,
           onTap: (index) {
-            controller.currentIndex.value = index;
-            // controller.currentScreen.value = controller.screens[index];
+            if (index == 3) {
+
+              controller.logout();
+            } else {
+              controller.currentIndex.value = index;
+            }
           },
           items: [
             BottomNavigationBarItem(
@@ -66,17 +67,18 @@ class HomeView extends GetView<HomeController> {
                   width: 40,
                 )),
             BottomNavigationBarItem(
-                icon: Image.asset(
-                  AssetHelper.logoutLogo,
-                  height: 40,
-                  width: 40,
-                ),
-                label: "LOGOUT",
-                activeIcon: Image.asset(
-                  AssetHelper.logoutLogoSelected,
-                  height: 40,
-                  width: 40,
-                )),
+              icon: Image.asset(
+                AssetHelper.logoutLogo,
+                height: 40,
+                width: 40,
+              ),
+              label: "LOGOUT",
+              activeIcon: Image.asset(
+                AssetHelper.logoutLogoSelected,
+                height: 40,
+                width: 40,
+              ),
+            ),
           ],
           selectedItemColor: MyTheme.bottomNavigationBarSelectedColor,
           unselectedItemColor: MyTheme.bottomNavigationBarUnSelectedColor,
