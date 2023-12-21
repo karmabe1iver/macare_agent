@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:macare_agent/app/modules/delivery_details/views/delivery_details_view.dart';
 import 'package:macare_agent/app/modules/home/views/home_view.dart';
 import 'package:macare_agent/app/modules/laboratory/views/laboratory_view.dart';
@@ -37,7 +38,12 @@ class HomeController extends GetxController {
   void onClose() {
     super.onClose();
   }
+ void logout (){
+   GetStorage().erase();
 
+
+    Get.offAllNamed(Routes.LOGINPAGE);
+ }
 
 
 }
