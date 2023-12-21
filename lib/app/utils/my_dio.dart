@@ -12,7 +12,6 @@ import 'package:macare_agent/app/component/show_toast.dart';
 
 import '../app.dart';
 import '../presets/api_paths.dart';
-import '../presets/api_paths.dart';
 import '../routes/app_pages.dart';
 
 class MyDio {
@@ -46,19 +45,21 @@ class MyDio {
       return client;
     };
     _dio.interceptors.add(
-      InterceptorsWrapper(onError: (ex, handel) {
-        if (ex.response?.statusCode == 401) {
-          print("Status[${ex.response?.statusCode}] : ${ex.requestOptions.baseUrl}${ex.requestOptions.path}");
-          print("Data : ${ex.requestOptions.data}");
-          showToast(msg: "Login Expired");
-          Get.offAllNamed(Routes.LOGINPAGE);
-        }
-      },
-      //     onResponse: (response, handler) {
-      //   if (response.statusCode == 200) {
-      //     Get.toNamed(Routes.LOGINPAGE);
-      //   }
-      // }
+      InterceptorsWrapper(
+        onError: (ex, handel) {
+          if (ex.response?.statusCode == 401) {
+            print(
+                "Status[${ex.response?.statusCode}] : ${ex.requestOptions.baseUrl}${ex.requestOptions.path}");
+            print("Data : ${ex.requestOptions.data}");
+            showToast(msg: "Login Expired");
+            Get.offAllNamed(Routes.LOGINPAGE);
+          }
+        },
+        //     onResponse: (response, handler) {
+        //   if (response.statusCode == 200) {
+        //     Get.toNamed(Routes.LOGINPAGE);
+        //   }
+        // }
       ),
     );
   }
@@ -1024,6 +1025,7 @@ class MyDio {
   Future<dynamic> customDelete(
     String path, {
     data,
+    baseUrl,
     Map<String, dynamic>? queryParameters,
     Options? options,
     CancelToken? cancelToken,
@@ -1031,7 +1033,7 @@ class MyDio {
     ProgressCallback? onReceivedProgress,
   }) async {
     try {
-      Response resp = await _dio.delete(path,
+      Response resp = await _dio.delete(baseUrl + path,
           data: data,
           options: Options(
             responseType: ResponseType.plain,
