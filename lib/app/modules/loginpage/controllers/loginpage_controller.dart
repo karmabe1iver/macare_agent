@@ -20,8 +20,8 @@ class LoginpageController extends GetxController {
 
   @override
   void onInit() async {
-    // usernameController.text="emp-1001";
-    // passwordController.text="staging@123";
+     usernameController.text="emp-1001";
+     passwordController.text="staging@123";
     var token = LocalStore.getData("accessToken") ?? "";
     if (token != "") {
       await Future.delayed(const Duration(milliseconds: 30))
