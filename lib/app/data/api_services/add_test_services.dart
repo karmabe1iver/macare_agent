@@ -34,7 +34,7 @@ abstract class AddTestServices {
 
 
   static Future<dynamic> fetchDeletedTest({required String id})async{
-    dynamic response = await MyDio().customPatch(ApiPaths.deletedUrl,"$id/",baseUrl: ApiPaths.baseUrl,
+    dynamic response = await MyDio().customDelete(ApiPaths.deletedUrl,baseUrl: ApiPaths.baseUrl,
     data: {"delete_status":"true"});
     return ResponseModel.fromJson(response);
 

@@ -1,8 +1,8 @@
 abstract class ApiPaths{
-  static String baseUrl = 'http://192.168.29.160:8001/api/v1/';
-  //static String baseUrl = 'https://service-macare.tequevia.com/api/v1/';
-  static String generalUrl =  'http://192.168.29.160:8001/api/v1/general/';
-  //static String generalUrl =  'https://service-macare.tequevia.com/api/v1/general/';
+  //static String baseUrl = 'http://192.168.29.160:8001/api/v1/';
+  static String baseUrl = 'https://service-macare.tequevia.com/api/v1/';
+  //static String generalUrl =  'http://192.168.29.160:8001/api/v1/general/';
+  static String generalUrl =  'https://service-macare.tequevia.com/api/v1/general/';
 
 
   static String stafflogin = 'staff-login/';

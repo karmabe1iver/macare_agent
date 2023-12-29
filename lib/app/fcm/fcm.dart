@@ -7,21 +7,50 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 @pragma('vm:entry-point')
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   await Firebase.initializeApp();
-  FcmSetup().initNotification();
+  //FcmSetup().initNotification();
+  RemoteNotification? notification = message.notification;
+  AndroidNotification? android = message.notification?.android;
+  if (notification != null && android != null) {
+    flutterLocalNotificationsPlugin.show(
+      notification.hashCode,
+      notification.title,
+      notification.body,
+      NotificationDetails(
+        android: AndroidNotificationDetails(
+          channel.id,
+          channel.name,
+          sound: const RawResourceAndroidNotificationSound("custom_sound"),
+          playSound: true,
+          priority: Priority.high,
+          enableLights: true,
+          importance: Importance.max,
+          enableVibration: true,
+          //channel.description,
+          //icon: android.smallIcon,
+          // other properties...
+        ),
+      ),
+    );
+  }
+
   // Handle the background message here
   // ...
 }
 
 Future<void> handleMessage(RemoteMessage message) async {
-  // Handle the message here
-  // ...
+
 }
 
-const AndroidNotificationChannel channel = AndroidNotificationChannel(
-  'High_importance_id', // id
+
+ AndroidNotificationChannel channel = const AndroidNotificationChannel(
+  'High_import', // id
   'High Importance Notifications', // title
   importance: Importance.max,
   playSound: true,
+   sound: RawResourceAndroidNotificationSound("custom_sound"),
+  enableLights: true
+
+
 );
 
 final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
@@ -34,7 +63,12 @@ class FcmSetup {
 
   Future<void> initNotification() async {
     await Firebase.initializeApp();
-    await _firebaseMessaging.requestPermission();
+    await FirebaseMessaging.instance.requestPermission(
+      sound: true,
+      alert: true,
+      badge: true,
+
+    );
     var initializationSettingsAndroid =
     const AndroidInitializationSettings('@mipmap/ic_launcher');
     await flutterLocalNotificationsPlugin
@@ -46,14 +80,34 @@ class FcmSetup {
     await flutterLocalNotificationsPlugin.initialize(
       initializationSettings,
       onDidReceiveNotificationResponse: (NotificationResponse notificationResponse) async {
+        if (notificationResponse!=null) {
+          flutterLocalNotificationsPlugin.show(
+            notificationResponse.hashCode,
+            notificationResponse.payload,
+            "",
+            NotificationDetails(
+              android: AndroidNotificationDetails(
+                channel.id,
+                channel.name,
+                sound: const RawResourceAndroidNotificationSound("custom_sound"),
+                playSound: true,
+                priority: Priority.high,
+                enableLights: true,
+                importance: Importance.max,
+                enableVibration: true,
+                //channel.description,
+                //icon: android.smallIcon,
+                // other properties...
+              ),
+            ),
+          );
+        }
         if (notificationResponse == null) return;
         // Handle notification response here
         // ...
       },
     );
     final fCMToken = await _firebaseMessaging.getToken();
-    // LocalStore.setData('fcm_token', fCMToken);
-    // App.fcmToken = fCMToken!;
 
     if (kDebugMode) {
       print("Token :$fCMToken");
@@ -87,6 +141,12 @@ class FcmSetup {
             android: AndroidNotificationDetails(
               channel.id,
               channel.name,
+              sound: const RawResourceAndroidNotificationSound("custom_sound"),
+              playSound: true,
+              priority: Priority.high,
+              enableLights: true,
+              importance: Importance.max,
+              enableVibration: true,
               //channel.description,
               //icon: android.smallIcon,
               // other properties...
