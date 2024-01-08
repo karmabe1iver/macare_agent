@@ -4,6 +4,9 @@ import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
+import '../app.dart';
+import '../component/show_toast.dart';
+
 @pragma('vm:entry-point')
 Future<void> handleBackgroundMessage(RemoteMessage message) async {
   await Firebase.initializeApp();
@@ -43,7 +46,7 @@ Future<void> handleMessage(RemoteMessage message) async {
 
 
  AndroidNotificationChannel channel = const AndroidNotificationChannel(
-  'High_import', // id
+  'High_importance', // id
   'High Importance Notifications', // title
   importance: Importance.max,
   playSound: true,
@@ -107,11 +110,16 @@ class FcmSetup {
         // ...
       },
     );
-    final fCMToken = await _firebaseMessaging.getToken();
-
-    if (kDebugMode) {
-      print("Token :$fCMToken");
+    final fCMToken = await _firebaseMessaging.getToken() ;
+    App.fcmToken = fCMToken ??"Permission denied" ;
+    if(App.fcmToken==""){
+      showToast(msg: "Fcm Token not Generated");
     }
+    if (kDebugMode) {
+      print("Token :${App.fcmToken}");
+    }
+
+
     initPushNotification();
   }
 

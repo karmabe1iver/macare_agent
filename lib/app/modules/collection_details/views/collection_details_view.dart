@@ -387,6 +387,7 @@ class CollectionDetailsView extends GetView<CollectionDetailsController> {
                          bookingAllocationStatus: status,
                          bookingStatus: status,
                          empReference: App.employeereference,  );
+                     App.deliverytype= true;
 
 
                   },

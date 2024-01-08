@@ -11,9 +11,9 @@ String deliveryResponseModelToJson(List<DeliveryResponseModel> data) => json.enc
 class DeliveryResponseModel {
   String? allocationReference;
   String? allocationStatus;
-  dynamic orderReference;
-  dynamic orderDate;
-  dynamic orderAmount;
+  dynamic? orderReference;
+  dynamic? orderDate;
+  int? orderAmount;
   String? orderStatus;
   List<PharmacyInfo>? pharmacyInfo;
   List<OrderItem>? orderItems;
@@ -72,11 +72,11 @@ class DeliveryDetail {
   String? id;
   String? customerName;
   String? customerAddress;
-  dynamic customerPhone;
+  String? customerPhone;
   String? customerNearestLandmark;
-  dynamic customerLatitude;
-  dynamic customerLongitude;
-  dynamic pinCode;
+  String? customerLatitude;
+  String? customerLongitude;
+  String? pinCode;
   bool? deleteStatus;
   DateTime? createdOn;
   String? customerReference;
@@ -131,17 +131,18 @@ class DeliveryDetail {
 class OrderItem {
   String? id;
   String? productName;
-  dynamic productPrice;
+  double? productPrice;
   String? productStock;
-  dynamic productOfferPercentage;
-  dynamic productOfferPrice;
+  dynamic
+  productOfferPercentage;
+  double? productOfferPrice;
   String? maxAllowedSellingQuantity;
   String? productImage;
   String? manufacturerName;
   bool? deleteStatus;
   String? listingPriority;
-  String? productType;
-  DateTime? createdOn;
+  ProductType? productType;
+  dynamic createdOn;
   String? branchReference;
   String? quantity;
 
@@ -166,7 +167,7 @@ class OrderItem {
   factory OrderItem.fromJson(Map<String, dynamic> json) => OrderItem(
     id: json["id"],
     productName: json["product_name"],
-    productPrice: json["product_price"],
+    productPrice: json["product_price"].toDouble(),
     productStock: json["product_stock"],
     productOfferPercentage: json["product_offer_percentage"],
     productOfferPrice: json["product_offer_price"].toDouble(),
@@ -175,7 +176,7 @@ class OrderItem {
     manufacturerName: json["manufacturer_name"],
     deleteStatus: json["delete_status"],
     listingPriority: json["listing_priority"],
-    productType: json["product_type"],
+    productType: productTypeValues.map[json["product_type"]],
     createdOn: DateTime.parse(json["created_on"]),
     branchReference: json["branch_reference"],
     quantity: json["quantity"],
@@ -193,118 +194,40 @@ class OrderItem {
     "manufacturer_name": manufacturerName,
     "delete_status": deleteStatus,
     "listing_priority": listingPriority,
-    "product_type": productType,
-    "created_on": createdOn!.toIso8601String(),
+    "product_type": productTypeValues.reverse[productType],
+    "created_on": createdOn,
     "branch_reference": branchReference,
     "quantity": quantity,
   };
 }
 
+enum ProductType {
+  OPTICAL,
+  OTC
+}
+
+final productTypeValues = EnumValues({
+  "optical": ProductType.OPTICAL,
+  "otc": ProductType.OTC
+});
+
 class PharmacyInfo {
-  String? id;
-  String? branchCode;
   String? branchName;
-  String? branchAddress;
-  String? branchContact;
-  String? branchEmail;
-  String? branchDistrict;
-  String? branchState;
-  String? branchPincode;
-  bool? deleteStatus;
-  dynamic latitude;
-  dynamic longitude;
-  String? deliveryLimitUpto;
-  String? workingTimeFrom;
-  String? workingTimeTo;
-  String? supportPhone;
-  String? supportEmail;
-  String? supportWhatsapp;
-  String? fbPageRef;
-  String? twitterPageRef;
-  String? instagramPageRef;
-  String? googlePageRef;
-  String? youtubePageRef;
-  DateTime? createdOn;
+  String? id;
 
   PharmacyInfo({
-    this.id,
-    this.branchCode,
     this.branchName,
-    this.branchAddress,
-    this.branchContact,
-    this.branchEmail,
-    this.branchDistrict,
-    this.branchState,
-    this.branchPincode,
-    this.deleteStatus,
-    this.latitude,
-    this.longitude,
-    this.deliveryLimitUpto,
-    this.workingTimeFrom,
-    this.workingTimeTo,
-    this.supportPhone,
-    this.supportEmail,
-    this.supportWhatsapp,
-    this.fbPageRef,
-    this.twitterPageRef,
-    this.instagramPageRef,
-    this.googlePageRef,
-    this.youtubePageRef,
-    this.createdOn,
+    this.id,
   });
 
   factory PharmacyInfo.fromJson(Map<String, dynamic> json) => PharmacyInfo(
-    id: json["id"],
-    branchCode: json["branch_code"],
     branchName: json["branch_name"],
-    branchAddress: json["branch_address"],
-    branchContact: json["branch_contact"],
-    branchEmail: json["branch_email"],
-    branchDistrict: json["branch_district"],
-    branchState: json["branch_state"],
-    branchPincode: json["branch_pincode"],
-    deleteStatus: json["delete_status"],
-    latitude: json["latitude"],
-    longitude: json["longitude"],
-    deliveryLimitUpto: json["delivery_limit_upto"],
-    workingTimeFrom: json["working_time_from"],
-    workingTimeTo: json["working_time_to"],
-    supportPhone: json["support_phone"],
-    supportEmail: json["support_email"],
-    supportWhatsapp: json["support_whatsapp"],
-    fbPageRef: json["fb_page_ref"],
-    twitterPageRef: json["twitter_page_ref"],
-    instagramPageRef: json["instagram_page_ref"],
-    googlePageRef: json["google_page_ref"],
-    youtubePageRef: json["youtube_page_ref"],
-    createdOn: DateTime.parse(json["created_on"]),
+    id: json["id"],
   );
 
   Map<String, dynamic> toJson() => {
-    "id": id,
-    "branch_code": branchCode,
     "branch_name": branchName,
-    "branch_address": branchAddress,
-    "branch_contact": branchContact,
-    "branch_email": branchEmail,
-    "branch_district": branchDistrict,
-    "branch_state": branchState,
-    "branch_pincode": branchPincode,
-    "delete_status": deleteStatus,
-    "latitude": latitude,
-    "longitude": longitude,
-    "delivery_limit_upto": deliveryLimitUpto,
-    "working_time_from": workingTimeFrom,
-    "working_time_to": workingTimeTo,
-    "support_phone": supportPhone,
-    "support_email": supportEmail,
-    "support_whatsapp": supportWhatsapp,
-    "fb_page_ref": fbPageRef,
-    "twitter_page_ref": twitterPageRef,
-    "instagram_page_ref": instagramPageRef,
-    "google_page_ref": googlePageRef,
-    "youtube_page_ref": youtubePageRef,
-    "created_on": createdOn!.toIso8601String(),
+    "id": id,
   };
 }
 
@@ -316,7 +239,7 @@ class PrescriptionInfo {
   String? status;
   String? reason;
   String? billNumber;
-  double? billAmount;
+  String? billAmount;
   String? paymentMethod;
   DateTime? createdOn;
   String? customerReference;
@@ -370,4 +293,16 @@ class PrescriptionInfo {
     "pharmacy_reference": pharmacyReference,
     "delivery_address_reference": deliveryAddressReference,
   };
+}
+
+class EnumValues<T> {
+  Map<String, T> map;
+  late Map<T, String> reverseMap;
+
+  EnumValues(this.map);
+
+  Map<T, String> get reverse {
+    reverseMap = map.map((k, v) => MapEntry(v, k));
+    return reverseMap;
+  }
 }

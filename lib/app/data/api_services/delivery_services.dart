@@ -21,7 +21,7 @@ abstract class DeliveryServices {
         baseUrl: ApiPaths.baseUrl,
         queryParameters: {
           'allocation_reference': allocationReference,
-          "order_status": 'Booking Proccessed',
+          "order_status": 'Processed',
           'allocation_status': 'accepted'
         });
     return DeliveryCon1ResponseModel.fromJson(response);
@@ -32,7 +32,7 @@ abstract class DeliveryServices {
         baseUrl: ApiPaths.baseUrl,
         queryParameters: {
           'order_reference': orderReference,
-          "order_status": 'Booking Proccessed',
+          "order_status": 'Processed',
           'employee_reference': employeereference,
           'allocation_status': 'accepted'
         });

@@ -82,9 +82,16 @@ class DeliveryView extends GetView<DeliveryController> {
                         children: [
                           MaterialButton(
                             onPressed: () {
+
                               if (controller.deliveryDetails[index]
                                   .allocationStatus !=
-                                  "pending") {
+                                  "pending") {controller.deliveryDetailsFetchData(
+                                  allocationReferrence: controller
+                                      .deliveryDetails[index].allocationReference
+                                      .toString(),
+                                  deliveryType: controller.deliveryDetails[index].type.toString(),
+                                  orderReference: controller.deliveryDetails[index].orderReference
+                                      .toString());
                                 Get.toNamed(Routes.DELIVERY_DETAILS,
                                     arguments: controller
                                         .deliveryDetails[index]);
@@ -164,11 +171,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                 .customerAddress
                                                 .toString(),
                                           ) : SizedBox(),
-                                          controller
-                                              .deliveryDetails[index]
-                                              .deliveryDetails!
-                                              .first
-                                              .pinCode.isNotEmpty ?
+
                                           _addressDetails(
                                             controller
                                                 .deliveryDetails[index]
@@ -176,7 +179,7 @@ class DeliveryView extends GetView<DeliveryController> {
                                                 .first
                                                 .pinCode
                                                 .toString(),
-                                          ) : SizedBox(),
+                                          ) ,
                                           Obx(
                                                 () =>
                                                 Visibility(

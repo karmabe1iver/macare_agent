@@ -14,6 +14,7 @@ abstract class App{
   static String employeename =LocalStore.getData("employeeName")??"";
   static String totalfeeee ='';
   static String subtotalFee ='';
+  static String fcmToken ='';
 
 
   static String agentUpdateReference ='';

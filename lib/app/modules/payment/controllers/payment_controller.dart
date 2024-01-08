@@ -24,6 +24,7 @@ class PaymentController extends GetxController {
   @override
   void onInit() {
     argument.value = Get.arguments??DeliveryResponseModel();
+
     super.onInit();
   }
 
@@ -39,7 +40,7 @@ class PaymentController extends GetxController {
 
   Future<void> paymentFetchData({
     required String allocationReferrence,
-    required String deliveryType,
+    required bool deliveryType,
     required String orderReference,
   }) async {
     dynamic resp;

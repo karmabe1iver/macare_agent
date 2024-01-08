@@ -109,9 +109,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                       )
                                     : SizedBox(),
 
-                                controller.argument.value!.deliveryDetails!
-                                        .first.customerPhone.isNotEmpty
-                                    ? Text(
+                                 Text(
                                         controller
                                             .argument
                                             .value!
@@ -124,8 +122,8 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                             textSize: Get.height * .016,
                                             color:
                                                 MyTheme.phoneNumberTextColor),
-                                      )
-                                    : SizedBox(),
+                                      ),
+
 
                                 SizedBox(
                                   height: 10,
@@ -226,23 +224,19 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                           ),
                           Row(
                             children: [
-                              controller.argument.value.orderAmount.isNotEmpty
-                                  ? Icon(
+                                  Icon(
                                       Icons.currency_rupee,
                                       color: MyTheme.phoneNumberTextColor,
                                       size: Get.height * .038 ,
-                                    )
-                                  : SizedBox(),
-                              controller.argument.value.orderAmount.isNotEmpty
-                                  ? Text(
+                                    ),
+                                  Text(
                                       controller.argument.value.orderAmount
                                           .toString(),
                                       style: MyTheme.outfit(
                                           fontWeight: FontWeight.w400,
                                           textSize: Get.height * .038,
                                           color: MyTheme.numbersColor),
-                                    )
-                                  : SizedBox(),
+                                    ),
                               Spacer(),
 
                               date.isNotEmpty
@@ -300,6 +294,7 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
                                 minWidth: 0,
                                 maxHeight: Get.height),
                             child: ListView.builder(padding: EdgeInsets.zero,
+                                physics: NeverScrollableScrollPhysics(),
                                 itemCount: controller
                                     .argument.value.orderItems!.length,
                                 shrinkWrap: true,
@@ -419,10 +414,10 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
               child: TextButton(
                   onPressed: () {
                     openMaps(
+                        double.parse(controller.argument.value.deliveryDetails!.first.customerLatitude.toString()
+                        ),
                         double.parse(controller.argument.value.deliveryDetails!
-                            .first.customerLatitude),
-                        double.parse(controller.argument.value.deliveryDetails!
-                            .first.customerLongitude));
+                            .first.customerLongitude.toString()));
 
                     controller.showdirectionFetchData(
                         allocationReferrence: controller
@@ -453,15 +448,12 @@ class DeliveryDetailsView extends GetView<DeliveryDetailsController> {
               width: Get.width / 2.4,
               child: TextButton(
                   onPressed: () {
-                    controller.deliveryDetailsFetchData(
-                        allocationReferrence: controller
-                            .argument.value!.allocationReference
-                            .toString(),
-                        deliveryType: controller.argument.value.type.toString(),
-                        orderReference: controller.argument.value.orderReference
-                            .toString());
+
                     App.totalfeeee =
                         controller.argument.value.orderAmount.toString();
+                    App.deliverytype = false;
+                    Get.toNamed(Routes.PAYMENT,
+                        arguments: controller.argument.value);
 
                   },
                   style: ButtonStyle(

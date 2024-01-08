@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
@@ -9,10 +9,11 @@ import 'package:macare_agent/app/data/api_services/delivery_services.dart';
 import 'package:macare_agent/app/data/model/delivery_model.dart';
 
 import '../../../app.dart';
+import '../../../data/api_services/delivery_details_services.dart';
 import '../../../data/model/deliverycon1_response_model.dart';
-import '../../../data/model/deliverycon2_response_model.dart';
+
 import '../../../utils/my_theme.dart';
-import '../views/delivery_view.dart';
+
 
 class DeliveryController extends GetxController {
   //TODO: Implement DeliveryController
@@ -23,6 +24,7 @@ class DeliveryController extends GetxController {
 
   @override
   void onInit() {
+
     deliveryFetchData();
     super.onInit();
   }
@@ -157,5 +159,34 @@ class DeliveryController extends GetxController {
           );
         },
     );
+  }
+  Future<void> deliveryDetailsFetchData({required String allocationReferrence,
+    required String deliveryType,
+    required String orderReference,}) async {
+    dynamic response;
+    if (deliveryType == "prescription") {
+      response = await DeliveryDetails.deliveryDetailsCondition1(
+          allocationReference: allocationReferrence, oderstatus: 'On the way');
+    }
+    if (deliveryType != "prescription") {
+      response =
+      await DeliveryDetails.deliveryDetailsCondition2(
+          oderstatus: 'On the way',
+          orderReference: orderReference,
+          employeereference: App.employeereference);
+    }
+
+    if (response.message!="saved") {
+
+      Fluttertoast.showToast(
+        msg: "Something went wrong!!!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: MyTheme.appBarColor,
+        textColor: Colors.white,
+        fontSize: 16.0,
+      );
+    }
   }
 }

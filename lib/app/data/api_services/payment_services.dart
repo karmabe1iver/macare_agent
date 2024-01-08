@@ -33,10 +33,11 @@ abstract class PaymentDetails{
         }
     );
     return deliveryDetailsCon2ResponseModelFromJson(response);
-  }  static Future<dynamic> laboratorypayment(
+  }
+  static Future<dynamic> laboratorypayment(
       {required String bookingreference,required String employeereference}) async {
     dynamic response = await MyDio().customGet(
-        ApiPaths.paymentcondition2Url,
+        ApiPaths.laboratoryPaymentUrl,
         baseUrl: ApiPaths.baseUrl,
         queryParameters: {
           'booking_reference': bookingreference,

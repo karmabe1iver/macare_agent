@@ -48,40 +48,7 @@ class DeliveryDetailsController extends GetxController {
     super.onClose();
   }
 
-  Future<void> deliveryDetailsFetchData({required String allocationReferrence,
-    required String deliveryType,
-    required String orderReference,}) async {
-    dynamic response;
-    if (deliveryType == "prescription") {
-      response = await DeliveryDetails.deliveryDetailsCondition1(
-          allocationReference: allocationReferrence, oderstatus: 'Picked');
-    }
-    if (deliveryType != "prescription") {
-      response =
-      await DeliveryDetails.deliveryDetailsCondition2(
-          oderstatus: 'Picked',
-          orderReference: orderReference,
-          employeereference: App.employeereference);
-    }
 
-    if (response.message!="saved") {
-
-      Fluttertoast.showToast(
-        msg: "Something went wrong!!!",
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
-        backgroundColor: MyTheme.appBarColor,
-        textColor: Colors.white,
-        fontSize: 16.0,
-      );
-    } else {
-      App.deliverytype = true;
-      Get.toNamed(Routes.PAYMENT,
-          arguments: argument.value);
-
-    }
-  }
 
   Future<void> showdirectionFetchData({
     required String allocationReferrence,

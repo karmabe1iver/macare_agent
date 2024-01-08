@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 import '../../../app.dart';
 import '../../../routes/app_pages.dart';
 import '../../../utils/my_theme.dart';
+import '../../delivery/controllers/delivery_controller.dart';
 import '../controllers/payment_controller.dart';
 
 class PaymentView extends GetView<PaymentController> {
@@ -14,6 +15,8 @@ class PaymentView extends GetView<PaymentController> {
 
   @override
   Widget build(BuildContext context) {
+
+
     return Scaffold(
       body: Container(
         color: MyTheme.appBarColor.withOpacity(0.03),
@@ -125,8 +128,10 @@ class PaymentView extends GetView<PaymentController> {
                           allocationReferrence: controller
                               .argument.value.allocationReference
                               .toString(),
-                          deliveryType: controller.argument.value.type.toString(),
-                          orderReference: controller.argument.value.orderReference.toString());
+                          deliveryType:App.deliverytype,
+                          orderReference: controller.argument.value.orderReference.toString(),);
+                      Get.toNamed(Routes.HOME);
+
 
                     }
                     },
@@ -159,7 +164,7 @@ class PaymentView extends GetView<PaymentController> {
   }
   String amount() {
     if (App.deliverytype == false) {
-      return controller.argument.value.orderAmount;
+      return controller.argument.value.orderAmount.toString();
     } else {
       return App.totalfeeee;
     }

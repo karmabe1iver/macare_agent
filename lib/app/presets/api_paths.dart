@@ -1,8 +1,8 @@
 abstract class ApiPaths{
-  //static String baseUrl = 'http://192.168.29.160:8001/api/v1/';
-  static String baseUrl = 'https://service-macare.tequevia.com/api/v1/';
-  //static String generalUrl =  'http://192.168.29.160:8001/api/v1/general/';
-  static String generalUrl =  'https://service-macare.tequevia.com/api/v1/general/';
+  static String baseUrl = 'http://192.168.29.160:8001/api/v1/';
+  //static String baseUrl = 'https://service-macare.tequevia.com/api/v1/';
+  static String generalUrl =  'http://192.168.29.160:8001/api/v1/general/';
+  //static String generalUrl =  'https://service-macare.tequevia.com/api/v1/general/';
 
 
   static String stafflogin = 'staff-login/';
@@ -25,6 +25,7 @@ abstract class ApiPaths{
   static String deletedUrl = "laboratory/laboratory-booking-test-allocation/";
   static String checkoutUrl = "laboratory/collection-agent-status-update/";
   static String laboratoryPaymentUrl = "laboratory/collection-agent-status-update/";
+  static String firebaseTokenUrl = "firebase-token-registration/";
 
 
 

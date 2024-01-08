@@ -7,6 +7,7 @@ import 'package:macare_agent/app/data/api_services/login_services.dart';
 import 'package:macare_agent/app/data/model/login_model.dart';
 import 'package:macare_agent/app/utils/local_store.dart';
 import '../../../component/show_toast.dart';
+import '../../../data/api_services/firebase_registration_service.dart';
 import '../../../routes/app_pages.dart';
 
 class LoginpageController extends GetxController {
@@ -55,7 +56,13 @@ class LoginpageController extends GetxController {
       LocalStore.setData("accessToken", response.access);
       LocalStore.setData("employeeReference", response.employeeReference);
       LocalStore.setData("employeeName", response.name);
+
+      if(App.fcmToken==""){
+        showToast(msg: "Fcm Token not Generated");
+      }
       Get.toNamed(Routes.HOME);
+      await FirebaseServices.firebaseRegistration();
+
     } else {
       //Fluttertoast.showToast(msg: 'Something went wrong!!');
       showToast(msg: ' Something went wrong');
